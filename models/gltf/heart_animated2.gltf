@@ -1,0 +1,1738 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5123,
+            "count" : 1728,
+            "max" : [
+                289
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 290,
+            "max" : [
+                5.087678909301758,
+                9.154441833496094,
+                -7.1676025390625
+            ],
+            "min" : [
+                -14.517820358276367,
+                -2.86370849609375,
+                -25.7044677734375
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 290,
+            "max" : [
+                0.9919431209564209,
+                0.9963988065719604,
+                0.9877926111221313
+            ],
+            "min" : [
+                -0.9928586483001709,
+                -0.9961241483688354,
+                -0.9662160277366638
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5121,
+            "count" : 1008,
+            "max" : [
+                215
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 216,
+            "max" : [
+                4.412755966186523,
+                17.48827362060547,
+                -17.68896484375
+            ],
+            "min" : [
+                -29.957130432128906,
+                -16.074745178222656,
+                -67.8212890625
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 216,
+            "max" : [
+                0.9996337890625,
+                0.999755859375,
+                0.8991363048553467
+            ],
+            "min" : [
+                -0.999725341796875,
+                -0.999847412109375,
+                -0.999969482421875
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5123,
+            "count" : 10356,
+            "max" : [
+                2252
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5126,
+            "count" : 2253,
+            "max" : [
+                57.44488525390625,
+                54.520729064941406,
+                52.3165283203125
+            ],
+            "min" : [
+                -41.464927673339844,
+                -38.595821380615234,
+                -38.971771240234375
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 8,
+            "componentType" : 5126,
+            "count" : 2253,
+            "max" : [
+                0.9998779296875,
+                0.999664306640625,
+                0.99981689453125
+            ],
+            "min" : [
+                -0.999755859375,
+                -0.9983519911766052,
+                -0.99908447265625
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 9,
+            "componentType" : 5121,
+            "count" : 12,
+            "max" : [
+                6
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 10,
+            "componentType" : 5126,
+            "count" : 7,
+            "max" : [
+                -1.707414984703064,
+                31.929780960083008,
+                20.666645050048828
+            ],
+            "min" : [
+                -8.25997543334961,
+                26.453399658203125,
+                10.120513916015625
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 11,
+            "componentType" : 5126,
+            "count" : 7,
+            "max" : [
+                0.6826074719429016,
+                0.504898190498352,
+                -0.5986510515213013
+            ],
+            "min" : [
+                0.5190588235855103,
+                0.4190496504306793,
+                -0.6896572709083557
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 12,
+            "componentType" : 5123,
+            "count" : 4275,
+            "max" : [
+                832
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 13,
+            "componentType" : 5126,
+            "count" : 833,
+            "max" : [
+                48.122074127197266,
+                48.542442321777344,
+                46.9931640625
+            ],
+            "min" : [
+                -14.291399002075195,
+                -17.12678337097168,
+                -12.214238166809082
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 14,
+            "componentType" : 5126,
+            "count" : 833,
+            "max" : [
+                0.9851069450378418,
+                0.9796136617660522,
+                0.9685659408569336
+            ],
+            "min" : [
+                -0.999359130859375,
+                -0.9986876845359802,
+                -0.999603271484375
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 15,
+            "componentType" : 5123,
+            "count" : 7554,
+            "max" : [
+                1287
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 16,
+            "componentType" : 5126,
+            "count" : 1288,
+            "max" : [
+                28.849288940429688,
+                19.032859802246094,
+                34.7884521484375
+            ],
+            "min" : [
+                -22.32850456237793,
+                -35.81803512573242,
+                -8.39616584777832
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 17,
+            "componentType" : 5126,
+            "count" : 1288,
+            "max" : [
+                0.999603271484375,
+                0.9980773329734802,
+                0.999847412109375
+            ],
+            "min" : [
+                -0.9968565702438354,
+                -0.9978331923484802,
+                -0.999786376953125
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 18,
+            "componentType" : 5123,
+            "count" : 1716,
+            "max" : [
+                287
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 19,
+            "componentType" : 5126,
+            "count" : 288,
+            "max" : [
+                18.297700881958008,
+                20.39366912841797,
+                -18.4046630859375
+            ],
+            "min" : [
+                1.9353961944580078,
+                6.228706359863281,
+                -34.651123046875
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 20,
+            "componentType" : 5126,
+            "count" : 288,
+            "max" : [
+                0.9991455078125,
+                0.9996337890625,
+                0.9938963055610657
+            ],
+            "min" : [
+                -0.9936216473579407,
+                -0.999847412109375,
+                -0.999786376953125
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 21,
+            "componentType" : 5123,
+            "count" : 2274,
+            "max" : [
+                610
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 22,
+            "componentType" : 5126,
+            "count" : 611,
+            "max" : [
+                52.82674789428711,
+                54.21088790893555,
+                52.27864456176758
+            ],
+            "min" : [
+                -42.15263366699219,
+                -33.65427780151367,
+                -34.34780502319336
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 23,
+            "componentType" : 5126,
+            "count" : 611,
+            "max" : [
+                0.9993896484375,
+                0.9967344999313354,
+                0.999237060546875
+            ],
+            "min" : [
+                -0.9937437176704407,
+                -0.9880062341690063,
+                -0.9619433879852295
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 24,
+            "componentType" : 5123,
+            "count" : 1782,
+            "max" : [
+                298
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 25,
+            "componentType" : 5126,
+            "count" : 299,
+            "max" : [
+                1.7306041717529297,
+                2.40655517578125,
+                -6.5146484375
+            ],
+            "min" : [
+                -15.254281997680664,
+                -16.4100341796875,
+                -23.3973388671875
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 26,
+            "componentType" : 5126,
+            "count" : 299,
+            "max" : [
+                0.9876705408096313,
+                0.9985961318016052,
+                0.9889217615127563
+            ],
+            "min" : [
+                -0.9962767362594604,
+                -0.9972838759422302,
+                -0.9981383681297302
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 27,
+            "componentType" : 5123,
+            "count" : 1680,
+            "max" : [
+                281
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 28,
+            "componentType" : 5126,
+            "count" : 282,
+            "max" : [
+                18.67267417907715,
+                36.963783264160156,
+                -17.7235107421875
+            ],
+            "min" : [
+                0.8303813934326172,
+                18.04882049560547,
+                -34.0404052734375
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 29,
+            "componentType" : 5126,
+            "count" : 282,
+            "max" : [
+                0.9987487196922302,
+                0.9974059462547302,
+                0.9986876845359802
+            ],
+            "min" : [
+                -0.9982909560203552,
+                -0.999786376953125,
+                -0.9944761395454407
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 30,
+            "componentType" : 5123,
+            "count" : 6045,
+            "max" : [
+                1086
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 31,
+            "componentType" : 5126,
+            "count" : 1087,
+            "max" : [
+                -10.85010814666748,
+                40.379798889160156,
+                43.011741638183594
+            ],
+            "min" : [
+                -58.298004150390625,
+                -31.9747314453125,
+                -52.29860305786133
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 32,
+            "componentType" : 5126,
+            "count" : 1087,
+            "max" : [
+                0.999237060546875,
+                0.999298095703125,
+                0.999664306640625
+            ],
+            "min" : [
+                -0.9989013075828552,
+                -0.9967955350875854,
+                -0.9991455078125
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 33,
+            "componentType" : 5123,
+            "count" : 8988,
+            "max" : [
+                1574
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 34,
+            "componentType" : 5126,
+            "count" : 1575,
+            "max" : [
+                -2.1129167079925537,
+                32.95835494995117,
+                36.702816009521484
+            ],
+            "min" : [
+                -42.765140533447266,
+                -8.083279609680176,
+                -9.664306640625
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 35,
+            "componentType" : 5126,
+            "count" : 1575,
+            "max" : [
+                0.999420166015625,
+                0.9978942275047302,
+                0.999786376953125
+            ],
+            "min" : [
+                -0.9956053495407104,
+                -0.99957275390625,
+                -0.9993896484375
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 36,
+            "componentType" : 5123,
+            "count" : 3636,
+            "max" : [
+                603
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 37,
+            "componentType" : 5126,
+            "count" : 604,
+            "max" : [
+                20.868379592895508,
+                36.121116638183594,
+                -29.541259765625
+            ],
+            "min" : [
+                -34.00322723388672,
+                -43.39093780517578,
+                -66.3646240234375
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 38,
+            "componentType" : 5126,
+            "count" : 604,
+            "max" : [
+                0.999237060546875,
+                0.9951170086860657,
+                0.9982604384422302
+            ],
+            "min" : [
+                -0.99945068359375,
+                -0.99969482421875,
+                -0.9975585341453552
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 39,
+            "componentType" : 5123,
+            "count" : 1896,
+            "max" : [
+                317
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 40,
+            "componentType" : 5126,
+            "count" : 318,
+            "max" : [
+                10.45665168762207,
+                4.6854400634765625,
+                -13.932373046875
+            ],
+            "min" : [
+                -4.794170379638672,
+                -14.505668640136719,
+                -27.037841796875
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 41,
+            "componentType" : 5126,
+            "count" : 318,
+            "max" : [
+                0.9913938045501709,
+                0.9954222440719604,
+                0.9897457957267761
+            ],
+            "min" : [
+                -0.9967955350875854,
+                -0.9905392527580261,
+                -0.9854121804237366
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 42,
+            "componentType" : 5123,
+            "count" : 8508,
+            "max" : [
+                1518
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 43,
+            "componentType" : 5126,
+            "count" : 1519,
+            "max" : [
+                41.25926208496094,
+                29.691959381103516,
+                27.78757095336914
+            ],
+            "min" : [
+                -46.96538543701172,
+                -54.47401428222656,
+                -45.3463134765625
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 44,
+            "componentType" : 5126,
+            "count" : 1519,
+            "max" : [
+                0.9967344999313354,
+                0.999176025390625,
+                0.9969481229782104
+            ],
+            "min" : [
+                -0.9981078505516052,
+                -0.9991455078125,
+                -0.9978026747703552
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 45,
+            "componentType" : 5123,
+            "count" : 2121,
+            "max" : [
+                603
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 46,
+            "componentType" : 5126,
+            "count" : 604,
+            "max" : [
+                55.16090774536133,
+                54.07592010498047,
+                52.19586944580078
+            ],
+            "min" : [
+                -42.302978515625,
+                -40.08014678955078,
+                -24.357343673706055
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 47,
+            "componentType" : 5126,
+            "count" : 604,
+            "max" : [
+                0.9977721571922302,
+                0.99932861328125,
+                0.9996337890625
+            ],
+            "min" : [
+                -0.9921872615814209,
+                -0.9963988065719604,
+                -0.9878231287002563
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 48,
+            "componentType" : 5123,
+            "count" : 1584,
+            "max" : [
+                265
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 49,
+            "componentType" : 5126,
+            "count" : 266,
+            "max" : [
+                6.0120849609375,
+                34.51459503173828,
+                -21.23779296875
+            ],
+            "min" : [
+                -12.245203018188477,
+                11.009315490722656,
+                -38.26025390625
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 50,
+            "componentType" : 5126,
+            "count" : 266,
+            "max" : [
+                0.9963072538375854,
+                0.9981688857078552,
+                0.9985656142234802
+            ],
+            "min" : [
+                -0.9912106394767761,
+                -0.9954222440719604,
+                -0.9946897625923157
+            ],
+            "type" : "VEC3"
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 3456,
+            "byteOffset" : 0,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3480,
+            "byteOffset" : 3456,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3480,
+            "byteOffset" : 6936,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1008,
+            "byteOffset" : 10416,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 2592,
+            "byteOffset" : 11424,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 2592,
+            "byteOffset" : 14016,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 20712,
+            "byteOffset" : 16608,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 27036,
+            "byteOffset" : 37320,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 27036,
+            "byteOffset" : 64356,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 12,
+            "byteOffset" : 91392,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 84,
+            "byteOffset" : 91404,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 84,
+            "byteOffset" : 91488,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 8550,
+            "byteOffset" : 91572,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 9996,
+            "byteOffset" : 100124,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 9996,
+            "byteOffset" : 110120,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 15108,
+            "byteOffset" : 120116,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 15456,
+            "byteOffset" : 135224,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 15456,
+            "byteOffset" : 150680,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3432,
+            "byteOffset" : 166136,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3456,
+            "byteOffset" : 169568,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3456,
+            "byteOffset" : 173024,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 4548,
+            "byteOffset" : 176480,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 7332,
+            "byteOffset" : 181028,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 7332,
+            "byteOffset" : 188360,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3564,
+            "byteOffset" : 195692,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3588,
+            "byteOffset" : 199256,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3588,
+            "byteOffset" : 202844,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3360,
+            "byteOffset" : 206432,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3384,
+            "byteOffset" : 209792,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3384,
+            "byteOffset" : 213176,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 12090,
+            "byteOffset" : 216560,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 13044,
+            "byteOffset" : 228652,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 13044,
+            "byteOffset" : 241696,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 17976,
+            "byteOffset" : 254740,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 18900,
+            "byteOffset" : 272716,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 18900,
+            "byteOffset" : 291616,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 7272,
+            "byteOffset" : 310516,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 7248,
+            "byteOffset" : 317788,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 7248,
+            "byteOffset" : 325036,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3792,
+            "byteOffset" : 332284,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3816,
+            "byteOffset" : 336076,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3816,
+            "byteOffset" : 339892,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 17016,
+            "byteOffset" : 343708,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 18228,
+            "byteOffset" : 360724,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 18228,
+            "byteOffset" : 378952,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 4242,
+            "byteOffset" : 397180,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 7248,
+            "byteOffset" : 401424,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 7248,
+            "byteOffset" : 408672,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3168,
+            "byteOffset" : 415920,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3192,
+            "byteOffset" : 419088,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3192,
+            "byteOffset" : 422280,
+            "target" : 34962
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 425472,
+            "uri" : "heart_animated2.bin"
+        }
+    ],
+    "materials" : [
+        {
+            "name" : "Atria.002",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.8842360973358154,
+                    0.792368471622467,
+                    0.8900054693222046,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.699999988079071
+            }
+        },
+        {
+            "name" : "Cartilaginous_Material30.002",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.799102783203125,
+                    0.760524570941925,
+                    0.6653873324394226,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.5
+            }
+        },
+        {
+            "name" : "Cartilaginous_Material30.003",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.799102783203125,
+                    0.760524570941925,
+                    0.6653873324394226,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.5
+            }
+        },
+        {
+            "name" : "Cartilaginous_Material30.004",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.799102783203125,
+                    0.760524570941925,
+                    0.6653873324394226,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.5
+            }
+        },
+        {
+            "name" : "Cartilaginous_Material30.005",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.799102783203125,
+                    0.760524570941925,
+                    0.6653873324394226,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.5
+            }
+        },
+        {
+            "name" : "Cartilaginous_Material30.006",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.799102783203125,
+                    0.760524570941925,
+                    0.6653873324394226,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.5
+            }
+        },
+        {
+            "name" : "Cartilaginous_Material30.007",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.799102783203125,
+                    0.760524570941925,
+                    0.6653873324394226,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.5
+            }
+        },
+        {
+            "name" : "Cartilaginous_Material30.008",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.799102783203125,
+                    0.760524570941925,
+                    0.6653873324394226,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.699999988079071
+            }
+        },
+        {
+            "name" : "Deoxygenated_Blood_Material.002",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.6038274168968201,
+                    0.6845508813858032,
+                    1.0,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.5
+            }
+        },
+        {
+            "name" : "Deoxygenated_Blood_Material.003",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.6038274168968201,
+                    0.6845508813858032,
+                    1.0,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.5
+            }
+        },
+        {
+            "name" : "Oxygenated_Blood_Vessel4.002",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    1.0,
+                    0.6000000238418579,
+                    0.6000000238418579,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.5
+            }
+        },
+        {
+            "name" : "Oxygenated_Blood_Vessel4.003",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    1.0,
+                    0.6000000238418579,
+                    0.6000000238418579,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.5
+            }
+        },
+        {
+            "name" : "PapillaryMuscles.002",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    1.0,
+                    0.5840784907341003,
+                    0.4620770215988159,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.699999988079071
+            }
+        },
+        {
+            "name" : "Ventricles.002",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    1.0,
+                    0.8275709748268127,
+                    0.8532641530036926,
+                    1.0
+                ],
+                "metallicFactor" : 0.0,
+                "roughnessFactor" : 0.699999988079071
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Aortic_Valve_Leaflet_3",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2,
+                        "POSITION" : 1
+                    },
+                    "indices" : 0,
+                    "material" : 4
+                }
+            ]
+        },
+        {
+            "name" : "Aorta",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 5,
+                        "POSITION" : 4
+                    },
+                    "indices" : 3,
+                    "material" : 10
+                }
+            ]
+        },
+        {
+            "name" : "Ventricles",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 8,
+                        "POSITION" : 7
+                    },
+                    "indices" : 6,
+                    "material" : 13
+                },
+                {
+                    "attributes" : {
+                        "NORMAL" : 11,
+                        "POSITION" : 10
+                    },
+                    "indices" : 9,
+                    "material" : 7
+                }
+            ]
+        },
+        {
+            "name" : "Papillary_Muscles",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 14,
+                        "POSITION" : 13
+                    },
+                    "indices" : 12,
+                    "material" : 12
+                }
+            ]
+        },
+        {
+            "name" : "Mitral_Valve",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 17,
+                        "POSITION" : 16
+                    },
+                    "indices" : 15,
+                    "material" : 7
+                }
+            ]
+        },
+        {
+            "name" : "Pulmonary_Valve_Leaflet_2",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 20,
+                        "POSITION" : 19
+                    },
+                    "indices" : 18,
+                    "material" : 1
+                }
+            ]
+        },
+        {
+            "name" : "Coronary_Arterial_System",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 23,
+                        "POSITION" : 22
+                    },
+                    "indices" : 21,
+                    "material" : 11
+                }
+            ]
+        },
+        {
+            "name" : "Aortic_Valve_Leaflet_2",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 26,
+                        "POSITION" : 25
+                    },
+                    "indices" : 24,
+                    "material" : 6
+                }
+            ]
+        },
+        {
+            "name" : "Pulmonary_Valve_Leaflet_3",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 29,
+                        "POSITION" : 28
+                    },
+                    "indices" : 27,
+                    "material" : 2
+                }
+            ]
+        },
+        {
+            "name" : "Left_Atrium",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 32,
+                        "POSITION" : 31
+                    },
+                    "indices" : 30,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Tricuspid_Valve",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 35,
+                        "POSITION" : 34
+                    },
+                    "indices" : 33,
+                    "material" : 7
+                }
+            ]
+        },
+        {
+            "name" : "Pulmonary Trunk",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 38,
+                        "POSITION" : 37
+                    },
+                    "indices" : 36,
+                    "material" : 8
+                }
+            ]
+        },
+        {
+            "name" : "Aortic_Valve_Leaflet_1",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 41,
+                        "POSITION" : 40
+                    },
+                    "indices" : 39,
+                    "material" : 5
+                }
+            ]
+        },
+        {
+            "name" : "Right_Atrium",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 44,
+                        "POSITION" : 43
+                    },
+                    "indices" : 42,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Coronary_Venous_System",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 47,
+                        "POSITION" : 46
+                    },
+                    "indices" : 45,
+                    "material" : 9
+                }
+            ]
+        },
+        {
+            "name" : "Pulmonary_Valve_Leaflet_1",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 50,
+                        "POSITION" : 49
+                    },
+                    "indices" : 48,
+                    "material" : 3
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 1,
+            "name" : "Aorta",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 12,
+            "name" : "Aortic_Valve_Leaflet_1",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 7,
+            "name" : "Aortic_Valve_Leaflet_2",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 0,
+            "name" : "Aortic_Valve_Leaflet_3",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 6,
+            "name" : "Coronary_Arterial_System",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 14,
+            "name" : "Coronary_Venous_System",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 9,
+            "name" : "Left_Atrium",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 4,
+            "name" : "Mitral_Valve",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 3,
+            "name" : "Papillary_Muscles",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 11,
+            "name" : "Pulmonary Trunk",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 15,
+            "name" : "Pulmonary_Valve_Leaflet_1",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 5,
+            "name" : "Pulmonary_Valve_Leaflet_2",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 8,
+            "name" : "Pulmonary_Valve_Leaflet_3",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 13,
+            "name" : "Right_Atrium",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 10,
+            "name" : "Tricuspid_Valve",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        },
+        {
+            "mesh" : 2,
+            "name" : "Ventricles",
+            "rotation" : [
+                0.7071068286895752,
+                0.0,
+                -0.0,
+                0.7071067094802856
+            ],
+            "scale" : [
+                0.04999999701976776,
+                0.04999999701976776,
+                0.04999999701976776
+            ]
+        }
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                6,
+                13,
+                4,
+                5,
+                8,
+                14,
+                7,
+                9,
+                0,
+                11,
+                12,
+                10,
+                3,
+                1,
+                2,
+                15
+            ]
+        }
+    ]
+}

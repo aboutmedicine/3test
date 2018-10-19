@@ -1,4 +1,4 @@
-let scene, camera, renderer, ambient, pointLight, loader, raycaster, mouse, controls;
+let scene, camera, renderer, ambient, pointLight, loader, raycaster, control;
 
 scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff);
@@ -22,12 +22,13 @@ loader = new THREE.GLTFLoader();
 
 THREE.DRACOLoader.setDecoderPath('js/dracodecoder/');
 loader.setDRACOLoader(new THREE.DRACOLoader());
-loader.load('models/gltf/heartDraco-processed.glb', function (gltf) {
+loader.load('models/gltf/heart_animated2.glb', function (gltf) {
     scene.add(gltf.scene);
     console.log(scene.children[2].children);
 
     raycaster = new THREE.Raycaster();
-    mouse = new THREE.Vector2();
+    let mouse = new THREE.Vector2(),
+        intersected;
 
     function onMouseDown(event) {
         let mousex = (event.clientX / window.innerWidth) * 2 - 1
@@ -40,12 +41,19 @@ loader.load('models/gltf/heartDraco-processed.glb', function (gltf) {
         let intersection = intersects[0];
 
         if (intersects.length > 0) {
-            intersection.object.material.color.set(0x440000)
-            document.getElementById('mesh-name').innerHTML = intersection.object.name;
+            if (intersected != intersects[0].object) {
+                if (intersected) intersected.material.emissive.setHex(intersected.currentHex);
+                intersected = intersects[0].object;
+                intersected.currentHex = intersected.material.emissive.getHex();
+                intersected.material.emissive.setHex(0xaa00aa);
+                document.getElementById('mesh-name').innerHTML = intersection.object.name.replace(/_/g, " ");
+            }
+        } else {
+            if (intersected) intersected.material.emissive.setHex(intersected.currentHex);
+            intersected = null;
         }
-
     }
-    window.addEventListener('mousedown', onMouseDown, false);
+    document.addEventListener('mousedown', onMouseDown, false);
 }, );
 
 controls = new THREE.OrbitControls(camera, renderer.domElement);

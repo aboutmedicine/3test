@@ -461,7 +461,16 @@ dd {
 .position-bottom {
     position: absolute;
     bottom: 0;
-    left: 50% }
+    right: 30%;
+    left: 30%;
+    text-align: center;}
+
+.position-top {
+    position: absolute;
+    top: 0;
+    right: 30%;
+    left: 30%;
+    text-align: center; }
 
 .alternate-background {
   background: #fafafa;
