@@ -22,7 +22,7 @@ loader = new THREE.GLTFLoader();
 
 THREE.DRACOLoader.setDecoderPath('js/dracodecoder/');
 loader.setDRACOLoader(new THREE.DRACOLoader());
-loader.load('models/gltf/heart_animated2.glb', function (gltf) {
+loader.load('models/gltf/heart_animated2.gltf', function (gltf) {
     scene.add(gltf.scene);
     console.log(scene.children[2].children);
 
@@ -66,6 +66,15 @@ controls.rotateSpeed = 0.75;
 controls.smoothZoom = true;
 controls.zoomDampingFactor = controls.dampingFactor;
 controls.smoothZoomSpeed = 5.0;
+
+function hide() {
+
+    scene.traverse((object) => {
+        if (object.name === 'selected') {
+            object.visible = false;
+        }
+    })
+}
 
 function render() {
     renderer.render(scene, camera)
