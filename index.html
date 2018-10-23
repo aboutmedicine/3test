@@ -2,23 +2,21 @@
 <html lang="">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" href="main.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-   
-   <h1 class="position-top">gLTF Tester</h1>
-   <button id="hide" class="position-top" onclick="hide()">Hide</button>   
-   <p id="mesh-name" class="position-bottom"></p>
-   
-    <script src="js/three.js"></script>
-    <script src="js/controls/OrbitControls.js"></script>
-    <script src="js/loaders/GLTFLoader.js"></script>
-    <script src="js/loaders/DRACOLoader.js"></script>
-    <script src="app.js"></script>
+<canvas id="tester"></canvas>
+<h1 class="position-top">gLTF Tester</h1>
+<div id="ui">
+	<button id="hide" class="button">Hide</button>
+	<button id="restore" class="button">Restore</button>
+</div>
+<p id="mesh-name" class="position-bottom"></p>
+<script src="dist/main.js"></script>
 </body>
 
 </html>
