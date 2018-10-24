@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import Dispatcher from '@components/Dispatcher';
 
 window.THREE = THREE;
 
@@ -8,8 +9,10 @@ require('@libs/loaders/GLTFloader.js');
 
 THREE.DRACOLoader.setDecoderPath('@libs/dracodecoder/');
 
-class SceneManager {
+class SceneManager extends Dispatcher {
 	constructor(canvas) {
+		super();
+
 		const screen = {
 			width: canvas.width,
 			height: canvas.height
@@ -26,6 +29,8 @@ class SceneManager {
 
 		this._loader = loader;
 		this._scene = scene;
+		this._camera = camera;
+		this._screen = screen;
 
 		//public API
 		this.update = () => {
@@ -58,6 +63,9 @@ class SceneManager {
 
 			return intersection;
 		}
+
+		//Events list
+		controls.addEventListener('change', () => this.dispatch('controlsChanged'));
 	}
 
 	load(path, callback) {
@@ -67,6 +75,24 @@ class SceneManager {
 
 			callback();
 		});
+	}
+
+	worldToScreen(vector3Point) {
+		const vector = new THREE.Vector3().copy(vector3Point);
+
+		vector.project(this._camera);
+
+		vector.x = Math.round((0.5 + vector.x / 2) * (this._screen.width / window.devicePixelRatio));
+		vector.y = Math.round((0.5 - vector.y / 2) * (this._screen.height / window.devicePixelRatio));
+
+		return { x: vector.x, y: vector.y };
+	}
+
+	comapreDistance(vectorA, vectorB) {
+		const a = this._camera.position.distanceTo(vectorA);
+		const b = this._camera.position.distanceTo(vectorB);
+
+		return b - a;
 	}
 
 	get scene() {
