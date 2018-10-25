@@ -134,8 +134,10 @@ function addAnnotation(e) {
 
 function updateScreenPosition(annotation) {
 	annotation.move(controller.worldToScreen(annotation.position.self));
-	
-	const diff = controller.comapreDistance(annotation.position.self, annotation.position.parent);
+
+	const distA = controller.distanceToCamera(annotation.position.self);
+	const distB = controller.distanceToCamera(annotation.position.parent);
+	const diff = distB - distA;
 
 	annotation.html.style.opacity = Math.min(Math.max(diff, 0.15), 1);
 }
@@ -173,6 +175,10 @@ function resizeCanvas() {
 	canvas.height = window.innerHeight;
 
 	controller.resize();
+
+	for(let key in state.annotations) {
+		updateScreenPosition(state.annotations[key]);
+	}
 }
 
 function render() {

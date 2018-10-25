@@ -4,7 +4,6 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js --mode=production --display errors-only --progress",
     "dev": "webpack --config webpack.config.js --mode=development --watch --devtool source-map"
   },

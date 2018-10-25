@@ -55,7 +55,7 @@ class SceneManager extends Dispatcher {
 			let y = -(event.clientY / window.innerHeight) * 2 + 1;
 
 			mouse.set(x, y);
-
+			
 			raycaster.setFromCamera(mouse, camera);
 
 			let intersects = raycaster.intersectObject(this._interactiveObjects, true);
@@ -79,20 +79,19 @@ class SceneManager extends Dispatcher {
 
 	worldToScreen(vector3Point) {
 		const vector = new THREE.Vector3().copy(vector3Point);
+		const hw = this._screen.width / 2;
+		const hh = this._screen.height / 2;
 
 		vector.project(this._camera);
-
-		vector.x = Math.round((0.5 + vector.x / 2) * (this._screen.width / window.devicePixelRatio));
-		vector.y = Math.round((0.5 - vector.y / 2) * (this._screen.height / window.devicePixelRatio));
+		
+		vector.x = ( vector.x * hw ) + hw;
+		vector.y = - ( vector.y * hh ) + hh;
 
 		return { x: vector.x, y: vector.y };
 	}
 
-	comapreDistance(vectorA, vectorB) {
-		const a = this._camera.position.distanceTo(vectorA);
-		const b = this._camera.position.distanceTo(vectorB);
-
-		return b - a;
+	distanceToCamera(vector) {
+		return this._camera.position.distanceTo(vector);
 	}
 
 	get scene() {
@@ -119,6 +118,8 @@ class SceneManager extends Dispatcher {
 			antialias: true,
 			// alpha: true
 		});
+		const DPR = (window.devicePixelRatio) ? window.devicePixelRatio : 1;
+		renderer.setPixelRatio(DPR);
 		renderer.setSize(width, height);
 
 		return renderer;
