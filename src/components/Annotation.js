@@ -42,14 +42,27 @@ class Annotation {
 
 	_build(appendTo) {
 		const container = document.createElement('div');
-		const str = `<div class="annotation-content">
-				<i data-feather="x" class="ico close-annotation"></i>
+		const str = `
+				<div class="annotation-icon">
+					<i class="fas fa-plus"></i>
+				</div>
+			<div class="annotation-content">
+				<button type="button" class="ico close-annotation">
+					<i class="fas fa-times" ></i>
+				</button>
+				
 				
 				<input class="annotationtitle" placeholder="Annotation">
 				<textarea rows="3" placeholder="Type Here..."></textarea>
 				
-				<i data-feather="delete" class="ico delete delete-annotation"></i>
-				<i data-feather="save" class="ico save save-annotation"></i>
+				<button type="button" class="ico delete delete-annotation">
+					<i class="fas fa-minus-circle" ></i>
+				</button>
+				<button type="button" class="ico delete delete-annotation">
+					<i class="fas fa-save" class="ico save save-annotation"></i>
+				</button>
+				
+				
 			</div>`;
 
 		container.className = 'annotation';
@@ -73,9 +86,6 @@ class Annotation {
 
 		if (appendTo) {
 			appendTo.appendChild(container);
-
-			//to be removed/replaced
-			window.feather.replace();
 		}
 	}
 

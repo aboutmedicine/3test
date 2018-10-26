@@ -1,3 +1,6 @@
+import '@libs/fontAwesome/all.js'
+// import '@libs/fontAwesome/all.css'
+
 import SceneManager from '@components/SceneManager'
 import Annotation from '@components/Annotation'
 
@@ -6,6 +9,8 @@ const controller = new SceneManager(canvas);
 
 const state = {
 	action: null,
+	selected: null,
+	intersected: null,
 	annotations: {},
 	MODES: {
 		moving: 1,
@@ -22,7 +27,9 @@ controller.restoreVisibility = () => {
 };
 
 controller.hideMesh = (mesh) => {
-	mesh.visible = false;
+	if(mesh) {
+		mesh.visible = false;
+	}
 };
 
 controller.on('controlsChanged', () => {
@@ -31,36 +38,34 @@ controller.on('controlsChanged', () => {
 	}
 });
 
-controller.load('./src/models/gltf/heart_animated2.gltf', () => {
-	const meshName = document.getElementById('mesh-name');
-
-	let selected, intersected;
-
+controller.load('./assets/models/gltf/heart_animated2.glb', () => {
 	console.log(controller);
 
-	document.getElementById('hide').addEventListener('click', () => controller.hideMesh(selected));
-
+	document.getElementById('dissect').addEventListener('click', () => controller.hideMesh(state.selected));
 	document.getElementById('restore').addEventListener('click', controller.restoreVisibility);
-
-	document.getElementById('annotation-add').addEventListener('click', addAnnotation);
-
-	canvas.addEventListener('mousedown', (e) => {
-		const intersection = controller.checkIntersection(e);
-
-		if (intersection) {
-			if (intersected != intersection.object) {
-				if (intersected) intersected.material.emissive.setHex(intersected.currentHex);
-				intersected = intersection.object;
-				intersected.currentHex = intersected.material.emissive.getHex();
-				intersected.material.emissive.setHex(0xaa00aa);
-
-				selected = intersected;
-				meshName.innerHTML = intersection.object.name.replace(/_/g, " ");
-			}
-		}
-
-	}, false);
+	document.getElementById('annotation').addEventListener('click', addAnnotation);
+	canvas.addEventListener('mousedown', canvasClick);
 });
+
+function canvasClick(e) {
+	const meshName = document.getElementById('mesh-name');
+	const intersection = controller.checkIntersection(e);
+
+	let intersected = state.intersected;
+
+	if (intersection) {
+		if (intersected != intersection.object) {
+			if (intersected) intersected.material.emissive.setHex(intersected.currentHex);
+			intersected = state.intersected = intersection.object;
+
+			intersected.currentHex = intersected.material.emissive.getHex();
+			intersected.material.emissive.setHex(0xaa00aa);
+
+			state.selected = intersected;
+			meshName.innerHTML = intersection.object.name.replace(/_/g, " ");
+		}
+	}
+}
 
 function addAnnotation(e) {
 	document.body.style.cursor = 'none';
@@ -132,8 +137,26 @@ function removeAnnotation(id) {
 	delete state.annotations[id];
 }
 
+function openNav() {
+	document.getElementById("sidenav").style.width = "250px";
+}
+
+function closeNav() {
+	document.getElementById("sidenav").style.width = "0px";
+}
+
+function nightMode() {
+	document.body.style.backgroundColor = '#333';
+	document.querySelector('#sidenav').style.backgroundColor = '#333';
+	document.querySelector('#toolbar').style.backgroundColor = '#555';
+	document.querySelector('#logo').src = 'assets/Logo_Night.png';
+}
+
 function bindEventListeners() {
 	window.onresize = resizeCanvas;
+	document.getElementById('night-mode').addEventListener('click', nightMode);
+	document.getElementById('open-sidenav').addEventListener('click', openNav);
+	document.getElementById('close-sidenav').addEventListener('click', closeNav);
 }
 
 function resizeCanvas() {
