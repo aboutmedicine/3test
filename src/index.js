@@ -146,9 +146,6 @@ function closeNav() {
 }
 
 function nightMode() {
-	document.body.style.backgroundColor = '#333';
-	document.querySelector('#sidenav').style.backgroundColor = '#333';
-	document.querySelector('#toolbar').style.backgroundColor = '#555';
 	document.querySelector('#logo').src = 'assets/Logo_Night.png';
 }
 

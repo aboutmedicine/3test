@@ -52,11 +52,11 @@ class Annotation {
 				</button>
 				
 				
-				<input class="annotationtitle" placeholder="Annotation">
-				<textarea rows="3" placeholder="Type Here..."></textarea>
+				<input class="annotation-title" placeholder="Annotation">
+				<textarea class="annotation-details" rows="3" placeholder="Type Here..."></textarea>
 				
 				<button type="button" class="ico delete delete-annotation">
-					<i class="fas fa-minus-circle" ></i>
+					<i class="fas fa-trash" ></i>
 				</button>
 				<button type="button" class="ico delete delete-annotation">
 					<i class="fas fa-save" class="ico save save-annotation"></i>
