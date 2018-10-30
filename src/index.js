@@ -23,6 +23,7 @@ controller.restoreVisibility = () => {
 		if (!object.visible) {
 			object.visible = true;
 		}
+    controller.resetCamera();
 	});
 };
 
@@ -38,7 +39,7 @@ controller.on('controlsChanged', () => {
 	}
 });
 
-controller.load('./assets/models/gltf/heart_animated2.glb', () => {
+controller.load('./assets/models/gltf/skeleton.glb', () => {
 	console.log(controller);
 
 	document.getElementById('dissect').addEventListener('click', () => controller.hideMesh(state.selected));

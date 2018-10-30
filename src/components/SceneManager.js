@@ -49,6 +49,10 @@ class SceneManager extends Dispatcher {
 
 			renderer.setSize(width, height);
 		};
+        
+        this.resetCamera = () => {
+            controls.reset();
+        }
 
 		this.checkIntersection = (event) => {
 			let x = (event.clientX / window.innerWidth) * 2 - 1;
