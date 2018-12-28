@@ -38,7 +38,7 @@ body {
 }
 
 * {
-    font-family: Avenir Next;
+    font-family: Avenir Next, Helvetica;
 }
 
 .logo {
@@ -147,13 +147,13 @@ body {
     background-color: #fff;
     overflow: hidden;
     transition: 0.2s;
-    border-left: 2px solid #ffeeee;
+    border-left: 2px solid #eeeeee;
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 8px 28px 8px 16px;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 16px;
     color: var(--dark-grey);
     display: block;
     transition: 0.2s;
@@ -162,15 +162,21 @@ body {
     min-width: 240px;
 }
 
+.sidenav-icon {
+    float: right;
+}
+
 .sidenav .header {
-    padding: 32px 8px 8px 32px;
+    padding: 24px 8px 8px 16px;
     margin: none;
     text-decoration: none;
-    font-size: 25px;
-    color: var(--heart);
     display: block;
-    font-size: 48px;
-    font-weight: 600;
+    font-size: 32px;
+}
+
+.dropdown-container {
+  display: none;
+  padding-left: 8px;
 }
 
 .mesh-name {
@@ -186,6 +192,7 @@ body {
     position: absolute;
     z-index: 1;
 }
+
 .annotation-content {
     padding: 1em;
     background: var(--black);
@@ -199,8 +206,8 @@ body {
     min-height: 150px;
     display: none;
 }
-.annotation.open {
-}
+
+.annotation.open {}
 
 .annotation.open .annotation-content {
     display: block;
@@ -225,6 +232,7 @@ body {
 .annotation-icon:hover {
     color: var(--grey);
 }
+
 .annotation.open .annotation-icon {
     opacity: 0;
 }
@@ -261,6 +269,7 @@ body {
 .close-button:hover {
     opacity: 1;
 }
+
 .annotation textarea,
 .annotation input {
     color: #fafafa;
@@ -273,6 +282,7 @@ body {
     resize: none;
     text-align: left;
 }
+
 textarea:focus,
 button:focus,
 input:focus {

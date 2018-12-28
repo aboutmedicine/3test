@@ -109,7 +109,7 @@ class SceneManager extends Dispatcher {
 		const ambient = new THREE.AmbientLight(0xeeeeee);
 		scene.add(ambient);
 
-		const pointLight = new THREE.PointLight(0xdddddd, 1, 100);
+		const pointLight = new THREE.PointLight(0xdddddd, 1, 5);
 		pointLight.position.set(50, 50, 50);
 		scene.add(pointLight);
 

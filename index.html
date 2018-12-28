@@ -2,101 +2,93 @@
 <html lang="">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title></title>
-	<link rel="stylesheet" href="libs/normalize.css">
-	<link rel="stylesheet" href="main.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="libs/normalize.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-<canvas id="tester"></canvas>
+    <canvas id="tester"></canvas>
 
-<div class="logo">
-	<img id="logo" src="assets/logo.png" height="96" width="96">
-</div>
+    <div class="logo">
+        <img id="logo" src="assets/logo.png" height="96" width="96">
+    </div>
 
 
-<div class="toolbar">
+    <div class="toolbar">
 
-	<div id="dissect" class="toolbar-button">
-		<i class="fa fa-scalpel"></i>
-	</div>
+        <div id="dissect" class="toolbar-button">
+            <i class="fa fa-scalpel"></i>
+        </div>
 
-	<div id="toolbar" class="toolbar-button knife">
-		<i class="fa fa-cut"></i>
+        <div id="toolbar" class="toolbar-button knife">
+            <i class="fa fa-cut"></i>
 
-		<div class="toolbar-dropdown">
-			<div class="toolbar-button">
-				<i class="fa fa-square"></i>
-			</div>
-			<div class="toolbar-button">
-				<i class="fa fa-minus"></i>
-			</div>
-			<div class="toolbar-button">
-				<i style="transform: rotate(90deg)" class="fa fa-minus"></i>
-			</div>
-		</div>
-	</div>
+            <div class="toolbar-dropdown">
+                <div class="toolbar-button">
+                    <i class="fa fa-square"></i>
+                </div>
+                <div class="toolbar-button">
+                    <i class="fa fa-minus"></i>
+                </div>
+                <div class="toolbar-button">
+                    <i style="transform: rotate(90deg)" class="fa fa-minus"></i>
+                </div>
+            </div>
+        </div>
 
-	<div id="annotation" class="toolbar-button">
-		<i class="fa fa-file-medical"></i>
-	</div>
+        <div id="annotation" class="toolbar-button">
+            <i class="fa fa-file-medical"></i>
+        </div>
 
-	<div class="toolbar-button">
-		<i class="fa fa-pencil"></i>
-	</div>
+        <div class="toolbar-button">
+            <i class="fa fa-pencil"></i>
+        </div>
 
-	<div id="restore" class="toolbar-button">
-		<i class="fa fa-redo-alt"></i>
-	</div>
+        <div id="restore" class="toolbar-button">
+            <i class="fa fa-redo-alt"></i>
+        </div>
 
-</div>
+    </div>
 
-<div class="toolbar-social">
+    <div class="toolbar-social">
 
-	<div class="social-button">
-		<i class="fab fa-patreon"></i>
-	</div>
+        <a href="http://ko-fi.com/reubenschmidt" class="social-button">
+            <i class="fas fa-coffee"></i>
+        </a>
 
-	<div class="social-button">
-		<i class="fab fa-youtube"></i>
-	</div>
+    </div>
 
-	<div class="social-button">
-		<i class="fab fa-facebook"></i>
-	</div>
+    <div id="open-sidenav" class="sidenav-button">
+        <i class="fa fa-bars"></i>
+    </div>
 
-</div>
+    <div id="sidenav" class="sidenav">
+        <div id="close-sidenav" class="sidenav-button">
+            <i class="fa fa-times"></i>
+        </div>
 
-<div id="open-sidenav" class="sidenav-button">
-	<i class="fa fa-bars"></i>
-</div>
+        <div class="header">
+            <h5> {{ model-name }} </h5>
+        </div>
+        <a class="dropdown-btn">Other Models
+            <i class="sidenav-icon fa fa-caret-down"></i>
+        </a>
+        <div class="dropdown-container">
+            <a href="#">Axilla</a>
+            <a href="#">Inguinal Canal</a>
+            <a href="#">Perineum</a>
+        </div>
+        <a id="night-mode" href="#">Night Mode
+        </a>
+        <a href="#">Feedback</a>
+    </div>
 
-<div id="sidenav" class="sidenav">
-	<div id="close-sidenav" class="sidenav-button">
-		<i class="fa fa-times"></i>
-	</div>
+    <h3 id="mesh-name" class="mesh-name"></h3>
 
-	<div class="header">
-		<!-- icon relates to active organ  -->
-		<i class="fa fa-heart"></i>
-	</div>
-
-	<a href="#">Articles</a>
-	<a href="#">Comments</a>
-	<a href="#">Tutorial</a>
-	<a href="#">Profile</a>
-	<a href="#">Home</a>
-	<a href="#">Video Models</a>
-	<a href="#">Organs</a>
-	<a href="#">Feedback</a>
-	<a id="night-mode" href="#">Night Mode&#160;&#160;<i class="fa fa-cloud-moon"></i></a>
-</div>
-
-<p id="mesh-name" class="mesh-name"></p>
-
-<script src="dist/main.js"></script>
+    <script src="dist/main.js"></script>
 </body>
 
 </html>
