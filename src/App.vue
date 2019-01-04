@@ -212,4 +212,8 @@
 
 <style lang="scss">
 	@import '@styles/main.scss';
+
+	/*body {
+		background: $test;
+	}*/
 </style>
