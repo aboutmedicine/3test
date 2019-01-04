@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
 	// outputDir: path.resolve(__dirname, '/dist'),
@@ -12,10 +13,9 @@ module.exports = {
 	css: {
 		loaderOptions: {
 			sass: {
-		        // data: `
-		        //   @import "@/scss/_variables.scss";
-		        //   @import "@/scss/_mixins.scss";
-		        // `
+				data: `
+				  @import "@/styles/_variables.scss";
+				`
 			},
 		}
 	},
@@ -25,8 +25,14 @@ module.exports = {
 				'@npm': path.join(__dirname, 'node_modules'),
 				'@libs': path.resolve(__dirname, './src/libs'),
 				'@components': path.resolve(__dirname, './src/components'),
+				'@styles': path.resolve(__dirname, './src/styles'),
 				'@assets': path.resolve(__dirname, 'assets')
 			}
-		}
+		},
+		plugins: [
+			new webpack.ProvidePlugin({
+				THREE: 'three'
+			})
+		]
 	}
 }

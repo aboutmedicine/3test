@@ -3,7 +3,7 @@
 		<canvas id="tester"></canvas>
 
 		<div class="logo">
-			<img id="logo" src="assets/logo.png" height="96" width="96">
+			<img id="logo" src="assets/Logo.png" height="96" width="96">
 		</div>
 
 

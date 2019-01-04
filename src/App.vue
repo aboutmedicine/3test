@@ -1,26 +1,16 @@
 <template>
 	<div id="app">
-		<div id="nav">
-			<router-link to="/">Home</router-link>
-			|
-			<router-link to="/about">About</router-link>
-		</div>
 		<router-view/>
 	</div>
 </template>
 
 <script>
-	import '@libs/fontAwesome/all.js'
-	// import '@libs/fontAwesome/all.css'
-
 	import SceneManager from '@components/SceneManager'
 	import Annotation from '@components/Annotation'
 
 	export default {
 		mounted() {
-
 			const canvas = document.getElementById('tester');
-			console.log(canvas);
 			const controller = new SceneManager(canvas);
 
 			const state = {
@@ -55,7 +45,8 @@
 				}
 			});
 
-			controller.load('./assets/models/gltf/Test.gltf', () => {
+
+			controller.load('/models/gltf/Test.gltf', () => {
 				console.log(controller);
 
 				document.getElementById('dissect').addEventListener('click', () => controller.hideMesh(state.selected));
@@ -206,8 +197,8 @@
 			}
 
 			function render() {
-				// requestAnimationFrame(render);
-				// controller.update();
+				requestAnimationFrame(render);
+				controller.update();
 			}
 
 			bindEventListeners();
@@ -220,5 +211,5 @@
 </script>
 
 <style lang="scss">
-	@import '@/sass/main.scss';
+	@import '@styles/main.scss';
 </style>
