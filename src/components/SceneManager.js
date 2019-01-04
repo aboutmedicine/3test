@@ -1,9 +1,7 @@
 import * as THREE from 'three';
 import Dispatcher from '@components/Dispatcher';
 
-window.THREE = THREE;
-
-require('imports-loader?THREE=three!exports-loader?THREE.OrbitControls!three/examples/js/controls/OrbitControls.js');
+require('imports-loader?THREE=three!three/examples/js/controls/OrbitControls.js');
 require('imports-loader?THREE=three!exports-loader?THREE.DRACOLoader!@libs/loaders/DRACOLoader.js');
 require('@libs/loaders/GLTFloader.js');
 
