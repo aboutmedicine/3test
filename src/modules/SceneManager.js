@@ -1,11 +1,11 @@
 import * as THREE from 'three';
-import Dispatcher from '@components/Dispatcher';
+import Dispatcher from '@modules/Dispatcher';
 
 require('three/examples/js/controls/OrbitControls.js');
 require('@libs/loaders/DRACOLoader.js');
 require('@libs/loaders/GLTFloader.js');
 
-THREE.DRACOLoader.setDecoderPath('@libs/dracodecoder/');
+THREE.DRACOLoader.setDecoderPath('/dracodecoder/');
 
 class SceneManager extends Dispatcher {
 	constructor(canvas) {
@@ -24,6 +24,8 @@ class SceneManager extends Dispatcher {
 		const loader = new THREE.GLTFLoader();
 
 		loader.setDRACOLoader(new THREE.DRACOLoader());
+
+		
 
 		this._loader = loader;
 		this._scene = scene;

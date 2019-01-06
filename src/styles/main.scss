@@ -26,6 +26,7 @@ body {
 	position: absolute;
 	top: 16px;
 	left: 16px;
+	z-index: 1;
 }
 
 .toolbar {
@@ -109,6 +110,7 @@ body {
 	align-items: center;
 	cursor: pointer;
 	transition: .2s;
+	z-index: 1;
 }
 
 .sidenav-button:hover,
@@ -156,7 +158,6 @@ body {
 }
 
 .dropdown-container {
-	display: none;
 	padding-left: 8px;
 }
 

@@ -8,8 +8,13 @@ import '@libs/fontAwesome/all.js'
 
 Vue.config.productionTip = false
 
+//global variables, shortcuts
+Vue.prototype.$theme = store.state.theme
+
+//init
 new Vue({
 	router,
 	store,
-	render: h => h(App)
+	render: h => h(App),
 }).$mount('#app')
+

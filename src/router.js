@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from '@/views/Home'
+import Scene from '@/views/Scene'
 
 Vue.use(Router)
 
@@ -12,11 +12,25 @@ export default new Router({
 		{
 			path: '/',
 			name: 'home',
-			// route level code-splitting
-			// this generates a separate chunk (about.[hash].js) for this route
-			// which is lazy-loaded when the route is visited.
-			// component: () => import(/* webpackChunkName: "about" */ './views/Home.vue'),
-			component: Home,
+			component: Scene
+		},
+		{
+			path: '/:id',
+			name: 'scene',
+			component: Scene,
+			beforeEnter: (to, from, next) => {
+				function isValid (param) {
+					//TODO check if model exists
+					return true
+				}
+
+				if (!isValid(to.params.id)) {
+					//TODO create 404 page or something
+					next({ name: '404' });
+				}
+
+				next();
+			}
 		},
 	]
 })

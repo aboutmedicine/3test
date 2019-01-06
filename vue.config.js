@@ -23,6 +23,7 @@ module.exports = {
 		resolve: {
 			alias: {
 				'@npm': path.join(__dirname, 'node_modules'),
+				'@modules': path.resolve(__dirname, './src/modules'),
 				'@libs': path.resolve(__dirname, './src/libs'),
 				'@components': path.resolve(__dirname, './src/components'),
 				'@styles': path.resolve(__dirname, './src/styles'),
