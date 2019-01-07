@@ -10,7 +10,8 @@ export default new Vuex.Store({
 		},
 		//scene controller will be defined later
 		controller: null,
-		annotations: {}
+		annotations: {},
+		activeAnnotation: null
 	},
 	mutations: {
 		toggleTheme(state) {
@@ -18,7 +19,27 @@ export default new Vuex.Store({
 		},
 		setController(state, payload) {
 			state.controller = payload;
+		},
+		ADD_NOTE(state, payload) {
+			state.annotations = { ...state.annotations, [payload.id]: payload }
+		},
+		ACTIVE_NOTE(state, id) {
+			state.activeAnnotation = id;
+		},
+		REMOVE_NOTE(state, id) {
+			Vue.delete(state.annotations, id);
+			state.activeAnnotation = null;
 		}
 	},
-	actions: {}
+	actions: {
+		ADD_NOTE(store, payload) {
+			const id =  new Date().getTime();
+
+			store.commit('ADD_NOTE', Object.assign({
+				id
+			}, payload));
+
+			store.commit('ACTIVE_NOTE', null);
+		}
+	}
 })

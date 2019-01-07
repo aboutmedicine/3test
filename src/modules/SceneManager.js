@@ -25,7 +25,6 @@ class SceneManager extends Dispatcher {
 
 		loader.setDRACOLoader(new THREE.DRACOLoader());
 
-		
 
 		this._loader = loader;
 		this._scene = scene;
@@ -39,6 +38,9 @@ class SceneManager extends Dispatcher {
 		};
 
 		this.resize = () => {
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+
 			const { width, height } = canvas;
 
 			screen.width = width;
@@ -48,18 +50,20 @@ class SceneManager extends Dispatcher {
 			camera.updateProjectionMatrix();
 
 			renderer.setSize(width, height);
+
+			this.dispatch('resize');
 		};
-        
-        this.resetCamera = () => {
-            controls.reset();
-        }
+
+		this.resetCamera = () => {
+			controls.reset();
+		}
 
 		this.checkIntersection = (event) => {
 			let x = (event.clientX / window.innerWidth) * 2 - 1;
 			let y = -(event.clientY / window.innerHeight) * 2 + 1;
 
 			mouse.set(x, y);
-			
+
 			raycaster.setFromCamera(mouse, camera);
 
 			let intersects = raycaster.intersectObject(this._interactiveObjects, true);
@@ -70,6 +74,11 @@ class SceneManager extends Dispatcher {
 
 		//Events list
 		controls.addEventListener('change', () => this.dispatch('controlsChanged'));
+
+		window.onresize = this.resize;
+
+		this.resize();
+		this._render();
 	}
 
 	load(path, callback) {
@@ -87,9 +96,9 @@ class SceneManager extends Dispatcher {
 		const hh = this._screen.height / 2;
 
 		vector.project(this._camera);
-		
-		vector.x = ( vector.x * hw ) + hw;
-		vector.y = - ( vector.y * hh ) + hh;
+
+		vector.x = (vector.x * hw) + hw;
+		vector.y = -(vector.y * hh) + hh;
 
 		return { x: vector.x, y: vector.y };
 	}
@@ -98,8 +107,28 @@ class SceneManager extends Dispatcher {
 		return this._camera.position.distanceTo(vector);
 	}
 
+	hideMesh(mesh) {
+		if (mesh) {
+			mesh.visible = false;
+		}
+	}
+
+	restoreVisibility() {
+		this._scene.traverse((object) => {
+			if (!object.visible) {
+				object.visible = true;
+			}
+			this.resetCamera();
+		});
+	}
+
 	get scene() {
 		return this._scene;
+	}
+
+	_render() {
+		requestAnimationFrame(() => this._render());
+		this.update();
 	}
 
 	_buildScene() {
