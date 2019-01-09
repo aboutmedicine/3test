@@ -21,6 +21,7 @@ export default new Router({
 			beforeEnter: (to, from, next) => {
 				function isValid (param) {
 					//TODO check if model exists
+					console.log(param);
 					return true
 				}
 

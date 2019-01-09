@@ -37,6 +37,17 @@
 				<i class="fa fa-redo-alt"></i>
 			</div>
 
+			<div class="toolbar-button" @click="dialog.upload = true">
+				<i class="fa fa-upload"></i>
+
+				<div class="menu" v-show="dialog.upload">
+					<button type="button" class="ico close-modal" @click.stop="dialog.upload = false">
+						<i class="fas fa-times"></i>
+					</button>
+					<Uploader></Uploader>
+				</div>
+			</div>
+
 		</div>
 		<div class="toolbar-social">
 			<a href="http://ko-fi.com/reubenschmidt" class="social-button">
@@ -48,7 +59,14 @@
 
 <script>
 	export default {
-
+		data: () => ({
+			dialog: {
+				upload: false
+			},
+		}),
+		components: {
+			Uploader: () => import('@components/Uploader')
+		},
 		computed: {
 			logo() { return this.$theme.dark ? 'assets/Logo_Night.png' : 'assets/Logo.png' },
 			controller() { return this.$store.state.controller }
@@ -59,7 +77,7 @@
 				this.controller.restoreVisibility();
 			},
 			dissect() {
-				this.controller.hideMesh(this.selected);
+				this.controller.hideMesh(this.$store.state.activeMesh.object);
 			},
 			addAnnotation(e) {
 				this.$store.dispatch('ADD_NOTE', {
@@ -68,12 +86,30 @@
 						y: e.clientY
 					}
 				});
-			}
+			},
 		}
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
+	.close-modal {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		color: #000;
+	}
+
+	.menu {
+		background: #fff;
+		position: absolute;
+		top: calc(100% + 10px);
+		left: 0;
+		z-index: 1;
+		padding: 20px;
+		border-radius: 0.5em;
+		border: 2px solid #eeeeee;
+	}
 	.top-panel {
 		display: grid;
 		grid-template-rows: auto auto;

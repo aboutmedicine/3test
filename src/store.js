@@ -8,23 +8,38 @@ export default new Vuex.Store({
 		theme: {
 			dark: false
 		},
+		//models to be fetched from server
+		models: [],
 		//scene controller will be defined later
 		controller: null,
 		annotations: {},
-		activeAnnotation: null
+		activeAnnotation: null,
+		activeMesh: {}
 	},
 	mutations: {
-		toggleTheme(state) {
+		TOGGLE_THEME(state) {
 			state.theme.dark = !state.theme.dark
 		},
-		setController(state, payload) {
-			state.controller = payload;
+		ADD_MODEL(state, payload) {
+			state.models.push(payload);
 		},
 		ADD_NOTE(state, payload) {
 			state.annotations = { ...state.annotations, [payload.id]: payload }
 		},
-		ACTIVE_NOTE(state, id) {
+		SET_MODELS(state, payload) {
+			state.models = payload;
+		},
+		SET_CONTROLLER(state, payload) {
+			state.controller = payload;
+		},
+		SET_ACTIVE_NOTE(state, id) {
 			state.activeAnnotation = id;
+		},
+		SET_ACTIVE_MESH(state, payload) {
+			state.activeMesh = payload;
+		},
+		CLEAR_NOTES(state) {
+			state.annotations = {};
 		},
 		REMOVE_NOTE(state, id) {
 			Vue.delete(state.annotations, id);
@@ -39,7 +54,8 @@ export default new Vuex.Store({
 				id
 			}, payload));
 
-			store.commit('ACTIVE_NOTE', null);
+			store.commit('SET_ACTIVE_NOTE', null);
+
 		}
 	}
 })

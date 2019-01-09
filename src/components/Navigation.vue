@@ -9,21 +9,23 @@
 				<i class="fa fa-times"></i>
 			</div>
 			<div class="header">
-				<h5>{{$route.params.id || 'No model selected'}}</h5>
+				<h5>{{activeModel}}</h5>
 			</div>
 			<a class="dropdown-btn" @click="dropdown.model = !dropdown.model">
 				Other Models
 				<i class="sidenav-icon fa fa-caret-down"></i>
 			</a>
 			<div class="dropdown-container" v-show="dropdown.model">
-				<router-link :to="'Eye_Anatomy_draco'">Eye_Anatomy_draco</router-link>
-				<router-link :to="'Axilla_draco'">Axilla_dracol</router-link>
-				<router-link :to="'Test'">Test</router-link>
+				<template v-for="model in models" >
+					<router-link :key="model.slug" :to="model.slug">
+						{{model.title}}
+					</router-link>
+				</template>
 			</div>
-			<a id="night-mode" @click="$store.commit('toggleTheme')">
+			<a id="night-mode" @click="$store.commit('TOGGLE_THEME')">
 				{{ $theme.dark ? 'Day' : 'Night'}} Mode
 			</a>
-			<a href="mailto:contact@aboutmedicine.com.au">Feedback</a>
+			<a href="mailto:contact@aboutmedicine.com.au">Contact</a>
 		</div>
 	</nav>
 
@@ -37,6 +39,20 @@
 				model: false
 			}
 		}),
+		computed: {
+			models() {
+				return this.$store.state.models.filter(x => x.slug !== this.$route.params.id)
+			},
+			activeModel() {
+				const model = this.$store.state.models.filter(x => x.slug === this.$route.params.id)[0];
+				if(model) {
+					return model.title;
+				}
+				else {
+					return 'No model selected'
+				}
+			}
+		},
 		mounted() {},
 		methods: {},
 	}
@@ -74,7 +90,7 @@
 		position: fixed;
 		z-index: 1;
 		top: 0;
-		right: 0;
+		right: -2px;
 		background-color: #fff;
 		overflow: hidden;
 		transition: 0.2s;

@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import Dispatcher from '@modules/Dispatcher';
 
 require('three/examples/js/controls/OrbitControls.js');
-require('@libs/loaders/DRACOLoader.js');
-require('@libs/loaders/GLTFloader.js');
+require('three/examples/js/loaders/DRACOLoader.js');
+require('three/examples/js/loaders/GLTFLoader.js');
 
 THREE.DRACOLoader.setDecoderPath('/dracodecoder/');
 
@@ -19,8 +19,6 @@ class SceneManager extends Dispatcher {
 		const camera = this._buildCamera(screen);
 		const renderer = this._buildRenderer(canvas, screen);
 		const controls = this._buildControls(camera, renderer);
-		const mouse = new THREE.Vector2();
-		const raycaster = new THREE.Raycaster();
 		const loader = new THREE.GLTFLoader();
 
 		loader.setDRACOLoader(new THREE.DRACOLoader());
@@ -30,64 +28,51 @@ class SceneManager extends Dispatcher {
 		this._scene = scene;
 		this._camera = camera;
 		this._screen = screen;
+		this._controls = controls;
+		this._renderer = renderer;
+		this._mouse = new THREE.Vector2();
+		this._raycaster = new THREE.Raycaster();
+		this._canvas = canvas;
 
-		//public API
-		this.update = () => {
-			renderer.render(scene, camera);
-			controls.update();
-		};
+		this._activeScene = null;
 
-		this.resize = () => {
-			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight;
 
-			const { width, height } = canvas;
+		window.onresize = () => this._resize();
 
-			screen.width = width;
-			screen.height = height;
-
-			camera.aspect = width / height;
-			camera.updateProjectionMatrix();
-
-			renderer.setSize(width, height);
-
-			this.dispatch('resize');
-		};
-
-		this.resetCamera = () => {
-			controls.reset();
-		}
-
-		this.checkIntersection = (event) => {
-			let x = (event.clientX / window.innerWidth) * 2 - 1;
-			let y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-			mouse.set(x, y);
-
-			raycaster.setFromCamera(mouse, camera);
-
-			let intersects = raycaster.intersectObject(this._interactiveObjects, true);
-			let intersection = intersects[0];
-
-			return intersection;
-		}
-
-		//Events list
-		controls.addEventListener('change', () => this.dispatch('controlsChanged'));
-
-		window.onresize = this.resize;
-
-		this.resize();
+		this._resize();
 		this._render();
 	}
 
 	load(path, callback) {
 		this._loader.load(path, (gltf) => {
+			let prev = this.scene.getObjectById(this._activeScene);
+
+			if (prev) {
+				this.scene.remove(prev);
+			}
+
+			this._activeScene = gltf.scene.id;
 			this._scene.add(gltf.scene);
 			this._interactiveObjects = gltf.scene;
 
 			callback();
 		});
+	}
+
+	checkIntersection(event) {
+		if (!this._interactiveObjects) return;
+
+		let x = (event.clientX / window.innerWidth) * 2 - 1;
+		let y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+		this._mouse.set(x, y);
+
+		this._raycaster.setFromCamera(this._mouse, this._camera);
+
+		let intersects = this._raycaster.intersectObject(this._interactiveObjects, true);
+		let intersection = intersects[0];
+
+		return intersection;
 	}
 
 	worldToScreen(vector3Point) {
@@ -118,17 +103,48 @@ class SceneManager extends Dispatcher {
 			if (!object.visible) {
 				object.visible = true;
 			}
-			this.resetCamera();
+			this._resetCamera();
 		});
+	}
+
+	switchTheme(dark) {
+		this.scene.background = new THREE.Color(dark ? 0x333333 : 0xffffff);
 	}
 
 	get scene() {
 		return this._scene;
 	}
 
+	_update() {
+		this._renderer.render(this._scene, this._camera);
+		this._controls.update();
+	}
+
 	_render() {
 		requestAnimationFrame(() => this._render());
-		this.update();
+		this._update();
+	}
+
+	_resize() {
+		const canvas = this._canvas;
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+
+		const { width, height } = canvas;
+
+		this._screen.width = width;
+		this._screen.height = height;
+
+		this._camera.aspect = width / height;
+		this._camera.updateProjectionMatrix();
+
+		this._renderer.setSize(width, height);
+
+		this.dispatch('resize');
+	}
+
+	_resetCamera() {
+		this._controls.reset();
 	}
 
 	_buildScene() {
@@ -178,6 +194,8 @@ class SceneManager extends Dispatcher {
 		controls.smoothZoom = true;
 		controls.zoomDampingFactor = controls.dampingFactor;
 		controls.smoothZoomSpeed = 5.0;
+
+		controls.addEventListener('change', () => this.dispatch('controlsChanged'));
 
 		return controls;
 	}
