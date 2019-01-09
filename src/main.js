@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import '@libs/fontAwesome/all.js'
+// import '@libs/fontAwesome/all.css'
+
 Vue.config.productionTip = false
 
 //global variables, shortcuts
