@@ -8,12 +8,18 @@ const history = require('connect-history-api-fallback');
 
 const app = express();
 const port = process.env.PORT || 9999;
-
+const corsOptions = {
+	origin: '*',
+	optionsSuccessStatus: 200,
+	methods: ['GET','PUT', 'POST', 'DELETE'],
+	allowedHeaders: ['X-Access-Token'],
+	preflightContinue: true
+};
 
 //Middleware
 app.use(history());
 app.use(serveStatic(path.join(__dirname + '/dist')));
-app.use(cors());
+app.use(cors(corsOptions))
 app.use(logger('dev'));
 
 //models
