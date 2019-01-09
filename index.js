@@ -4,22 +4,17 @@ const serveStatic = require('serve-static');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const cors = require('cors');
+const history = require('connect-history-api-fallback');
 
 const app = express();
 const port = process.env.PORT || 9999;
 
 
 //Middleware
+app.use(history());
 app.use(serveStatic(path.join(__dirname + '/dist')));
 app.use(cors());
 app.use(logger('dev'));
-
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('/dist'));
-	app.get('*', (request, response) => {
-		response.sendFile(path.join(__dirname, '/dist', 'index.html'));
-	});
-}
 
 //models
 require('./server/models');
