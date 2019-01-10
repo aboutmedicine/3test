@@ -23,6 +23,7 @@ class SceneManager extends Dispatcher {
 
 		loader.setDRACOLoader(new THREE.DRACOLoader());
 
+		scene.add(camera);
 
 		this._loader = loader;
 		this._scene = scene;
@@ -59,20 +60,29 @@ class SceneManager extends Dispatcher {
 		});
 	}
 
-	checkIntersection(event) {
+	checkIntersection(event, offset = { x: 0, y: 0}) {
 		if (!this._interactiveObjects) return;
 
-		let x = (event.clientX / window.innerWidth) * 2 - 1;
-		let y = -(event.clientY / window.innerHeight) * 2 + 1;
+		let x, y;
 
-		this._mouse.set(x, y);
+		if ( event.changedTouches ) {
+			x = event.changedTouches[ 0 ].pageX;
+			y = event.changedTouches[ 0 ].pageY;
+		} else {
+			x = event.clientX;
+			y = event.clientY;
+		}
+		
+		this._mouse.set(
+			((x + offset.x) / window.innerWidth) * 2 - 1,
+			-((y + offset.y) / window.innerHeight) * 2 + 1
+		);
 
 		this._raycaster.setFromCamera(this._mouse, this._camera);
 
 		let intersects = this._raycaster.intersectObject(this._interactiveObjects, true);
-		let intersection = intersects[0];
-
-		return intersection;
+		
+		return intersects;
 	}
 
 	worldToScreen(vector3Point) {
@@ -111,8 +121,32 @@ class SceneManager extends Dispatcher {
 		this.scene.background = new THREE.Color(dark ? 0x333333 : 0xffffff);
 	}
 
+	toggleControls(mode) {
+		this._controls.enabled = mode;
+	}
+
+	addObject(object) {
+		this._scene.add(object);
+	}
+
+	removeObject(object) {
+		this._scene.remove(object);
+	}
+
 	get scene() {
 		return this._scene;
+	}
+
+	get controls() {
+		return this._controls;
+	}
+
+	get camera() {
+		return this._camera;
+	}
+
+	get rect() {
+		return this._renderer.domElement.getBoundingClientRect()
 	}
 
 	_update() {
@@ -151,10 +185,10 @@ class SceneManager extends Dispatcher {
 		const scene = new THREE.Scene();
 		scene.background = new THREE.Color(0xffffff);
 
-		const ambient = new THREE.AmbientLight(0xeeeeee);
+		const ambient = new THREE.AmbientLight(0xcccccc);
 		scene.add(ambient);
 
-		const pointLight = new THREE.PointLight(0xdddddd, 1, 5);
+		const pointLight = new THREE.PointLight(0xdddddd, 1, 100);
 		pointLight.position.set(50, 50, 50);
 		scene.add(pointLight);
 
@@ -179,6 +213,9 @@ class SceneManager extends Dispatcher {
 		camera.position.x = 5;
 		camera.position.y = 5;
 		camera.position.z = 10;
+
+		const pointLight = new THREE.PointLight(0xFFF999, 0.2);
+		camera.add(pointLight);
 
 		return camera;
 	}

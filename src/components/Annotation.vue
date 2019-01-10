@@ -56,7 +56,7 @@
 		},
 		methods: {
 			place(e) {
-				const intersection = this.checkIntersection(e);
+				const intersection = this.checkIntersection(e)[0];
 
 				if (intersection) {
 					//clean up

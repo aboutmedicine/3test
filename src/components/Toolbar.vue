@@ -29,7 +29,7 @@
 				<i class="fa fa-file-medical"></i>
 			</div>
 
-			<div class="toolbar-button">
+			<div class="toolbar-button" @click="toggleDrawMode">
 				<i class="fa fa-pencil"></i>
 			</div>
 
@@ -69,15 +69,13 @@
 		},
 		computed: {
 			logo() { return this.$theme.dark ? 'assets/Logo_Night.png' : 'assets/Logo.png' },
-			controller() { return this.$store.state.controller }
 		},
-		mounted() {},
 		methods: {
 			reset() {
-				this.controller.restoreVisibility();
+				this.$store.commit('CLEAR_SCENE');
 			},
 			dissect() {
-				this.controller.hideMesh(this.$store.state.activeMesh.object);
+				this.$store.commit('HIDE_MESH');
 			},
 			addAnnotation(e) {
 				this.$store.dispatch('ADD_NOTE', {
@@ -87,6 +85,9 @@
 					}
 				});
 			},
+			toggleDrawMode() {
+				this.$store.commit('TOGGLE_DRAW_MODE');
+			}
 		}
 	}
 </script>
