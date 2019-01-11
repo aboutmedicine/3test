@@ -1,8 +1,10 @@
 <template>
-	<main class="scene">
+	<main class="scene" :class="$refs.pen && $refs.pen.isActive ? 'is-pencil-mode' : ''">
 		<canvas id="tester"></canvas>
 
-		<h3 id="mesh-name" class="mesh-name">{{activeMesh.name}}</h3>
+		<h3 id="mesh-name" class="mesh-name" :class="theme.dark ? 'light' : 'dark'">
+			{{activeMesh.name}}
+		</h3>
 
 		<template v-for="(item) in annotations">
 			<Annotation
@@ -15,6 +17,8 @@
 			></Annotation>
 		</template>
 
+		<PencilTool :ref="'pen'" :canvas="canvas" v-show="mode.draw"></PencilTool>
+
 	</main>
 </template>
 
@@ -23,7 +27,6 @@
 	// @ is an alias to /src
 	import { HttpService } from '@/http'
 	import SceneManager from '@modules/SceneManager'
-	import GreasePencil from '@modules/GreasePencil'
 
 	export default {
 		name: 'scene',
@@ -31,10 +34,12 @@
 		components: {
 			//async loading on demand
 			Annotation: () => import('@components/Annotation'),
+			PencilTool: () => import('@components/PencilTool')
 		},
 
 		data: () => ({
 			intersected: null,
+			canvas: null
 		}),
 
 		computed: {
@@ -48,7 +53,6 @@
 				'activeAnnotation',
 				'activeMesh',
 				'mode',
-				'drawings'
 			]),
 		},
 
@@ -61,11 +65,10 @@
 			const canvas = document.getElementById('tester');
 			const controller = new SceneManager(canvas);
 
-			//Grease pencil tool
-			this.pen = new GreasePencil(controller, this.$store.state);
-
+			this.canvas = canvas;
+			
 			//bind listeners
-			this.bindEventListeners(controller);
+			this.bindEventListeners(controller, canvas);
 
 			//share the controller instance store-wide, for ex to use inside of Toolbar.vue
 			this.$store.commit('SET_CONTROLLER', controller);
@@ -99,24 +102,16 @@
 				});
 			},
 
-			bindEventListeners(controller) {
+			bindEventListeners(controller, canvas) {
 				//update annotations position
 				controller.on('controlsChanged', () => this.updateNotesPosition(controller));
 				controller.on('resize', () => this.updateNotesPosition(controller));
 
 				canvas.addEventListener('mousedown', (e) => this.highlightMesh(e, controller));
-
-				document.addEventListener( 'keyup', function(e) {
-					if( e.keyCode == 27 && this.mode.draw) {
-						e.stopImmediatePropagation();
-
-						this.$store.commit('TOGGLE_DRAW_MODE', false);
-					}
-				});
 			},
 
 			highlightMesh(e, controller) {
-				if(this.mode.draw) return;
+				if (this.mode.draw) return;
 
 				const intersection = controller.checkIntersection(e)[0];
 
@@ -159,10 +154,39 @@
 				this.controller.load(model.url, () => {
 					this.$store.commit('CLEAR_NOTES');
 					this.$store.commit('SET_ACTIVE_MESH', {});
+					this.$store.dispatch('CLEAR_SCENE');
 
 					console.log('loaded', model.title);
 				});
+			},
+
+			toggleFullScreen() {
+
+				const doc = window.document;
+				const docEl = doc.documentElement;
+
+				const requestFullScreen = docEl.requestFullscreen
+					|| docEl.mozRequestFullScreen
+					|| docEl.webkitRequestFullScreen
+					|| docEl.msRequestFullscreen;
+
+				const cancelFullScreen = doc.exitFullscreen
+					|| doc.mozCancelFullScreen
+					|| doc.webkitExitFullscreen
+					|| doc.msExitFullscreen;
+
+
+				if (!doc.fullscreenElement
+					&& !doc.mozFullScreenElement
+					&& !doc.webkitFullscreenElement
+					&& !doc.msFullscreenElement) {
+					requestFullScreen.call(docEl);
+				}
+				else {
+					cancelFullScreen.call(doc);
+				}
 			}
+
 		},
 
 		watch: {
@@ -174,16 +198,12 @@
 				this.controller.switchTheme(to);
 			},
 			'mode.draw'(to) {
-				this.pen.toggle(to);
-				this.controller.toggleControls(!to);
+				this.$refs.pen.toggle(to);
 
+				if(this.mobile) {
+					this.toggleFullScreen();
+				}
 			}
-			// drawings(actual, prev) {
-			//
-			// 	if (!actual.length) {
-			// 		// this.undoDrawing(prev.length)
-			// 	}
-			// }
 		}
 	}
 </script>
@@ -198,5 +218,20 @@
 		right: 30%;
 		bottom: 0;
 		color: var(--black);
+		&.light {
+			color: var(--light-grey);
+		}
 	}
+
+	#tester {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+	}
+
+
 </style>

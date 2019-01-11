@@ -72,10 +72,10 @@
 		},
 		methods: {
 			reset() {
-				this.$store.commit('CLEAR_SCENE');
+				this.$store.dispatch('CLEAR_SCENE');
 			},
 			dissect() {
-				this.$store.commit('HIDE_MESH');
+				this.$store.dispatch('HIDE_MESH');
 			},
 			addAnnotation(e) {
 				this.$store.dispatch('ADD_NOTE', {

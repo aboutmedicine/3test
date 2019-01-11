@@ -40,6 +40,9 @@ export default new Vuex.Store({
 		ADD_NOTE(state, payload) {
 			state.annotations = { ...state.annotations, [payload.id]: payload }
 		},
+		ADD_DRAWING(state, object) {
+			state.drawings.push(object);
+		},
 		SET_MODELS(state, payload) {
 			state.models = payload;
 		},
@@ -55,17 +58,17 @@ export default new Vuex.Store({
 		CLEAR_NOTES(state) {
 			state.annotations = {};
 		},
-		CLEAR_SCENE(state) {
-			state.drawings = [];
-			state.controller.restoreVisibility();
-		},
 		REMOVE_NOTE(state, id) {
 			Vue.delete(state.annotations, id);
 			state.activeAnnotation = null;
 		},
-		HIDE_MESH(state) {
-			state.controller.hideMesh(state.activeMesh.object);
-		}
+		REMOVE_DRAWINGS(state, length) {
+			if (!state.drawings.length) return;
+
+			for (let i = 0; i < length; i++) {
+				state.controller.removeObject(state.drawings.pop());
+			}
+		},
 	},
 	actions: {
 		ADD_NOTE({commit}, payload) {
@@ -78,6 +81,12 @@ export default new Vuex.Store({
 			commit('SET_ACTIVE_NOTE', null);
 
 		},
-
+		CLEAR_SCENE({commit, state}) {
+			commit('REMOVE_DRAWINGS', state.drawings.length);
+			state.controller.restoreVisibility();
+		},
+		HIDE_MESH({state}) {
+			state.controller.hideMesh(state.activeMesh.object);
+		}
 	}
 })

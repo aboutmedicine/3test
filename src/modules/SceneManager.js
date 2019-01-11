@@ -225,7 +225,7 @@ class SceneManager extends Dispatcher {
 		controls.enableDamping = true;
 		controls.dampingFactor = 0.25;
 		controls.maxDistance = 50;
-		controls.minDistance = 5;
+		controls.minDistance = 2;
 		controls.enableZoom = true;
 		controls.rotateSpeed = 0.75;
 		controls.smoothZoom = true;
