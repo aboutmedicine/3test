@@ -1,4 +1,4 @@
-import { tinycolor } from '@libs/tinycolor-min.js'
+require('@libs/tinycolor-min.js')
 
 var ColorPicker = function (lineConfig) {
 
