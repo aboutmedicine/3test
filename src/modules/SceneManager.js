@@ -60,19 +60,19 @@ class SceneManager extends Dispatcher {
 		});
 	}
 
-	checkIntersection(event, offset = { x: 0, y: 0}) {
+	checkIntersection(event, offset = { x: 0, y: 0 }) {
 		if (!this._interactiveObjects) return;
 
 		let x, y;
 
-		if ( event.changedTouches ) {
-			x = event.changedTouches[ 0 ].pageX;
-			y = event.changedTouches[ 0 ].pageY;
+		if (event.changedTouches) {
+			x = event.changedTouches[0].pageX;
+			y = event.changedTouches[0].pageY;
 		} else {
 			x = event.clientX;
 			y = event.clientY;
 		}
-		
+
 		this._mouse.set(
 			((x + offset.x) / window.innerWidth) * 2 - 1,
 			-((y + offset.y) / window.innerHeight) * 2 + 1
@@ -80,9 +80,19 @@ class SceneManager extends Dispatcher {
 
 		this._raycaster.setFromCamera(this._mouse, this._camera);
 
-		let intersects = this._raycaster.intersectObject(this._interactiveObjects, true);
-		
-		return intersects;
+		const intersects = this._raycaster.intersectObject(this._interactiveObjects, true);
+
+		let intersection = intersects[0];
+
+		if (intersection && intersection.object.material.clippingPlanes) {
+			let filtered = intersects.filter((elem) => {
+				return intersection.object.material.clippingPlanes.every((elem2) => {
+					return elem2.distanceToPoint(elem.point) > 0;
+				});
+			});
+			intersection = filtered[0];
+		}
+		return intersection;
 	}
 
 	worldToScreen(vector3Point) {
@@ -115,6 +125,7 @@ class SceneManager extends Dispatcher {
 			}
 			this._resetCamera();
 		});
+		this._renderer.localClippingEnabled = false;
 	}
 
 	switchTheme(dark) {
@@ -131,6 +142,40 @@ class SceneManager extends Dispatcher {
 
 	removeObject(object) {
 		this._scene.remove(object);
+	}
+
+	clip(x = -1, y = 0, z = 0) {
+		const plane = new THREE.Plane(new THREE.Vector3(x, y, z), 0);
+
+		// plane.applyMatrix4(new THREE.Matrix4().makeRotationY(Math.PI / 2));
+
+		// const helper = new THREE.PlaneHelper(plane, 5, 0x0000ff);
+		// const positions = [
+		// 	1, 1, 1,
+		// 	-1, 1, 1, // line 1
+		// 	-1, 1, 1,
+		// 	-1, -1, 1, // line 2
+		// 	-1, -1, 1,
+		// 	1, -1, 1, // line 3
+		// 	1, -1, 1,
+		// 	1, 1, 1  // line 4
+		// ];
+		//
+		// helper.geometry = new THREE.BufferGeometry();
+		// helper.geometry.addAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+		// this.addObject(helper);
+
+		this._renderer.localClippingEnabled = true;
+
+		this._interactiveObjects.traverse(function (node) {
+			if (node.isMesh) {
+				node.material.clippingPlanes = [plane];
+				node.material.clipShadows = true;
+				node.material.needsUpdate = true;
+			}
+		});
+
+
 	}
 
 	get scene() {

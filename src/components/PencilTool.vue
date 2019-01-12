@@ -57,14 +57,14 @@
 
 			new ColorPicker(this.lineConfig);
 
-			this.canvas.addEventListener('mousemove', this._onMouseMove.bind(this), false);
-			this.canvas.addEventListener('touchmove', this._onMouseMove.bind(this), { passive: false });
+			document.addEventListener('mousemove', this._onMouseMove.bind(this), false);
+			document.addEventListener('touchmove', this._onMouseMove.bind(this), { passive: false });
 
-			this.canvas.addEventListener('mousedown', this._onMouseDown.bind(this), false);
-			this.canvas.addEventListener('touchstart', this._onMouseDown.bind(this), false);
+			document.addEventListener('mousedown', this._onMouseDown.bind(this), false);
+			document.addEventListener('touchstart', this._onMouseDown.bind(this), false);
 
-			this.canvas.addEventListener('mouseup', this._onMouseUp.bind(this), false);
-			this.canvas.addEventListener('touchend', this._onMouseUp.bind(this), false);
+			document.addEventListener('mouseup', this._onMouseUp.bind(this), false);
+			document.addEventListener('touchend', this._onMouseUp.bind(this), false);
 
 			this.canvas.addEventListener('contextmenu', e => {
 				e.preventDefault();
@@ -210,27 +210,15 @@
 			},
 
 			_intersectionStatus(event) {
-
 				//external method is used (SceneManager.checkIntersection)
-				let intersects = this.drawer.checkIntersection(event, {
+				let target = this.drawer.checkIntersection(event, {
 					x: 0,
 					y: this.isMobile ? 0 : 30
 				});
-				let target = intersects[0];
 
 				this.intersection.intersects = false;
 
 				if (target) {
-
-					if (target.object.material.clippingPlanes) {
-						intersects = intersects.filter((elem) => {
-							return target.object.material.clippingPlanes.every((elem2) => {
-								return elem2.distanceToPoint(elem.point) > 0;
-							});
-						});
-						target = intersects[0];
-					}
-
 					this.intersection.object = target.object;
 					this.intersection.point = target.point;
 					this.intersection.normal = target.face.normal;

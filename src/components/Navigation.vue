@@ -88,7 +88,7 @@
 		height: 100%;
 		width: 0px;
 		position: fixed;
-		z-index: 1;
+		z-index: 3;
 		top: 0;
 		right: -2px;
 		background-color: #fff;

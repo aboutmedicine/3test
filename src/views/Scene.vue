@@ -111,9 +111,7 @@
 			},
 
 			highlightMesh(e, controller) {
-				if (this.mode.draw) return;
-
-				const intersection = controller.checkIntersection(e)[0];
+				const intersection = controller.checkIntersection(e);
 
 				let intersected = this.intersected;
 
@@ -124,8 +122,6 @@
 
 						intersected.currentHex = intersected.material.emissive.getHex();
 						intersected.material.emissive.setHex(0xaa00aa);
-
-						console.log(intersected.material);
 
 						this.$store.commit('SET_ACTIVE_MESH', {
 							name: intersection.object.name.replace(/_/g, " "),

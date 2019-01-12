@@ -13,13 +13,13 @@
 				<i class="fa fa-cut"></i>
 
 				<div class="toolbar-dropdown">
-					<div class="toolbar-button">
+					<div class="toolbar-button" @click="clip(0,0,-1)">
 						<i class="fa fa-square"></i>
 					</div>
-					<div class="toolbar-button">
+					<div class="toolbar-button" @click="clip(0,-1,0)">
 						<i class="fa fa-minus"></i>
 					</div>
-					<div class="toolbar-button">
+					<div class="toolbar-button" @click="clip(-1,0,0)">
 						<i style="transform: rotate(90deg)" class="fa fa-minus"></i>
 					</div>
 				</div>
@@ -37,7 +37,7 @@
 				<i class="fa fa-redo-alt"></i>
 			</div>
 
-			<div class="toolbar-button" @click="dialog.upload = true">
+			<div class="toolbar-button" @click="dialog.upload = !dialog.upload">
 				<i class="fa fa-upload"></i>
 
 				<div class="menu" v-show="dialog.upload">
@@ -68,7 +68,12 @@
 			Uploader: () => import('@components/Uploader')
 		},
 		computed: {
-			logo() { return this.$theme.dark ? 'assets/Logo_Night.png' : 'assets/Logo.png' },
+			logo() {
+				return this.$theme.dark ? 'assets/Logo_Night.png' : 'assets/Logo.png'
+			},
+			controller() {
+				return this.$store.state.controller
+			}
 		},
 		methods: {
 			reset() {
@@ -87,6 +92,9 @@
 			},
 			toggleDrawMode() {
 				this.$store.commit('TOGGLE_DRAW_MODE');
+			},
+			clip(...args) {
+				this.controller.clip(...args);
 			}
 		}
 	}
@@ -106,11 +114,12 @@
 		position: absolute;
 		top: calc(100% + 10px);
 		left: 0;
-		z-index: 1;
+		z-index: 2;
 		padding: 20px;
 		border-radius: 0.5em;
 		border: 2px solid #eeeeee;
 	}
+
 	.top-panel {
 		display: grid;
 		grid-template-rows: auto auto;
@@ -118,11 +127,16 @@
 		position: absolute;
 		left: 16px;
 		top: 16px;
-		z-index: 1;
+		z-index: 3;
 		align-items: center;
 		grid-row-gap: 10px;
 		grid-column-gap: 20px;
+		pointer-events: none;
+		& > * {
+			pointer-events: auto;
+		}
 	}
+
 	.toolbar {
 		display: flex;
 		justify-content: left;
@@ -153,7 +167,6 @@
 		cursor: pointer;
 	}
 
-
 	#toolbar:hover .toolbar-dropdown {
 		display: flex;
 	}
@@ -166,7 +179,7 @@
 		top: 100%;
 		padding-top: 16px;
 
-		> .toolbar-button + .toolbar-button{
+		> .toolbar-button + .toolbar-button {
 			margin-top: 16px;
 		}
 	}
