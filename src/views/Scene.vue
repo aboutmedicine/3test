@@ -6,13 +6,14 @@
 			{{activeMesh.name}}
 		</h3>
 
+		<AnnotationHelper></AnnotationHelper>
+
 		<template v-for="(item) in annotations">
 			<Annotation
 					:key="item.id"
 					:id="item.id"
-					:ref="item.id"
-					:startPosition="item.position"
-					:checkIntersection="controller.checkIntersection.bind(controller)"
+					:text="item.text"
+					:position="item.position"
 					:isOpen="activeAnnotation === item.id"
 			></Annotation>
 		</template>
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-	import { mapState } from 'vuex'
+	import { mapState, mapGetters } from 'vuex'
 	// @ is an alias to /src
 	import { HttpService } from '@/http'
 	import SceneManager from '@modules/SceneManager'
@@ -34,12 +35,16 @@
 		components: {
 			//async loading on demand
 			Annotation: () => import('@components/Annotation'),
+			AnnotationHelper: () => import('@components/AnnotationHelper'),
 			PencilTool: () => import('@components/PencilTool')
 		},
 
 		data: () => ({
 			intersected: null,
-			canvas: null
+			canvas: null,
+			bufferAnnotation: {
+
+			}
 		}),
 
 		computed: {
@@ -49,11 +54,13 @@
 				'models',
 				'controller',
 				'theme',
-				'annotations',
 				'activeAnnotation',
 				'activeMesh',
 				'mode',
 			]),
+			...mapGetters([
+				'annotations'
+			])
 		},
 
 		created() {
@@ -65,10 +72,10 @@
 			const canvas = document.getElementById('tester');
 			const controller = new SceneManager(canvas);
 
-			this.canvas = canvas;
-			
 			//bind listeners
-			this.bindEventListeners(controller, canvas);
+			canvas.addEventListener('mousedown', (e) => this.highlightMesh(e, controller));
+
+			this.canvas = canvas;
 
 			//share the controller instance store-wide, for ex to use inside of Toolbar.vue
 			this.$store.commit('SET_CONTROLLER', controller);
@@ -95,19 +102,10 @@
 						}
 					}
 					else {
-						//TODO load some default model
 						console.log('no models yet');
 					}
 
 				});
-			},
-
-			bindEventListeners(controller, canvas) {
-				//update annotations position
-				controller.on('controlsChanged', () => this.updateNotesPosition(controller));
-				controller.on('resize', () => this.updateNotesPosition(controller));
-
-				canvas.addEventListener('mousedown', (e) => this.highlightMesh(e, controller));
 			},
 
 			highlightMesh(e, controller) {
@@ -131,26 +129,19 @@
 				}
 			},
 
-			updateNotesPosition(controller) {
-				//TODO this might be not the best practice, consider another solution
-				for (let id in this.annotations) {
-					const annotation = this.$refs[id][0];
-					const distA = controller.distanceToCamera(annotation.position.self);
-					const distB = controller.distanceToCamera(annotation.position.parent);
-					const diff = distB - distA;
-
-					annotation.move(controller.worldToScreen(annotation.position.self));
-					annotation.style.opacity = Math.min(Math.max(diff, 0.15), 1);
-				}
-			},
-
 			loadModel(slug) {
 				const model = this.models.filter(x => x.slug === slug)[0];
 
 				this.controller.load(model.url, () => {
-					this.$store.commit('CLEAR_NOTES');
-					this.$store.commit('SET_ACTIVE_MESH', {});
+					// console.log(model);
+					// this.$store.commit('CLEAR_NOTES');
+
+
 					this.$store.dispatch('CLEAR_SCENE');
+
+					this.$store.commit('SET_ACTIVE_MESH', {});
+					this.$store.commit('SET_ACTIVE_NOTE', null);
+					this.$store.commit('SET_CURRENT_MODEL', model._id);
 
 					console.log('loaded', model.title);
 				});
@@ -199,7 +190,8 @@
 				if(this.mobile) {
 					this.toggleFullScreen();
 				}
-			}
+			},
+
 		}
 	}
 </script>

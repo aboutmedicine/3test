@@ -25,8 +25,9 @@
 				</div>
 			</div>
 
-			<div id="annotation" class="toolbar-button" @click="addAnnotation">
+			<div id="annotation" class="toolbar-button" @click="toggleAnnotationMode">
 				<i class="fa fa-file-medical"></i>
+
 			</div>
 
 			<div class="toolbar-button" @click="toggleDrawMode">
@@ -54,6 +55,8 @@
 				<i class="fas fa-coffee"></i>
 			</a>
 		</div>
+
+
 	</header>
 </template>
 
@@ -61,8 +64,9 @@
 	export default {
 		data: () => ({
 			dialog: {
-				upload: false
+				upload: false,
 			},
+
 		}),
 		components: {
 			Uploader: () => import('@components/Uploader')
@@ -73,6 +77,9 @@
 			},
 			controller() {
 				return this.$store.state.controller
+			},
+			mode() {
+				return this.$store.state.mode
 			}
 		},
 		methods: {
@@ -82,13 +89,9 @@
 			dissect() {
 				this.$store.dispatch('HIDE_MESH');
 			},
-			addAnnotation(e) {
-				this.$store.dispatch('ADD_NOTE', {
-					position: {
-						x: e.clientX,
-						y: e.clientY
-					}
-				});
+			toggleAnnotationMode() {
+				this.$store.commit('SET_ACTIVE_NOTE', null);
+				this.$store.commit('SET_ANNOTATION_MODE', !this.mode.annotation);
 			},
 			toggleDrawMode() {
 				this.$store.commit('TOGGLE_DRAW_MODE');
@@ -100,7 +103,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 
 	.close-modal {
 		position: absolute;
@@ -209,4 +212,7 @@
 		color: var(--dark-grey);
 		cursor: pointer;
 	}
+
+
+
 </style>

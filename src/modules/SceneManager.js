@@ -37,6 +37,7 @@ class SceneManager extends Dispatcher {
 
 		this._activeScene = null;
 
+		controls.addEventListener('change', () => this.dispatch('controlsChanged'));
 
 		window.onresize = () => this._resize();
 
@@ -123,8 +124,8 @@ class SceneManager extends Dispatcher {
 			if (!object.visible) {
 				object.visible = true;
 			}
-			this._resetCamera();
 		});
+		this._resetCamera();
 		this._renderer.localClippingEnabled = false;
 	}
 
@@ -147,24 +148,6 @@ class SceneManager extends Dispatcher {
 	clip(x = -1, y = 0, z = 0) {
 		const plane = new THREE.Plane(new THREE.Vector3(x, y, z), 0);
 
-		// plane.applyMatrix4(new THREE.Matrix4().makeRotationY(Math.PI / 2));
-
-		// const helper = new THREE.PlaneHelper(plane, 5, 0x0000ff);
-		// const positions = [
-		// 	1, 1, 1,
-		// 	-1, 1, 1, // line 1
-		// 	-1, 1, 1,
-		// 	-1, -1, 1, // line 2
-		// 	-1, -1, 1,
-		// 	1, -1, 1, // line 3
-		// 	1, -1, 1,
-		// 	1, 1, 1  // line 4
-		// ];
-		//
-		// helper.geometry = new THREE.BufferGeometry();
-		// helper.geometry.addAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-		// this.addObject(helper);
-
 		this._renderer.localClippingEnabled = true;
 
 		this._interactiveObjects.traverse(function (node) {
@@ -174,7 +157,6 @@ class SceneManager extends Dispatcher {
 				node.material.needsUpdate = true;
 			}
 		});
-
 
 	}
 
@@ -219,6 +201,8 @@ class SceneManager extends Dispatcher {
 
 		this._renderer.setSize(width, height);
 
+		this._resetCamera();
+		
 		this.dispatch('resize');
 	}
 
@@ -276,8 +260,6 @@ class SceneManager extends Dispatcher {
 		controls.smoothZoom = true;
 		controls.zoomDampingFactor = controls.dampingFactor;
 		controls.smoothZoomSpeed = 5.0;
-
-		controls.addEventListener('change', () => this.dispatch('controlsChanged'));
 
 		return controls;
 	}

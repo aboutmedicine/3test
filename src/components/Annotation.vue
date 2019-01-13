@@ -12,17 +12,18 @@
 				<i class="fas fa-times"></i>
 			</button>
 
-			<input class="annotation-title" placeholder="Annotation">
-			<textarea class="annotation-details" rows="3" placeholder="Type Here..."></textarea>
+			<input class="annotation-title" placeholder="Annotation" name="title"
+			       @input="inputChange"
+			       :value="text.title"
+			>
+			<textarea class="annotation-details" rows="3" placeholder="Type Here..." name="description"
+			          @input="inputChange"
+			          :value="text.description"
+			></textarea>
 
 			<button type="button" class="ico delete delete-annotation" @click="remove">
 				<i class="fas fa-trash"></i>
 			</button>
-			<button type="button" class="ico save save-annotation" @click="save">
-				<i class="fas fa-save ico "></i>
-			</button>
-
-
 		</div>
 	</div>
 </template>
@@ -32,62 +33,70 @@
 		name: 'Annotation',
 		props: {
 			id: Number,
-			startPosition: Object,
-			checkIntersection: Function,
+			text: Object,
 			isOpen: Boolean,
+			position: {}
 		},
 		data: () => ({
-			isPlaced: false,
-			position: {
-				parent: null,
-				self: null
-			},
 			style: {
 				top: '',
 				left: '',
 				opacity: 1
-			}
+			},
+			title: '',
+			description: ''
 		}),
+		computed: {
+			controller() {
+				return this.$store.state.controller
+			}
+		},
 		mounted() {
-			this.move(this.startPosition);
-			document.addEventListener('mousemove', this.move);
-			document.addEventListener('click', this.place);
-			document.body.style.cursor = 'none';
+			//update annotations position
+			this.updatePosition();
+			this.controller.on('controlsChanged', this.updatePosition);
+			this.controller.on('resize', () => this.updatePosition);
 		},
 		methods: {
-			place(e) {
-				const intersection = this.checkIntersection(e)[0];
+			updatePosition() {
+				this.$nextTick(() => {
+					this.move(this.controller.worldToScreen(this.position.intersection));
 
-				if (intersection) {
-					//clean up
-					document.body.style.cursor = 'default';
-					document.removeEventListener('mousemove', this.move);
-					document.removeEventListener('click', this.place);
+					if(!this.isOpen) {
+						const distA = this.controller.distanceToCamera(this.position.intersection);
+						const distB = this.controller.distanceToCamera(this.position.object);
+						const diff = distB - distA;
+						this.style.opacity = Math.min(Math.max(diff, 0.15), 1);
+					}
 
-					this.open();
-					this.isPlaced = true;
-
-					//we'll need this later for positioning, for ex window resize or scene controls changes
-					this.position.self = intersection.point;
-					this.position.parent = intersection.object.position;
-
-				}
+				});
 			},
+
 			move(toPoint = {}) {
 				this.style.top = `${toPoint.y}px`;
 				this.style.left = `${toPoint.x}px`;
 			},
+
 			remove() {
 				this.$store.commit('REMOVE_NOTE', this.id);
 			},
-			save() {
-				//TODO use localstorage
+
+			inputChange(e) {
+				console.log(e.target.value, e.target.name);
+				this.$store.commit('EDIT_NOTE', {
+					key: e.target.name,
+					value: e.target.value
+				});
 			},
+
 			open() {
 				this.$store.commit('SET_ACTIVE_NOTE', this.id);
+				this.style.opacity = 1;
 			},
+
 			close() {
 				this.$store.commit('SET_ACTIVE_NOTE', null);
+				this.updatePosition();
 			}
 		}
 

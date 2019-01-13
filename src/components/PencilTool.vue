@@ -152,7 +152,6 @@
 				normal.transformDirection(object.matrixWorld);
 				angleValue = normal.dot(dirToCamera);
 
-				//this slightly shifts the position of line above the model. TODO better calculations
 				normal.multiplyScalar(Math.sign(angleValue) * 0.004);
 				normal.add(point);
 
