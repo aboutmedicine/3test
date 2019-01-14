@@ -127,6 +127,7 @@ class SceneManager extends Dispatcher {
 		});
 		this._resetCamera();
 		this._renderer.localClippingEnabled = false;
+		this._renderer.clippingPlanes = [];
 	}
 
 	switchTheme(dark) {
@@ -150,11 +151,26 @@ class SceneManager extends Dispatcher {
 
 		this._renderer.localClippingEnabled = true;
 
-		this._interactiveObjects.traverse(function (node) {
+		const backSideMaterial = new THREE.MeshBasicMaterial( {
+			color : 0x724F46,
+			transparent : false
+		} );
+
+		backSideMaterial.side = THREE.BackSide;
+		backSideMaterial.morphNormals = true;
+		backSideMaterial.morphTargets = true;
+
+		this._renderer.clippingPlanes = [plane];
+
+		this._interactiveObjects.traverse((node) => {
 			if (node.isMesh) {
 				node.material.clippingPlanes = [plane];
 				node.material.clipShadows = true;
 				node.material.needsUpdate = true;
+
+				node.onAfterRender = function( renderer, scene, camera, geometry, material, group ){
+					renderer.renderBufferDirect( camera, scene.fog, geometry, backSideMaterial, node, group );
+				};
 			}
 		});
 
@@ -189,6 +205,7 @@ class SceneManager extends Dispatcher {
 	_resize() {
 		const canvas = this._canvas;
 		canvas.width = window.innerWidth;
+
 		canvas.height = window.innerHeight;
 
 		const { width, height } = canvas;

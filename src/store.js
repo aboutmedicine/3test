@@ -8,8 +8,9 @@ const vuexLocal = new VuexPersistence({
 	storage: window.localStorage,
 	reducer: (state) => ({
 		annotations: state.annotations
-	}), //only save navigation module
-	// filter: (mutation) => mutation.type == 'addNavItem'
+	}), //only save annotations
+	// we can also listen only for a specific mutations
+	// filter: (mutation) => mutation.type == 'ADD_NOTE'
 })
 
 export default new Vuex.Store({
