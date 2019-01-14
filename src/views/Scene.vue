@@ -42,9 +42,6 @@
 		data: () => ({
 			intersected: null,
 			canvas: null,
-			bufferAnnotation: {
-
-			}
 		}),
 
 		computed: {
@@ -133,17 +130,8 @@
 				const model = this.models.filter(x => x.slug === slug)[0];
 
 				this.controller.load(model.url, () => {
-					// console.log(model);
-					// this.$store.commit('CLEAR_NOTES');
-
-
 					this.$store.dispatch('CLEAR_SCENE');
-
-					this.$store.commit('SET_ACTIVE_MESH', {});
-					this.$store.commit('SET_ACTIVE_NOTE', null);
 					this.$store.commit('SET_CURRENT_MODEL', model._id);
-
-					console.log('loaded', model.title);
 				});
 			},
 
@@ -191,6 +179,13 @@
 					this.toggleFullScreen();
 				}
 			},
+			activeMesh(nextValue) {
+				if(!nextValue.object && this.intersected) {
+					this.intersected.material.emissive.setHex(this.intersected.currentHex);
+					this.intersected = null;
+				}
+
+			}
 
 		}
 	}

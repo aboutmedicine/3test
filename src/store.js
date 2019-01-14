@@ -99,13 +99,13 @@ export default new Vuex.Store({
 	actions: {
 		ADD_NOTE({ commit }, payload) {
 			commit('SET_ANNOTATION_MODE', false);
-
 			commit('ADD_NOTE', payload);
-
 			commit('SET_ACTIVE_NOTE', payload.id);
 		},
 		CLEAR_SCENE({ commit, state }) {
 			commit('REMOVE_DRAWINGS', state.drawings.length);
+			commit('SET_ACTIVE_MESH', {});
+			commit('SET_ACTIVE_NOTE', null);
 			state.controller.restoreVisibility();
 		},
 		HIDE_MESH({ state }) {
