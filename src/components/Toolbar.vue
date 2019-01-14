@@ -6,7 +6,7 @@
 		<div class="toolbar">
 
 			<div id="dissect" class="toolbar-button" @click="dissect">
-				<i class="fa fa-scalpel"></i>
+				<i class="fa fa-eye-slash"></i>
 			</div>
 
 			<div id="toolbar" class="toolbar-button knife">
@@ -52,7 +52,7 @@
 		</div>
 		<div class="toolbar-social">
 			<a href="http://ko-fi.com/reubenschmidt" class="social-button">
-				<i class="fas fa-coffee"></i>
+				<i class="fa fa-coffee"></i>
 			</a>
 		</div>
 
