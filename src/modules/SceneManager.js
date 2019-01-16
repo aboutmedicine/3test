@@ -152,7 +152,7 @@ class SceneManager extends Dispatcher {
 		this._renderer.localClippingEnabled = true;
 
 		const backSideMaterial = new THREE.MeshBasicMaterial( {
-			color : 0x724F46,
+			color : 0xeeeeee,
 			transparent : false
 		} );
 
@@ -270,13 +270,10 @@ class SceneManager extends Dispatcher {
 		const controls = new THREE.OrbitControls(camera, renderer.domElement);
 		controls.enableDamping = true;
 		controls.dampingFactor = 0.25;
+        controls.screenSpacePanning = true;
 		controls.maxDistance = 50;
-		controls.minDistance = 2;
-		controls.enableZoom = true;
+		controls.minDistance = .5;
 		controls.rotateSpeed = 0.75;
-		controls.smoothZoom = true;
-		controls.zoomDampingFactor = controls.dampingFactor;
-		controls.smoothZoomSpeed = 5.0;
 
 		return controls;
 	}
