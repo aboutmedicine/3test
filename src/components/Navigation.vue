@@ -75,6 +75,9 @@
 		cursor: pointer;
 		transition: .2s;
 		z-index: 1;
+		@media (max-width: 767px) {
+			top: 15px;
+		}
 	}
 
 	.sidenav-button:hover,

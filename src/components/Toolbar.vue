@@ -38,7 +38,7 @@
 				<i class="fa fa-redo-alt"></i>
 			</div>
 
-			<div class="toolbar-button" @click="dialog.upload = !dialog.upload">
+			<div id="upload" class="toolbar-button" @click="dialog.upload = !dialog.upload">
 				<i class="fa fa-upload"></i>
 
 				<div class="menu" v-show="dialog.upload">
@@ -211,6 +211,29 @@
 	.social-button:hover {
 		color: var(--dark-grey);
 		cursor: pointer;
+	}
+
+	.logo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	@media (max-width: 767px) {
+		#annotation, #upload {
+			display: none;
+		}
+		.toolbar > .toolbar-button + .toolbar-button {
+			margin-left: 8px;
+		}
+		.top-panel {
+			grid-column-gap: 10px;
+			grid-row-gap: 5px;
+		}
+		#logo {
+			width: 48px;
+			height: 48px;
+		}
 	}
 
 
