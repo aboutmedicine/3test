@@ -223,12 +223,19 @@
 		#annotation, #upload {
 			display: none;
 		}
+		.toolbar-button {
+			font-size: 25px;
+			width: 42px;
+			height: 42px;
+		}
 		.toolbar > .toolbar-button + .toolbar-button {
 			margin-left: 8px;
 		}
 		.top-panel {
 			grid-column-gap: 10px;
 			grid-row-gap: 5px;
+			top: 10px;
+			left: 10px;
 		}
 		#logo {
 			width: 48px;

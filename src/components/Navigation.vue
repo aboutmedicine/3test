@@ -76,7 +76,8 @@
 		transition: .2s;
 		z-index: 1;
 		@media (max-width: 767px) {
-			top: 15px;
+			top: 10px;
+			right: 0;
 		}
 	}
 
@@ -126,6 +127,8 @@
 
 	.dropdown-container {
 		padding-left: 8px;
+		max-height: 40vh;
+		overflow: auto;
 	}
 
 </style>
