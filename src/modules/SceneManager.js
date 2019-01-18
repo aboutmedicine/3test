@@ -124,6 +124,10 @@ class SceneManager extends Dispatcher {
 			if (!object.visible) {
 				object.visible = true;
 			}
+			if(object.isMesh) {
+				object.material.clippingPlanes = [];
+			}
+
 		});
 		this._resetCamera();
 		this._renderer.localClippingEnabled = false;
@@ -153,12 +157,9 @@ class SceneManager extends Dispatcher {
 
 		const backSideMaterial = new THREE.MeshBasicMaterial( {
 			color : 0xeeeeee,
-			transparent : false
 		} );
 
 		backSideMaterial.side = THREE.BackSide;
-		backSideMaterial.morphNormals = true;
-		backSideMaterial.morphTargets = true;
 
 		this._renderer.clippingPlanes = [plane];
 
