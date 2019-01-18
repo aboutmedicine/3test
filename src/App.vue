@@ -1,5 +1,5 @@
 <template>
-	<div id="app" class="home">
+	<div id="app" class="home" :class="mobile ? 'touch' : 'desktop'">
 		<Toolbar></Toolbar>
 		<Navigation></Navigation>
 		<router-view/>
@@ -16,7 +16,11 @@
 			Navigation
 		},
 		data: () => ({}),
-		computed: {},
+		computed: {
+			mobile() {
+				return this.$store.state.mobile
+			}
+		},
 		mounted() {}
 	}
 </script>

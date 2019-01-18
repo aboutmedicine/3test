@@ -9,17 +9,17 @@
 				<i class="fa fa-eye-slash"></i>
 			</div>
 
-			<div id="toolbar" class="toolbar-button knife">
+			<div id="toolbar" class="toolbar-button knife" @click="dialog.clip = !dialog.clip">
 				<i class="fa fa-cut"></i>
 
-				<div class="toolbar-dropdown">
-					<div class="toolbar-button" @click="clip(0,0,-1)">
+				<div class="toolbar-dropdown" v-show="!mobile || dialog.clip">
+					<div class="toolbar-button" @click.stop="clip(0,0,-1)">
 						<i class="fa fa-square"></i>
 					</div>
-					<div class="toolbar-button" @click="clip(0,-1,0)">
+					<div class="toolbar-button" @click.stop="clip(0,-1,0)">
 						<i class="fa fa-minus"></i>
 					</div>
-					<div class="toolbar-button" @click="clip(-1,0,0)">
+					<div class="toolbar-button" @click.stop="clip(-1,0,0)">
 						<i style="transform: rotate(90deg)" class="fa fa-minus"></i>
 					</div>
 				</div>
@@ -65,6 +65,7 @@
 		data: () => ({
 			dialog: {
 				upload: false,
+				clip: false
 			},
 
 		}),
@@ -80,7 +81,11 @@
 			},
 			mode() {
 				return this.$store.state.mode
+			},
+			mobile() {
+				return this.$store.state.mobile
 			}
+
 		},
 		methods: {
 			reset() {
@@ -98,7 +103,8 @@
 			},
 			clip(...args) {
 				this.controller.clip(...args);
-			}
+				this.dialog.clip = false;
+			},
 		}
 	}
 </script>
@@ -170,12 +176,11 @@
 		cursor: pointer;
 	}
 
-	#toolbar:hover .toolbar-dropdown {
+	.desktop #toolbar:hover .toolbar-dropdown {
 		display: flex;
 	}
 
 	.toolbar-dropdown {
-		display: none;
 		position: absolute;
 		flex-direction: column;
 		left: 0;
@@ -184,6 +189,9 @@
 
 		> .toolbar-button + .toolbar-button {
 			margin-top: 16px;
+		}
+		.desktop & {
+			display: none;
 		}
 	}
 
