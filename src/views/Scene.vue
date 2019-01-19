@@ -71,6 +71,7 @@
 
 			//bind listeners
 			canvas.addEventListener('mousedown', (e) => this.highlightMesh(e, controller));
+			canvas.addEventListener('touchstart', (e) => this.highlightMesh(e, controller));
 
 			this.canvas = canvas;
 
