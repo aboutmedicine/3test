@@ -25,7 +25,7 @@
 			<a id="night-mode" @click="$store.commit('TOGGLE_THEME')">
 				{{ $theme.dark ? 'Day' : 'Night'}} Mode
 			</a>
-			<a href="mailto:contact@aboutmedicine.com.au">Contact</a>
+			<a href="mailto:reuben.schmidt@icloud.com">Contact</a>
 		</div>
 	</nav>
 
