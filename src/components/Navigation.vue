@@ -41,7 +41,7 @@
 		}),
 		computed: {
 			models() {
-				return this.$store.state.models.filter(x => x.slug !== this.$route.params.id)
+				return this.$store.getters.sortedModels.filter(x => x.slug !== this.$route.params.id)
 			},
 			activeModel() {
 				const model = this.$store.state.models.filter(x => x.slug === this.$route.params.id)[0];

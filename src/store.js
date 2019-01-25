@@ -116,6 +116,10 @@ export default new Vuex.Store({
 	getters: {
 		annotations: (state) => {
 			return state.annotations[state.currentModel];
+		},
+		sortedModels: (state) => {
+			return state.models.sort((a, b) => a.title.localeCompare(b.title));
 		}
+
 	}
 })
