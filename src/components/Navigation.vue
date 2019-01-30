@@ -83,7 +83,7 @@
 
 	.sidenav-button:hover,
 	.sidenav a:hover {
-		color: var(--black);
+		color: var(--dark-grey);
 		cursor: pointer;
 	}
 
