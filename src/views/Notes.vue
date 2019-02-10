@@ -1,37 +1,115 @@
 <template>
 	<div id="notes" class="flex-container">
 
-		<div>
-			<div class="column" id="selected">Anatomy</div>
-			<div class="column">Physiology</div>
-			<div class="column">Pathology</div>
+		<div class="column">
+			<div
+			     v-for="system in systems"
+			     :key="system"
+			     :class="selected.system === system ? 'selected' : ''"
+			     @click="selectSystem(system)">
+				{{system}}
+			</div>
 		</div>
-		<div>
-			<div class="column">Dorsal Column Pathway</div>
-			<div class="column" id="selected">Medial Lemniscus</div>
-			<div class="column">Spinocerebellar Tract</div>
-			<div class="column">Synapse</div>
+
+		<div v-if="selected.system" class="column">
+			<div
+			     v-for="section in sections"
+			     :key="section"
+			     :class="selected.section === section ? 'selected' : ''"
+			     @click="selectSystemSection(section)">
+				{{section}}
+			</div>
 		</div>
-		<div>
-			<div class="column">
-				<h4>Medial Lemniscus</h4>
-				<p>The medial lemniscus joins the spinal cord to the thalamus. It is a pathway used by the fastest
-					sensory nerves in the body.</p>
+
+		<div v-if="selected.system && selected.section" class="column">
+			<div
+				v-for="article in articlesInSelection(selected)"
+			     :key="article.id"
+			     :class="selected.article === article ? 'selected' : ''"
+			     @click="showArticle(article)"
+			>
+				{{article.title}}
 			</div>
 
+		</div>
+
+		<div v-if="articlesInSelection(selected).length && selected.article && selected.article.section === selected.section"
+		     class="column selected" style="flex-grow: 1; max-width: 44vw;">
+			<div class="article">
+				<h4>{{selected.article.title}}</h4>
+				<p>{{selected.article.description}}</p>
+
+				<template v-if="selected.article.type === 'pathology'">
+					<p><strong>Hx - </strong>{{selected.article.hx}}</p>
+					<p><strong>Ex - </strong>{{selected.article.ex}}</p>
+					<p><strong>Ix - </strong>{{selected.article.ix}}</p>
+					<p><strong>Mx - </strong>{{selected.article.mx}}</p>
+				</template>
+
+
+				<div class="tag"
+				     v-for="tag in selected.article.tags"
+				     :key="tag.slug">
+					<i :class="tag.icon"></i>{{tag.title}}
+				</div>
+
+				<div class="text-right">
+					<small> {{selected.article.system}} | {{selected.article.section}}</small>
+				</div>
+
+			</div>
 		</div>
 
 	</div>
 </template>
 <script>
+    import { mapState, mapGetters } from 'vuex'
+
     export default {
         name: 'notes',
+        data: () => ({
+	        selected: {
+	            system: '',
+		        section: '',
+		        article: null
+	        }
+
+        }),
+        computed: {
+            ...mapState('notes', [
+                'systems',
+                'sections',
+            ]),
+	        ...mapGetters('notes', [
+                'articlesInSelection'
+	        ]),
+        },
         mounted() {
-        }
+        },
+	    methods: {
+            selectSystem(name) {
+                this.selected.system = name;
+                this.selected.article = null;
+
+            },
+		    selectSystemSection(name) {
+                this.selected.section = name;
+                this.selected.article = null;
+		    },
+		    showArticle(entry) {
+                this.selected.article = entry;
+		    }
+	    }
     }
 </script>
 
 <style lang="scss" scoped>
+
+	#notes {
+		height: calc(100vh - 150px);
+		overflow: hidden;
+		position: relative;
+	}
 	.flex-container {
 		display: flex;
 		flex-wrap: nowrap;
@@ -40,23 +118,51 @@
 			margin: .8em;
 		}
 	}
-	.column:hover {
-		background-color: #f8f8f8;
-	}
 
 	.column {
-		background-color: #fcfcfc;
-		color: #444;
-		min-width: 100px;
+		height: 100%;
+		overflow: auto;
+		> * {
+			background-color: #fcfcfc;
+			color: #444;
+			min-width: 100px;
+			margin: .5em;
+			padding: .5em;
+			text-align: left;
+			font-size: 1rem;
+			border-radius: .3em;
+			cursor: pointer;
+
+			&:hover {
+				background-color: #f8f8f8;
+			}
+			&.selected {
+				background-color: #ddd;
+			}
+		}
+
+	}
+
+	.article {
+		small {
+			font-size: 0.5em;
+		}
+	}
+
+	.tag {
+		display: inline-block;
+		background-color: #99d9f5;
 		margin: .5em;
 		padding: .5em;
 		text-align: left;
-		font-size: 1rem;
+		font-size: 0.75rem;
 		border-radius: .3em;
-	}
+		cursor: pointer;
+		color: #fff;
+		i {
+			margin-right: 0.5em;
+		}
 
-	#selected {
-		background-color: #ddd;
 	}
 
 	h4 {
@@ -64,12 +170,4 @@
 		margin: .5em;
 		font-size: 1.5em;
 	}
-
-	i {
-		color: #888;
-		width: 15px;
-		margin-right: 15px;
-	}
-
-
 </style>
