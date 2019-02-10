@@ -1,10 +1,13 @@
 <template>
 	<main class="scene" :class="$refs.pen && $refs.pen.isActive ? 'is-pencil-mode' : ''">
 		<canvas id="tester"></canvas>
-
-		<h3 id="mesh-name" class="mesh-name" :class="theme.dark ? 'light' : 'dark'">
+        
+    <div class="mesh-name-box" :class="theme.dark ? 'light' : 'dark'">
+        <h3 id="mesh-name" class="mesh-name" :class="theme.dark ? 'light' : 'dark'">
 			{{activeMesh.name}}
 		</h3>
+    </div>
+
 
 		<AnnotationHelper></AnnotationHelper>
 
@@ -195,12 +198,19 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-	.mesh-name {
-		position: absolute;
+    .mesh-name-box {
+        position: absolute;
 		text-align: center;
 		left: 30%;
 		right: 30%;
 		bottom: 0;
+        background-color: rgba(1, 1, 1, 0.7);
+        &.light {
+			background-color: rgba(0, 0, 0, 0.7);
+		}
+    }
+    
+	.mesh-name {
 		color: var(--black);
 		&.light {
 			color: var(--light-grey);
