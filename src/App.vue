@@ -1,27 +1,19 @@
 <template>
-	<div id="app" class="home" :class="mobile ? 'touch' : 'desktop'">
-		<Toolbar></Toolbar>
-		<Navigation></Navigation>
+	<component :is="layout" :class="[layout, (mobile ? 'touch' : 'desktop')]">
 		<router-view/>
-	</div>
+	</component>
 </template>
 
 <script>
-	import Toolbar from '@components/Toolbar'
-	import Navigation from '@components/Navigation'
-
 	export default {
-		components: {
-			Toolbar,
-			Navigation
-		},
-		data: () => ({}),
 		computed: {
 			mobile() {
 				return this.$store.state.mobile
+			},
+			layout() {
+				return `layout-${this.$route.meta.layout}`
 			}
 		},
-		mounted() {}
 	}
 </script>
 

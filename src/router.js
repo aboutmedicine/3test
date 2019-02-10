@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Scene from '@/views/Scene'
+import Notes from '@/views/Notes'
 
 Vue.use(Router)
 
@@ -12,11 +13,19 @@ export default new Router({
 		{
 			path: '/',
 			name: 'home',
-			component: Scene
+            meta: { layout: 'model'},
+			component: Scene,
 		},
+        {
+            path: '/notes',
+            name: 'notes',
+	        meta: { layout: 'notes'},
+            component: Notes
+        },
 		{
 			path: '/:id',
 			name: 'scene',
+            meta: { layout: 'model'},
 			component: Scene,
 			beforeEnter: (to, from, next) => {
 				function isValid (param) {
@@ -33,5 +42,6 @@ export default new Router({
 				next();
 			}
 		},
+
 	]
 })

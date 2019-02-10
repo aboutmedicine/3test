@@ -16,7 +16,7 @@
 				<i class="sidenav-icon fa fa-caret-down"></i>
 			</a>
 			<div class="dropdown-container" v-show="dropdown.model">
-				<template v-for="model in models" >
+				<template v-for="model in modelList" >
 					<router-link :key="model.slug" :to="model.slug">
 						{{model.title}}
 					</router-link>
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+    import { mapState, mapGetters } from 'vuex'
+
 	export default {
 		data: () => ({
 			open: false,
@@ -40,21 +42,18 @@
 			}
 		}),
 		computed: {
-			models() {
-				return this.$store.getters.sortedModels.filter(x => x.slug !== this.$route.params.id)
+            ...mapState('models', [
+                'models',
+            ]),
+            ...mapGetters('models', [
+                'sortedModels',
+	            'activeModel'
+            ]),
+			modelList() {
+				return this.sortedModels.filter(x => x.slug !== this.$route.params.id)
 			},
-			activeModel() {
-				const model = this.$store.state.models.filter(x => x.slug === this.$route.params.id)[0];
-				if(model) {
-					return model.title;
-				}
-				else {
-					return 'No model selected'
-				}
-			}
+
 		},
-		mounted() {},
-		methods: {},
 	}
 </script>
 

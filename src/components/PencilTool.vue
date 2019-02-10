@@ -1,6 +1,6 @@
 <template>
 	<div class="draw-tools" >
-		<button class="icon-btn" data-tooltip="Undo" @click.prevent="undo(1)">
+		<button class="icon-btn" data-tooltip="Undo" @click.stop="undo(1)">
 			<img src="assets/Eraser.png" alt="">
 		</button>
 		<button class="icon-btn" data-tooltip="Draw" @click="toggle(!isActive)" >
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
+
 	import * as THREE from 'three'
 	import { MeshLine, MeshLineMaterial } from '@libs/MeshLine'
 	import ColorPicker from '@modules/ColorPicker'
@@ -42,15 +44,13 @@
 		}),
 
 		computed: {
-			drawings() {
-				return this.$store.state.drawings
-			},
-			drawer() {
-				return this.$store.state.controller
-			},
-			isMobile() {
-				return this.$store.state.mobile
-			}
+            ...mapState('models', {
+                drawings: state => state.drawings,
+	            drawer: state => state.controller
+            }),
+			...mapState({
+				isMobile: state => state.mobile
+			})
 		},
 
 		mounted() {
@@ -77,7 +77,7 @@
 
 			document.addEventListener('keydown', (event) => {
 				if (event.code == 'KeyZ' && (event.ctrlKey || event.metaKey)) {
-					this.undo();
+					this.undo(1);
 				}
 			});
 
@@ -88,14 +88,11 @@
 				}
 			});
 
-
-
-
 		},
 
 		methods: {
 			undo(length = 1) {
-				this.$store.commit('REMOVE_DRAWINGS', length);
+				this.$store.commit('models/REMOVE_DRAWINGS', length);
 			},
 
 			toggle(on) {
@@ -109,8 +106,8 @@
 				this.isMouseDown = true;
 
 				this._intersectionStatus(e);
-
-				if (!e.button) { // ie not at pan start
+				
+				if (e.target === this.canvas && !e.button) { // ie not at pan start
 					this._createLine();
 				}
 			},
@@ -182,7 +179,7 @@
 				line.drawMode = THREE.TrianglesDrawMode;
 
 
-				this.$store.commit('ADD_DRAWING', line);
+				this.$store.commit('models/ADD_DRAWING', line);
 				this.drawer.addObject(line);
 
 			},

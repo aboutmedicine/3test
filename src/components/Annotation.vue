@@ -48,7 +48,7 @@
 		}),
 		computed: {
 			controller() {
-				return this.$store.state.controller
+				return this.$store.state.models.controller
 			}
 		},
 		mounted() {
@@ -78,24 +78,24 @@
 			},
 
 			remove() {
-				this.$store.commit('REMOVE_NOTE', this.id);
+				this.$store.commit('models/REMOVE_NOTE', this.id);
 			},
 
 			inputChange(e) {
 				console.log(e.target.value, e.target.name);
-				this.$store.commit('EDIT_NOTE', {
+				this.$store.commit('models/EDIT_NOTE', {
 					key: e.target.name,
 					value: e.target.value
 				});
 			},
 
 			open() {
-				this.$store.commit('SET_ACTIVE_NOTE', this.id);
+				this.$store.commit('models/SET_ACTIVE_NOTE', this.id);
 				this.style.opacity = 1;
 			},
 
 			close() {
-				this.$store.commit('SET_ACTIVE_NOTE', null);
+				this.$store.commit('models/SET_ACTIVE_NOTE', null);
 				this.updatePosition();
 			}
 		}

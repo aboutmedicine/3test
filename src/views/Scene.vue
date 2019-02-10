@@ -2,11 +2,11 @@
 	<main class="scene" :class="$refs.pen && $refs.pen.isActive ? 'is-pencil-mode' : ''">
 		<canvas id="tester"></canvas>
         
-    <div class="mesh-name-box" :class="theme.dark ? 'light' : 'dark'">
-        <h3 id="mesh-name" class="mesh-name" :class="theme.dark ? 'light' : 'dark'">
-			{{activeMesh.name}}
-		</h3>
-    </div>
+	    <div class="mesh-name-box" :class="theme.dark ? 'light' : 'dark'">
+	        <h3 id="mesh-name" class="mesh-name" :class="theme.dark ? 'light' : 'dark'">
+				{{activeMesh.name}}
+			</h3>
+	    </div>
 
 
 		<AnnotationHelper></AnnotationHelper>
@@ -50,15 +50,17 @@
 		computed: {
 			// mapState helper provides an access to a store variables via shortcuts,
 			// for ex: this.models instead of this.$store.state.models
-			...mapState([
+			...mapState('models',[
 				'models',
 				'controller',
-				'theme',
 				'activeAnnotation',
 				'activeMesh',
 				'mode',
 			]),
-			...mapGetters([
+			...mapState([
+			    'theme'
+			]),
+			...mapGetters('models', [
 				'annotations'
 			])
 		},
@@ -79,7 +81,7 @@
 			this.canvas = canvas;
 
 			//share the controller instance store-wide, for ex to use inside of Toolbar.vue
-			this.$store.commit('SET_CONTROLLER', controller);
+			this.$store.commit('models/SET_CONTROLLER', controller);
 		},
 
 		methods: {
@@ -87,7 +89,7 @@
 				HttpService.getPosts().then(res => {
 
 					//store models
-					this.$store.commit('SET_MODELS', res);
+					this.$store.commit('models/SET_MODELS', res);
 
 					if (res.length) {
 						//load model based on current URL
@@ -122,7 +124,7 @@
 						intersected.currentHex = intersected.material.emissive.getHex();
 						intersected.material.emissive.setHex(0xaa00aa);
 
-						this.$store.commit('SET_ACTIVE_MESH', {
+						this.$store.commit('models/SET_ACTIVE_MESH', {
 							name: intersection.object.name.replace(/_/g, " "),
 							object: intersection.object
 						});
@@ -134,8 +136,8 @@
 				const model = this.models.filter(x => x.slug === slug)[0];
 
 				this.controller.load(model.url, () => {
-					this.$store.dispatch('CLEAR_SCENE');
-					this.$store.commit('SET_CURRENT_MODEL', model._id);
+					this.$store.dispatch('models/CLEAR_SCENE');
+					this.$store.commit('models/SET_CURRENT_MODEL', model._id);
 				});
 			},
 

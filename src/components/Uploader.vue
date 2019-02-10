@@ -99,7 +99,7 @@
 					.then(res => {
 						this.currentStatus = STATUS_SUCCESS;
 						//save in store and redirect
-						this.$store.commit('ADD_MODEL', res.data);
+						this.$store.commit('models/ADD_MODEL', res.data);
 						this.$router.push(res.data.slug);
 					})
 					.catch(err => {

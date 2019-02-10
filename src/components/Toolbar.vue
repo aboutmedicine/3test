@@ -61,6 +61,8 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
+
 	export default {
 		data: () => ({
 			dialog: {
@@ -76,30 +78,27 @@
 			logo() {
 				return this.$theme.dark ? 'assets/Logo_Night.png' : 'assets/Logo.png'
 			},
-			controller() {
-				return this.$store.state.controller
-			},
-			mode() {
-				return this.$store.state.mode
-			},
+			...mapState('models', [
+			    'controller',
+				'mode',
+			]),
 			mobile() {
 				return this.$store.state.mobile
 			}
-
 		},
 		methods: {
 			reset() {
-				this.$store.dispatch('CLEAR_SCENE');
+				this.$store.dispatch('models/CLEAR_SCENE');
 			},
 			dissect() {
-				this.$store.dispatch('HIDE_MESH');
+				this.$store.dispatch('models/HIDE_MESH');
 			},
 			toggleAnnotationMode() {
-				this.$store.commit('SET_ACTIVE_NOTE', null);
-				this.$store.commit('SET_ANNOTATION_MODE', !this.mode.annotation);
+				this.$store.commit('models/SET_ACTIVE_NOTE', null);
+				this.$store.commit('models/SET_ANNOTATION_MODE', !this.mode.annotation);
 			},
 			toggleDrawMode() {
-				this.$store.commit('TOGGLE_DRAW_MODE');
+				this.$store.commit('models/TOGGLE_DRAW_MODE');
 			},
 			clip(...args) {
 				this.controller.clip(...args);

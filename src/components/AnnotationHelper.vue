@@ -7,6 +7,8 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
+
 	export default {
 		name: 'AnnotationHelper',
 		data: () => ({
@@ -18,12 +20,10 @@
 			isActive: false
 		}),
 		computed: {
-			controller() {
-				return this.$store.state.controller
-			},
-			mode() {
-				return this.$store.state.mode
-			}
+            ...mapState('models', [
+                'controller',
+                'mode',
+            ]),
 		},
 		mounted() {
 			document.addEventListener('mousemove', this.move);
@@ -46,7 +46,7 @@
 				if (intersection) {
 
 					this.style.display = 'none';
-					this.$store.dispatch('ADD_NOTE', {
+					this.$store.dispatch('models/ADD_NOTE', {
 						//we'll need this later for positioning, for ex window resize or scene controls changes
 						id: new Date().getTime(),
 						text: {},
