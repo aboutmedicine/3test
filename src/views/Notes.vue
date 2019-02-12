@@ -4,20 +4,20 @@
 		<div class="column">
 			<div
 			     v-for="system in systems"
-			     :key="system"
+			     :key="system._id"
 			     :class="selected.system === system ? 'selected' : ''"
 			     @click="selectSystem(system)">
-				{{system}}
+				{{system.name}}
 			</div>
 		</div>
 
 		<div v-if="selected.system" class="column">
 			<div
 			     v-for="section in sections"
-			     :key="section"
+			     :key="section._id"
 			     :class="selected.section === section ? 'selected' : ''"
 			     @click="selectSystemSection(section)">
-				{{section}}
+				{{section.name}}
 			</div>
 		</div>
 
@@ -33,7 +33,7 @@
 
 		</div>
 
-		<div v-if="articlesInSelection(selected).length && selected.article && selected.article.section === selected.section"
+		<div v-if="articlesInSelection(selected).length && selected.article && selected.article.section === selected.section.name"
 		     class="column selected" style="flex-grow: 1; max-width: 44vw;">
 			<div class="article">
 				<h4>{{selected.article.title}}</h4>
@@ -84,16 +84,21 @@
                 'articlesInSelection'
 	        ]),
         },
+	    created() {
+            this.$httpService.getCategories().then(res => {
+                this.$store.commit('notes/SET_CATEGORIES', res);
+            });
+	    },
         mounted() {
         },
 	    methods: {
-            selectSystem(name) {
-                this.selected.system = name;
+            selectSystem(entry) {
+                this.selected.system = entry;
                 this.selected.article = null;
 
             },
-		    selectSystemSection(name) {
-                this.selected.section = name;
+		    selectSystemSection(entry) {
+                this.selected.section = entry;
                 this.selected.article = null;
 		    },
 		    showArticle(entry) {

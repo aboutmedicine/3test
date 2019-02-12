@@ -1,12 +1,8 @@
 export default {
     namespaced: true,
     state: {
-        systems: [
-            'Anaesthesiology', 'Cardiology', 'Dentistry  ', 'Dermatology  ', 'Emergency', 'Endocrinology  ', 'Gastroenterology  ', 'General Practise', 'Geriatric Medicine  ', 'Gynaecology  ', 'Haematology', 'Hepatobiliary', 'Immunology', 'Infectious Disease  ', 'Mental Health  ', 'Neonatology  ', 'Nephrology  ', 'Neurology  ', 'Obstetrics  ', 'Oncology  ', 'Ophthalmology  ', 'Orthopaedic  ', 'Otolaryngology  ', 'Pathology', 'Paediatrics  ', 'Pharmacology  ', 'Preventive Medicine', 'Radiology  ', 'Respiratory Medicine', 'Rheumatology  ', 'Sports Medicine  ', 'Surgery  ', 'Urology'
-        ],
-        sections: [
-            'Anatomy', 'Ethics', 'OSCE Cases', 'Tests', 'Pathology', 'Physiology', 'Radiology'
-        ],
+        systems: [],
+        sections: [],
         articles: [
             {
                 type: 'pathology',
@@ -16,7 +12,7 @@ export default {
                 ex: 'Vitals, cardiac examination - JVP, lung crackles, peripheral oedema, thready pulse',
                 ix: 'FBE + UEC + BNP',
                 mx: 'Optimisation of fluid balance (diuretics vs. fluid restriction), cardiac Rx (ACEi + cardioselective β-blocker + CaCB)',
-                system: 'Geriatric Medicine  ',
+                system: 'Geriatric Medicine',
                 section: 'Pathology'
             },
             {
@@ -54,12 +50,17 @@ export default {
         ],
 
     },
-    mutations: {},
+    mutations: {
+        SET_CATEGORIES(state, data) {
+            state.systems = data.systems;
+            state.sections = data.sections;
+        },
+    },
     actions: {},
     getters: {
         articlesInSelection: (state) => selection => {
             return state.articles
-                .filter(x => x.system == selection.system && x.section == selection.section);
+                .filter(x => x.system == selection.system.name && x.section == selection.section.name);
         },
     }
 }

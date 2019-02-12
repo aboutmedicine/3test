@@ -12,7 +12,7 @@ const port = process.env.PORT || 9999;
 //Middleware
 app.use(history());
 app.use(serveStatic(path.join(__dirname + '/dist')));
-app.use(cors())
+app.use(cors());
 app.use(logger('dev'));
 
 //models
@@ -20,7 +20,12 @@ require('./server/models');
 
 //API routes
 const posts = require('./server/routes/api/posts');
+const categories = require('./server/routes/api/categories');
+const articles = require('./server/routes/api/articles');
+
 app.use('/api/posts/', posts);
+app.use('/api/categories/', categories);
+app.use('/api/articles/', articles);
 
 
 //DB
