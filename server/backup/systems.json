@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Anaesthesiology"
+  },
+  {
+    "name": "Cardiology"
+  },
+  {
+    "name": "Dentistry"
+  },
+  {
+    "name": "Dermatology"
+  },
+  {
+    "name": "Emergency"
+  },
+  {
+    "name": "Endocrinology"
+  },
+  {
+    "name": "Gastroenterology"
+  },
+  {
+    "name": "General Practise"
+  },
+  {
+    "name": "Geriatric Medicine"
+  },
+  {
+    "name": "Gynaecology"
+  },
+  {
+    "name": "Haematology"
+  },
+  {
+    "name": "Hepatobiliary"
+  },
+  {
+    "name": "Immunology"
+  },
+  {
+    "name": "Infectious Disease"
+  },
+  {
+    "name": "Mental Health"
+  },
+  {
+    "name": "Neonatology"
+  },
+  {
+    "name": "Nephrology"
+  },
+  {
+    "name": "Neurology"
+  },
+  {
+    "name": "Obstetrics"
+  },
+  {
+    "name": "Oncology"
+  },
+  {
+    "name": "Ophthalmology"
+  },
+  {
+    "name": "Orthopaedic"
+  },
+  {
+    "name": "Otolaryngology"
+  },
+  {
+    "name": "Pathology"
+  },
+  {
+    "name": "Paediatrics"
+  },
+  {
+    "name": "Pharmacology"
+  },
+  {
+    "name": "Preventive Medicine"
+  },
+  {
+    "name": "Radiology"
+  },
+  {
+    "name": "Respiratory Medicine"
+  },
+  {
+    "name": "Rheumatology"
+  },
+  {
+    "name": "Sports Medicine"
+  },
+  {
+    "name": "Surgery"
+  },
+  {
+    "name": "Urology"
+  }
+]

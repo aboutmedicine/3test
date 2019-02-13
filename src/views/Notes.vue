@@ -1,110 +1,115 @@
 <template>
 	<div id="notes" class="flex-container">
 
-		<div class="column">
+		<!--CATEGORIES (SYSTEMS)-->
+		<div class="column column--sm">
 			<div
-			     v-for="system in systems"
-			     :key="system._id"
-			     :class="selected.system === system ? 'selected' : ''"
-			     @click="selectSystem(system)">
+					v-for="system in systems"
+					:key="system._id"
+					:class="selected.system === system.name ? 'selected' : ''"
+					@click="selectCategory(system)">
 				{{system.name}}
 			</div>
 		</div>
 
-		<div v-if="selected.system" class="column">
+		<!--ARTICLE TYPES (SYSTEM SECTIONS)-->
+		<div v-if="selected.system" class="column column--sm">
 			<div
-			     v-for="section in sections"
-			     :key="section._id"
-			     :class="selected.section === section ? 'selected' : ''"
-			     @click="selectSystemSection(section)">
+					v-for="section in sections"
+					:key="section._id"
+					:class="selected.section === section.name ? 'selected' : ''"
+					@click="selectArticleType(section)">
 				{{section.name}}
 			</div>
 		</div>
 
-		<div v-if="selected.system && selected.section" class="column">
+		<!--ARTICLES IN COLLECTION (CATEGORY + TYPE)-->
+		<div v-if="selected.system && selected.section" class="column column--md">
 			<div
-				v-for="article in articlesInSelection(selected)"
-			     :key="article.id"
-			     :class="selected.article === article ? 'selected' : ''"
-			     @click="showArticle(article)"
+					v-for="article in articlesInSelection(selected)"
+					:key="article._id"
+					:class="selected.article === article ? 'selected' : ''"
+					@click="selectArticle(article)"
 			>
-				{{article.title}}
+				{{article.name}}
 			</div>
 
 		</div>
 
-		<div v-if="articlesInSelection(selected).length && selected.article && selected.article.section === selected.section.name"
-		     class="column selected" style="flex-grow: 1; max-width: 44vw;">
-			<div class="article">
-				<h4>{{selected.article.title}}</h4>
-				<p>{{selected.article.description}}</p>
-
-				<template v-if="selected.article.type === 'pathology'">
-					<p><strong>Hx - </strong>{{selected.article.hx}}</p>
-					<p><strong>Ex - </strong>{{selected.article.ex}}</p>
-					<p><strong>Ix - </strong>{{selected.article.ix}}</p>
-					<p><strong>Mx - </strong>{{selected.article.mx}}</p>
-				</template>
-
-
-				<div class="tag"
-				     v-for="tag in selected.article.tags"
-				     :key="tag.slug">
-					<i :class="tag.icon"></i>{{tag.title}}
-				</div>
-
-				<div class="text-right">
-					<small> {{selected.article.system}} | {{selected.article.section}}</small>
-				</div>
-
-			</div>
+		<!--ARTICLE-->
+		<div v-if="selected.article"
+		     class="column selected" style="flex: 1;">
+			<Article :content="selected.article" :type="selected.section"></Article>
 		</div>
 
 	</div>
 </template>
 <script>
-    import { mapState, mapGetters } from 'vuex'
+    import { mapState, mapActions, mapGetters } from 'vuex'
+    import Article from '@/components/articles/Article'
+    import { HttpService } from '@/http';
 
     export default {
         name: 'notes',
+        components: { Article },
         data: () => ({
-	        selected: {
-	            system: '',
-		        section: '',
-		        article: null
-	        }
-
+            selected: {
+                system: '',
+                section: '',
+                article: null
+            },
         }),
         computed: {
             ...mapState('notes', [
                 'systems',
                 'sections',
+                'articles'
             ]),
-	        ...mapGetters('notes', [
+            ...mapGetters('notes', [
                 'articlesInSelection'
-	        ]),
+            ]),
         },
-	    created() {
-            this.$httpService.getCategories().then(res => {
+        created() {
+            HttpService.getCategories().then(res => {
                 this.$store.commit('notes/SET_CATEGORIES', res);
             });
-	    },
+        },
         mounted() {
         },
-	    methods: {
-            selectSystem(entry) {
-                this.selected.system = entry;
+        methods: {
+            ...mapActions('notes', [
+                'FETCH_ARTICLES_IN_SELECTION'
+            ]),
+            selectCategory(entry) {
+                this.selected.system = entry.name;
                 this.selected.article = null;
 
+                //fetch articles if needed
+                if (this.selected.section &&
+	                !this.articles[this.selected.system][this.selected.section].length) {
+
+                    this.FETCH_ARTICLES_IN_SELECTION({
+                        category: entry.name,
+                        type: this.selected.section,
+                    });
+                }
             },
-		    selectSystemSection(entry) {
-                this.selected.section = entry;
+            selectArticleType(entry) {
+                this.selected.section = entry.name;
                 this.selected.article = null;
-		    },
-		    showArticle(entry) {
+
+                //fetch articles if needed
+                if (!this.articles[this.selected.system][this.selected.section].length) {
+                    this.FETCH_ARTICLES_IN_SELECTION({
+                        category: this.selected.system,
+                        type: entry.name
+                    });
+                }
+            },
+            selectArticle(entry) {
                 this.selected.article = entry;
-		    }
-	    }
+            }
+        }
     }
 </script>
 
@@ -115,6 +120,7 @@
 		overflow: hidden;
 		position: relative;
 	}
+
 	.flex-container {
 		display: flex;
 		flex-wrap: nowrap;
@@ -127,6 +133,12 @@
 	.column {
 		height: 100%;
 		overflow: auto;
+		&--sm {
+			flex: 0 180px;
+		}
+		&--md {
+			flex: 0 220px;
+		}
 		> * {
 			background-color: #fcfcfc;
 			color: #444;

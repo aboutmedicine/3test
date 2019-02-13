@@ -11,6 +11,7 @@
     import Navigation from '@components/Navigation'
 
     export default {
+        name: 'layout-model',
         components: {
             Toolbar,
             Navigation

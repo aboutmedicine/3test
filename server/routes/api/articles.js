@@ -3,20 +3,21 @@ const mongoose = require('mongoose');
 
 const router = express.Router();
 
-const Pathologies = mongoose.model('Pathology');
-const Cases = mongoose.model('OSCECase');
+// const modelNames = mongoose.modelNames();
 
 router.get('/', async (req, res) => {
+    console.log(req.query);
 
-    res.send(await Pathologies.find().exec());
+    try {
+        const model = mongoose.model(req.query.type);
+
+        res.send(await model.find({ _category: req.query.category }).exec());
+
+    } catch (e) {
+        console.error(e);
+        res.status(500).send(e);
+    }
 
 });
-
-router.get('/pathologies', async (req, res) => {
-    console.log(req.body);
-    // res.send(await Pathologies.find({ _category: {$ne:'5c62af3a5dc65311810bff6e'} }).exec());
-    res.send(await Pathologies.find({ name: 'Chlamydia' }).exec());
-});
-
 
 module.exports = router;

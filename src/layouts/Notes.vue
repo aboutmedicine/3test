@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<header class="header">
-			<div class="logo">
+			<router-link class="logo" :to="'/'">
 				<img id="logo" src="assets/Logo.png" height="96" width="96">
-			</div>
+			</router-link>
 		</header>
 		<slot></slot>
 	</div>
@@ -11,6 +11,7 @@
 
 <script>
     export default {
+        name: 'layout-notes',
         components: {},
         data: () => ({}),
         computed: {

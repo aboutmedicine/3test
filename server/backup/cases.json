@@ -1,0 +1,618 @@
+[
+  {
+    "name": "Confirmation of death",
+    "description": "You have been notified by a ward nurse that Mohammed, 81, has died. Please confirm his death.",
+    "structure": "Check resusc status, if family present offer condolences and explain procedure; wash hands, confirm pt identity, general inspection, ?respiratory distress, verbal stimulus, pain, pupils, pulse (carotid), auscultate heart for ≥2mins, lungs ≥3mins; documentation",
+    "mnemonic": "DVPPP - Distress Verbal Pain Pupils Pulse",
+    "questions": "What are three reasons for which you would refer this case to the coroner?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Carer distress",
+    "description": "Thi's father burnt his forearm on a frying pan last night, while wandering around the house. She is in significant distress following this incident.",
+    "structure": "Calm, educate, Mx - supports include dementia.org.au, Dementia Australia, which has a national dementia helpline - DBMAS, local carer support groups",
+    "mnemonic": "What CAUSEd the behaviour? -Communication -Activity -Unwell/unmet needs -Story -Environment -dementia",
+    "questions": "What therapies could Thi's father benefit from?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Patient w/ lower limb neoplastic skin lesion",
+    "description": "Abdi, 71, has noticed a lump on his leg. Take a Hx and provide an appropriate list of Ix to the examiner.",
+    "structure": "Examine lesion, ?duration, change, pain, itch, Hx of same, environmental factors, smoking, FHx of cancer",
+    "mnemonic": "ABCDE helps you Dx melanoma -Asymmetry -Border irregularity -Colour (varied) -Diameter (>6mm) -Evolution, i.e. ∆ over time",
+    "questions": "Which of ABCDE is the most important to you, in accurate Dx of melanoma?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Having trouble sleeping",
+    "description": "Binh, 42, has appeared at your GP clinic to discuss issues with her sleep. Take a Hx and recommend appropriate Ix.",
+    "structure": "BPS Hx, sleep cycle Hx, Ax for cause, Sx of mood / anxiety disorder",
+    "mnemonic": "Zs for ZZZs - zolpidem & zopiclone",
+    "questions": "What are the indications for benzodiazepine treatment of insomnia?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Palliative care",
+    "description": "Devena, 94, is approaching the end of her life. Her daughter, Iris, has asked to speak with you, the resident on the palliative care ward.",
+    "structure": "Optimisation of pain / N+V / constipation / dyspnoea / delirium; evaluation of ACD; discuss w/ family Sx of dying that are to be expected",
+    "mnemonic": "TripleM G -morphine -midazolam -metoclopramide -glycopyrrhylate",
+    "questions": "Describe aspects of a comprehensive palliative assessment.",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Rushing to the toilet",
+    "description": "Htin, 63, has presented to your GP clinic to discuss problems with his urination. Take a Hx and recommend appropriate Mx.",
+    "structure": "Characterise severity (frequency, nocturia, dysuria, haematuria), smoking, FHx of prostate Ca",
+    "mnemonic": "Causes of haematuria are BUMSHIT -BPH -Uropathy (obstructive) -Menses -Stone -Haematological -Infection -Trauma / Tumour / TB",
+    "questions": "Should prostate cancer be regularly screened for in the community?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Patient nearing death",
+    "description": "Kelechi, 91, has terminal pancreatic cancer. He is hoping to discuss issues related to death.",
+    "structure": "ePOA - who can do it, what does it mean, who needs a copy, what decisions can be made",
+    "mnemonic": ">18 and decision-making capacity = can make an ePOA; ePOA ømake medical decisions, that requires MTDM",
+    "questions": "What can a person award ePOA decision-making power over? Before whom must the ePOA be signed?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Post stroke rehabilitation",
+    "description": "Jerry, 83, has had a right MCA stroke last week. Take a short Hx and deliver an appropriate Mx plan",
+    "structure": "Neuro Ax, ADLs, mobility, candidate for ASAP rehab, then AH and Rx",
+    "mnemonic": "OPQRS - OT + PT, Psych + QOL + Return to ___ + ST, SW",
+    "questions": "What are three potential sequelae of cerebrovascular events such as Jerry's?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Legal aspects of ageing",
+    "description": "Safia, 93, is concerned that her youngest son is trying to coerce her into changing her will. Counsel her on the legalities of this process going forward.",
+    "structure": "ePOA can be awarded when judged to have decision-making capacity. If you have not awarded ePOA while you have capacity, VCAT will decide on your behalf who to award this to, or whether to vest it in a third-party administrator + guardian.",
+    "mnemonic": "Emergency - Capacity - Directive - Decision-maker - Significance: If = no, move to next category, and if Significance = yes, contact Public Advocate (see OPA flowchart for more info)",
+    "questions": "Under what circumstances could Safia's right to award ePOA be lost?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Worried about falling",
+    "description": "Helen, 92, had a fall last week. She sustained no serious injuries but now refuses to leave her house, for fear of falling again. Take a Hx and counsel her on Mx options.",
+    "structure": "1. Hx of fall & PHx of falls 2. Establish presence of RFs 3. Educate regarding fear and risk of falling 4. Mx includes PT",
+    "mnemonic": "OPQR",
+    "questions": "What is the most likely cause of Helen's fall?; What are two intrinsic and extrinsic RFs for falls in general?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Multiple sclerosis",
+    "description": "Myrtle, 52, has had MS for the last 14 years. Take a Hx of her illness and discuss Mx options.",
+    "structure": "Neuro Sx -weakness (gait) -paraesthesia -vision (INO, RAPD) -bowel & bladder; Mx -Methyldpred for acute relapse -Mabs for for prevention -Pregab / TSAs / ISC for Sx relief",
+    "mnemonic": "Vision gait doses for multiple sclerosis",
+    "questions": "What is the most likely anatomical location of the demyelinating plaque that would cause these symptoms?; What does the presence of oligoclonal bands indicate?; What other conditions can result in generalized white matter disease evident on the MRI? ",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Differentiating delirium from BPSD",
+    "description": "Jenny is a nurse on your ward. She is concerned about the behaviour of one of her patients. Counsel her.",
+    "structure": "Onset, style of behaviours, conscious state",
+    "mnemonic": "CAM: -Acute onset & fluctuating course -Inattention -Disorganised thought / behaviour -Altered level of consciousness",
+    "questions": "How many points are required on the CAM for a Dx of delirium? What are three Ix you would order to confirm this Dx?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Falls examination",
+    "description": "Grace, 83, has a few friends that have had bad falls recently. Counsel her on her falls risk.",
+    "structure": "TUG + funcional reach + sternal push + heel 'n' toe + stand on one leg",
+    "mnemonic": "Falls are from feet and fear",
+    "questions": "What factors lead to a decrease in independence in older people?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Rehab medicine",
+    "description": "Returning a person to optimal function, in every domain of life.",
+    "structure": "Ax for suitability: -cognition -motivation -capacity; assign appropriate AH + work as MDT; Mx Sx appropriately, avoid iatrogenic injury",
+    "mnemonic": "OPQRS - OT, PT / psych, QOL, Return to ___, SP / SW",
+    "questions": "What is one major C.I. for an older person to be involved in an exercise programme?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "In tremendous pain",
+    "description": "Saul, 62, has recently been diagnosed with osteoarthritis. Counsel him on his options for pain relief.",
+    "structure": "Characterise pain, time course, MHx, FHx, Rx, allergies, SNAP, then run through Mx options - supportive therapy, simple analgesia, PT, joint replacement",
+    "mnemonic": "Opioids only in short course",
+    "questions": "What would you expect you expect to find in a synovial fluid aspirate from an osteoarthritic joint?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "3D Differentiation",
+    "description": "I found this the most persistently challenging aspect of my aged care rotation.",
+    "structure": "Chronological - Sx (now), causes (preceding), RF (in the past)",
+    "mnemonic": "Of Course Many Alternate (meaning there is plenty of overlap!) -Onset -Course -Memory / Mood -Attention / Alertness",
+    "questions": "What could make you think the most appropriate diagnosis is dementia / depresion / delirium?",
+    "_category": "Geriatric Medicine"
+  },
+  {
+    "name": "Iron Deficiency Anaemia",
+    "description": "The key is to ask: what is really going on here?",
+    "structure": "Assess severity + possible causes + treatment options",
+    "mnemonic": "TAMM -Thalassaemia -Anaemia of chronic disease -Malabsorption 2º to ED -Menstruation",
+    "questions": "What are two causes of normocytic and macrocytic anaemia?",
+    "_category": "General Practise"
+  },
+  {
+    "name": "Screening for STIs",
+    "description": "Roshan, 21, has appeared to his local GP practise to discuss his urinary Sx. Take a Hx and recommend an appropriate Mx plan.",
+    "structure": "Assess Sx: discharge, itch, pain, blood in urine, pain on urination, painless sore (chancre); Differentiate from UTI: fever, frequency; Screening info: MSM -syph -chlamyd -gono -HIV -Hep ABC at least annually. Pregnant women -HIV -syph -chlamyd -Hep B is standard AN screen.",
+    "mnemonic": "Sexual Hx PPPPP - Partners Practises Protection from STIs Prevention of pregnancy PHx of STIs",
+    "questions": "What investigations would you like to order for this young man?",
+    "_category": "General Practise"
+  },
+  {
+    "name": "Starting warfarin",
+    "description": "Rarer these days, but still could be assessed.",
+    "structure": "Relevant C.I.: recent bleed, tendency to bleed, liver failure, øaccess to pathology for repeat INR",
+    "mnemonic": "BRAIN -Benefits -Risks -Alternatives -Incidental consequences -Nothing (what will happen if we don't)",
+    "questions": "What are the three most common indications for warfarin therapy?",
+    "_category": "General Practise"
+  },
+  {
+    "name": "Can't get it up ",
+    "description": "Jiddu, 42, has been having issues with his sexual function for some years now. Take a Hx and determine the cause of his Sx.",
+    "structure": "Assess for cause; rapid-onset → performance anxiety; øspontaneous erections → vascular cause",
+    "mnemonic": "3 causes of male sexual dysfunction: PEED ↓libid",
+    "questions": "What laboratory tests would you order for this man?",
+    "_category": "General Practise"
+  },
+  {
+    "name": "Fever in a returned traveller",
+    "description": "Andrew, 24, has recently returned from Indonesia, and has developed a fever of 39˚. Take a Hx and determine the likely cause.",
+    "structure": "Asssociated features: N/V, diarrhoea, pain, itch, jaundice, change in P&P; drug & EtOH, tattoos / transfusions",
+    "mnemonic": "The big ones: MDT Hep ABC",
+    "questions": "What is the most likely diagnosis?",
+    "_category": "General Practise"
+  },
+  {
+    "name": "Osteoarthritis examination",
+    "description": "Kendra, 45, has been experiencing consistent pain in her knees. Perform a full examination and recommend appropriate Mx.",
+    "structure": "Look feel move, expect ↓ROM and pain in joints +/- bony enlargement w/ malalignment; DIP & PIP",
+    "mnemonic": "Painkillers, PT / OT, weight loss / replacement",
+    "questions": "What are four signs of OA on Xray?",
+    "_category": "General Practise"
+  },
+  {
+    "name": "Quitting smoking",
+    "description": "Oscar, 53, is a long-term smoker who has decided at last to quit. Counsel him on his options.",
+    "structure": "Non-pharm: MI, hypnotherapy, CBT; Pharm: varenicline",
+    "mnemonic": "EDRS: employ empathy, deploy discrepancy, roll with resistance, support self-efficacy",
+    "questions": "What are the common ADEs of varenicline?",
+    "_category": "General Practise"
+  },
+  {
+    "name": "Getting tired during the day",
+    "description": "Josiah, 41, has presented to your GP clinic to discuss his fatigue.",
+    "structure": "Snoring / daytime sleepiness (ESS) / grogginess / awaken feeling unrestored / awaken in the night gasping for air",
+    "mnemonic": "OSA -obesity -smoking -age",
+    "questions": "What treatments are available for people with Josiah's condition?",
+    "_category": "General Practise"
+  },
+  {
+    "name": "Feeling exhausted",
+    "description": "Naomi, 39, has been feeling severely fatigued of late. Take a Hx and recommend appropriate Ix.",
+    "structure": "Recent stressors, Ca screen",
+    "mnemonic": "If the Hx is vague, use PROMPt",
+    "questions": "What screening tests or investigations are most likely to yield useful clinical information in evaluation of fatigue?",
+    "_category": "General Practise"
+  },
+  {
+    "name": "In burning pain",
+    "description": "Oleg, 62, was diagnosed with rheumatoid arthritis five years ago. He presents wishing to discuss the progress of his treatment.",
+    "structure": "Ax severity, understanding of triggers, progression of Sx",
+    "mnemonic": "In determining whether further Mx is necessary iso chronic disease, use RAPRIOP",
+    "questions": "How would you manage Oleg's current exacerbation of symptoms?",
+    "_category": "General Practise"
+  },
+  {
+    "name": "Social withdrawal",
+    "description": "Haley, 27, has been asked to see you by his mother, who is concerned that he is becoming increasingly isolated.",
+    "structure": "Risk Ax, psychosis screening, drug & EtOH",
+    "mnemonic": "HaD DNC -Hallucinations -Delusions -Disorganised thought / speech -Negative Sx -Catatonia or other markedly abnormal behaviour",
+    "questions": "What are three risk factors for schizophrenia?",
+    "_category": "Mental Health"
+  },
+  {
+    "name": "Disordered eating",
+    "description": "You are seeing Samadhi, 23, on day three of her admission for severe malnutrition and underweight. Take a Hx and recommend an appropriate Mx plan.",
+    "structure": "Risk Ax, attitudes regarding weight, current self-/body-image, techniques for weight loss (diuretics, laxatives), BPS (predisposing, precipitating, protective), other complications e.g. menstrual cycle",
+    "mnemonic": "Screen with SCOOF: Have you ever -been so uncomfortably full that you made yourself Sick? -worried that you've lost Control over your eating habits? -Lost more than One stone of weight in a 3month period? -Thought you were Overweight when others have said you are too thin? -thought that Food dominates your life?",
+    "questions": "What findings on examination would lead you to think Samadhi has severe anorexia?",
+    "_category": "Mental Health"
+  },
+  {
+    "name": "Alcoholism",
+    "description": "You are seeing Nour, 42, referred from her GP for alcohol addiction. Take a Hx and recommend an appropriate Mx plan.",
+    "structure": "EtOH use Hx, other drugs, smoking, SHx, FHx, psych Hx, CAGE",
+    "mnemonic": "CAGE Have you ever -been told you should Cut down? -felt Annoyed by people suggesting you should stop drinking? -felt Guilty about your drinking? -had a drink first thing in the morning, as an Eye-opener?",
+    "questions": "What are three medical conditions that Nour's drinking puts her at increased risk of?",
+    "_category": "Mental Health"
+  },
+  {
+    "name": "First manic episode",
+    "description": "You are seeing Marley, 42, an inpatient in the adult psychatric ward. Take a Hx and develop a Mx plan.",
+    "structure": "Risk Ax, standard psych Hx",
+    "mnemonic": "DIG FAST -Distractibility -Irritabiltiy & irresponsibility -Grandiosity -Flight of ideas -Activity↑ (goal-directed) -Sleep↓ -Talkativeness",
+    "questions": "What are two drugs that can trigger mania?",
+    "_category": "Mental Health"
+  },
+  {
+    "name": "A heightened spouse",
+    "description": "Mark, 33, has presented to your GP clinic at his wife's request. Take a Hx and develop a list of DDx.",
+    "structure": "Sx of hypomania -overspending -↑goal-directed activity -elated/euphoric/expansive mood -↓sleep; effect on life, premorbid fxn, substance use",
+    "mnemonic": "Mania but w/ more control & less duration",
+    "questions": "What are three ADEs of sodium valproate?",
+    "_category": "Mental Health"
+  },
+  {
+    "name": "Depression in an elderly man",
+    "description": "Manuel, 83, has presented to your GP clinic to discuss worsening stomach pain. Take a full psychosocial Hx and discuss appropriate Ix with the examiner.",
+    "structure": "Run through SIG E CAPS",
+    "mnemonic": "SAD PERSON for ↑Ro suicide -Sex (male) -Age (bimodal) -Depression -Previous attempt+FHx -EtOH abuse -Rational thinking↓ -Social support issues -Organised plan -No spouse",
+    "questions": "How might depression present differently in an older person?",
+    "_category": "Mental Health"
+  },
+  {
+    "name": "Episodes of terror",
+    "description": "Seo-yun, 23, has presented to your GP clinic in tears. Take a Hx and recommend appropriate initial Mx.",
+    "structure": "ABCs, Risk Ax, BPS",
+    "mnemonic": "Panic disorder when panics cause disorder",
+    "questions": "Is it possible that Seo-yun was experiencing the Sx of a PE? Why / why not?",
+    "_category": "Mental Health"
+  },
+  {
+    "name": "Suicidally depressed",
+    "description": "Elma, 42, has presented to the ED stating that she wishes she was dead. Take a complete Hx and recommend appropriate Mx.",
+    "structure": "Risk Ax, CPR, BPS formulation",
+    "mnemonic": "CPR - Current plan + Past Hx of attempts + Resources for support, both internal and external",
+    "questions": "What are three dynamic RFs for suicide?",
+    "_category": "Mental Health"
+  },
+  {
+    "name": "Risk Assessment",
+    "description": "Perform one of these for every MH OSCE.",
+    "structure": "Have you had -thoughts about harming yourself? -thoughts about killing yourself? -thoughts about harming others?; Have you ever had these thoughts in the past?",
+    "mnemonic": "Risk Ax for Every Ax",
+    "questions": "What factors would put this person more at risk of self-harm?",
+    "_category": "Mental Health"
+  },
+  {
+    "name": "First antenatal visit",
+    "description": "Luana is 8 weeks pregnant. Take a Hx and describe your recommendations for her pregnancy.",
+    "structure": "PObHx, GHx, PMHx, model of care?, Ix",
+    "mnemonic": "Bloods screens vax scans -G&H, Rh, Ab -FTCS, NIPS -Rubella Syphillis HBV HCV HIV status -Growth, morph, well-being thereafter",
+    "questions": "What would put Luana at more risk of preterm labour?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Assessment of fetal wellbeing",
+    "description": "Arethra is 1 day old. Assess her wellbeing and describe your findings to the examiner.",
+    "structure": "Movement, fetal respiration, tone, CTG, Volume (AFI Index)",
+    "mnemonic": "Monitor Fetus to Confirm Viability",
+    "questions": "Which findings on CTG would you consider indicative of fetal distress?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Hormonal contraception",
+    "description": "Nadege, 23, has presented to your GP clinic for discussion regarding contraception. Counsel her on her options.",
+    "structure": "Sexual Hx, menstrual Hx, ask about preferences, discuss options - COCP, POP, implanon, mirena",
+    "mnemonic": "For each method, EAT -Explain how it works and how to take it -ADEs / side effects -Talk through pros & cons",
+    "questions": "What are three contraindications for progesterone implants?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Pregnant woman with headache",
+    "description": "You have been called to see Nabila, a 38yo 36wk primipara who has developed a severe headache. Take a Hx and recommend an appropriate set of Ix.",
+    "structure": "Vitals, Ax Sx (visual disturbance, swelling, pain elsewhere), RFs",
+    "mnemonic": "PREeclampsia -Proteinuria -Rising BP -Edema",
+    "questions": "What is the BP cutoff for IV antihyperhensive treatment in this woman?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Postpartum fever",
+    "description": "Latika is 24hrs post-CS and has developed a fever of 38˚C. Take a Hx and recommend appropriate Mx.",
+    "structure": "What type of CS, and why? (classical = highest Ro rupture)",
+    "mnemonic": "Loci of infection: WWWWWW -Wind -Water -Wound -Womb -Walking -Weaning",
+    "questions": "What is the most common cause of puerperal fever?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Treatment of FTP",
+    "description": "Sienna, 23, is a primip in her 10th hour of labour. Her cervix has dilated to 3cm. Take a Hx and recommend appropriate Mx.",
+    "structure": "Quick ObHx before moving into Mx",
+    "mnemonic": "ABCDEFGHIJ -Adequate analgesia -Bladder empty -Cervix 10cm -Determine cephalic presentation -Equipment ready -Fontanelles found for application of forceps / vacuum -Gentle steady traction -Halt between contraction -Incision / epis -Jaw seen: remove forceps / vacuum",
+    "questions": "What would incline you to forceps delivery over vacuum?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "The pill",
+    "description": "Karli, 29, presents to your GP clinic requesting the pill. Take a Hx and describe your Mx plan to the examiner.",
+    "structure": "Run through C.I. -35py smoking Hx -migraine w/ aura -HTN -VTE -breastfeeding -liver disease -current breast Ca; describe how it works; dosage regime; ADES incl. weight gain, acne, mood∆, headache; if you miss a pill, take ASAP even w/ next one, if you miss two take one and condom 7d",
+    "mnemonic": "Hormonal imbalance goes WHAM -Weight gain -Headache -Acne -Mood∆",
+    "questions": "Karli has missed two pills in the third week of her cycle. How would you recommend she manage this situation?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Fundus less than dates",
+    "description": "You are seeing Bopha, a 30yo G3P1 who is 29 weeks pregnant. Take a short Hx and perform an obstetric abdominal examination.",
+    "structure": "Standard ObHx, Hx of RFs, FHx",
+    "mnemonic": "A combination of maternal, fetal and placental factors",
+    "questions": "What are three placental factors that can lead to IUGR?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Emergency contraception",
+    "description": "Fatima, 16, presents to your GP clinic asking for the morning after pill. Counsel her on her options.",
+    "structure": "Options are 'morning after pill' (containing ulipristal or levonorgestrel) and copper IUD",
+    "mnemonic": "HEADSS",
+    "questions": "What contraceptive method is the most effective?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Pelvic pain that won't go away",
+    "description": "Akong, 29, wishes to discuss her long-standing pain issues. Take a Hx and recommend appropriate Ix.",
+    "structure": "1. Organ pain 2. Muscle response to pain 3. Central sensitisation 4. Psychosocial consequences",
+    "mnemonic": "Chronic pelvic pain is so awful, it is LEAPING the shark! -Leio -Endo -Adeno / Adhesions -PID -Infection -Neoplasia -GI",
+    "questions": "What are four possible contributing causes to chronic pelvic pain?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Post-term pregnancy",
+    "description": "Take a Hx, provide Mx and counsel this pregnant woman at 42 weeks gestation.",
+    "structure": "ObHx, educate re: ↑Ro...",
+    "mnemonic": "Standard Obs RFs apply: -Smoking -Low SES -Obesity -Previous Hx of the same -Seniors card (i.e. ↑maternal age)",
+    "questions": "What are three obstetric complications this woman is at increased risk of?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Twins",
+    "description": "Jane, 32, has just discovered she is 8 weeks pregnant with twins. What advice would you like to give her?",
+    "structure": "1. How are you feeling about this news? Standard AN visit, enquire about Ix of pregnancy so far (genetic testing, scans, blood tests)",
+    "mnemonic": "PPPP -PV bleeding / discharge -Pain -Pregnancy (MVC -Movements -Vaginal loss -Contractions) -Pre-eclampsia Sx",
+    "questions": "What is Jane at increased risk of, carrying twins?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Feeding",
+    "description": "Tyler, 31, gave birth to baby Eli 6 weeks ago. She has had some issues with breastfeeding since. Take a history and counsel her on management options.",
+    "structure": "Check for Sx of mastitis / abscess, educate re: positioning, attachment, hospital grade pump for expressing, increase duration / frequency of feeds",
+    "mnemonic": "BRAIN for continuing breastfeeding.",
+    "questions": "What antibiotics would you consider giving Tyler, and when?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Recurrent miscarriage",
+    "description": "Julia is a 35yo mother of two who has been trying for the last 6 years to have a third child. Take a history and explain her options for attaining a successful pregnancy.",
+    "structure": "Explore RFs for miscarriage: uterine anomalies (incl. short cervix), gynae surgery Hx, ectopic pregnancy, B12 / folate intake, APLS / SLE, active infection, smoking / cocaine",
+    "mnemonic": "1 m/c: no ↑Ro another. 2 m/c: 25% ↑Ro another",
+    "questions": "What investigations would you order for this woman after 3 m/c?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "PPH",
+    "description": "You have been called by a midwife to see Oksana, 23, who has just given birth to twins. Mx the situation appropriately.",
+    "structure": "10IU synt IM +/- ergot / carboprost, ABC, vitals, fundal rub, IV access, FBE + G&H + coags, to theatre for B-Lynch suture / hysterectomy",
+    "mnemonic": "Standard ObsRFs plus ChAMPP: -chorio -anaemia -macrosomia -PET -prolonged 1SL",
+    "questions": "What are five major risk factors for PPH?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "So much bleeding",
+    "description": "Saanvi, 28, has noticed her periods are longer and produce more blood. Take a Hx and recommend appropriate Mx.",
+    "structure": "Menstrual Hx - avg. cycle length, how long do you bleed for, how often do you change pad / tampon, how bad is your period pain, what do you take for it, do you experience any premenstrual Sx",
+    "mnemonic": "PALM COEIN -Polyps -Adeno -Leio -Malignancy -Coagulopathy -Ovulatory dysfunction -Endometrial -Iatrogenic -No cause identified",
+    "questions": "Which contraception methods might you recommend to Saanvi?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Postnatal depression",
+    "description": "Ilona is a 31yo lady who two weeks prior gave birth to her second child. She presents now hoping to discuss her sleep patterns. Take a Hx and recommend an appropriate Mx plan.",
+    "structure": "Psych Hx",
+    "mnemonic": "SIG E CAPS",
+    "questions": "Ilona is eager to keep breastfeeding. What could you prescribe her for her PND, with this in mind?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Blood sugar",
+    "description": "You are seeing Diana, 31, in Maternal Fetal Medicine clinic in order to discuss the medical complications to her pregnancy. Discuss her results and recommend appropriate Mx.",
+    "structure": "ObHx, PMHx, FHx",
+    "mnemonic": "Pre-pregnancy DM confers ↑Ro PET, polyhydramnios, infection (UTI / chorio)",
+    "questions": "What are three drugs for blood glucose control that are safe in pregnancy?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Early bleeding in pregnancy",
+    "description": "Mariana, 26, is 20 weeks pregnant with her first child. She presents to the ED having found blood in her underwear. Take a Hx and recommend appropriate Mx.",
+    "structure": "ObHx, PMHx, Gynae Hx, FHx",
+    "mnemonic": "APH -Abruption -Previa -Haemorrhage from GU tract (i.e. no real biggy)",
+    "questions": "How would your recommendations for the pregnancy change if the Dx were PP, as opposed to PA?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "Pre-term labour",
+    "description": "Beelzebub, 21, is 28 weeks pregnant with her first child. She believes she has gone into labour. Take a Hx and recommend appropriate Mx.",
+    "structure": "CTG + full ObHx",
+    "mnemonic": "Standard Obs RFs (SLOPS) + SMACCS -Short inter-preggaz interval -Multiple preggaz -APH -Certain infections -Cervical Shortening",
+    "questions": "What Ix would you order for this lady?",
+    "_category": "Obstetrics"
+  },
+  {
+    "name": "General principles",
+    "description": "Neonate <28d, Infant <1y, Toddler <3y, Pre-schooler <5y, School age <12y, Adolescent >12y",
+    "structure": "HoPC - PHx - growth, diet - development - behaviour - FHx / SHx - Rx - allergies",
+    "mnemonic": "The three questions for every paed case: 1. Are they well or unwell? 2. Is their growth appropriate for their age? 3. Is their behaviour / development appropriate for their age?",
+    "questions": "What developmental milestones would you expect a 6mo child to have achieved?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "The well child visit",
+    "description": "Kostya is a 2yo child presenting to your GP clinic with his parents for a general checkup. Take a Hx and discuss with the examiner your findings.",
+    "structure": "Parent perception",
+    "mnemonic": "BFGD -Birth -Feeding -Growth -Development",
+    "questions": "What are two developmental milestones you would expect this child to have achieved by 9 months of age?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "Neurodevelopment examination",
+    "description": "Yolanda, age 6, has been brought in to see you by her father, who is concerned about her speech. Take a Hx and recommend an appropriate Mx plan.",
+    "structure": "Neuro exam + development testing (Denver / ?BRIGANZ)",
+    "mnemonic": "On Hx: SSTFWT -Smiling 6wks -Sitting 9m -Turning to sound 6m -First words 18m -Walking 18m -Talking 3 word sentences by 3y",
+    "questions": "What are two causes of transient developmental regression?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "The seriously unwell child",
+    "description": "You are seeing Nam, age 3 months, in ED. She is tachycardic, febrile and short of breath. Mx her condition and recommend appropriate Ix.",
+    "structure": "Feeding, colour, CRT; top-to-toe examination",
+    "mnemonic": "Serious causes we need to be careful of PUMA -Pneumonia -UTI -Meningitis -Acute abdomen",
+    "questions": "Which conditions do you think were most important to rule out in this child?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "The child with seizures",
+    "description": "Mai, age 10, has been admitted to the paediatric ward for observation following a seizure in ED. Take a Hx from Mai's father and recommend initial Ix.",
+    "structure": "In most cases, supportive treatment is all that is necessary. C. Rx anticonvulsants only if abnormal EEG & MRI, otherwise risks of Rx outweigh benefits.",
+    "mnemonic": "ABCB >10mins AT -Airway -Breathing -Circulation -BSL -if seizure lasts >10min, Active Treatment",
+    "questions": "What are the three most common reasons for seizure in a young child?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "Newborn exam",
+    "description": "Grunting = inbuilt PEEP",
+    "structure": "Undress, inspection, vitals, measurements, then head to tail: fontanelles, ?murmur (good to pick up early), chest, abdo, anus, GU",
+    "mnemonic": "The whole body",
+    "questions": "What might be a cause for low oxygen saturation in this child?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "The child with headache",
+    "description": "Fai, age 5, stayed home from school today because of a severe headache. Take a Hx from Fai's mother and recommend appropriate Mx.",
+    "structure": "HoPC, BFGD, OEx: observe, check fingers, listen to chest, percuss, palpate LNs",
+    "mnemonic": "Dry babies don't CWRY -CRT >2s -Weight -↑Resp rate -Yte nappies (urine absent or dark)",
+    "questions": "What are five signs of dehydration in children?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "The child with cough",
+    "description": "~40% is PBB (protracted bacterial bronchitis)",
+    "structure": "Nature of cough crucial; ?Underlying cause: CF / PCD / immunodef. / TB",
+    "mnemonic": "Is the cough caused by FAPS? -Foreign body -Asthma -Pertussis -Sinusitis; if not then proceed to further Ix (CXR)",
+    "questions": "Say this child's cough was absent during the night. What Dx would then move up your differential list?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "The child with rash",
+    "description": "Anna, age 1, has been brought in by her father who is concerned about a rash that has developed on her lower limbs. Inspect the rash, take a thorough Hx from Anna's father, and recommend appropriate initial Mx.",
+    "structure": "Sick contacts, exposure to allergens, Hx of atopy",
+    "mnemonic": "Most kiddy rashes start with HRM -HSP -HFM -Roseola -Rubella -Meningitis -Measles -Mumps -Molluscum",
+    "questions": "Describe what you would expect to find in a child with chickenpox.",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "Breath holding spells",
+    "description": "~25% of children who breath hold do so multiple times per day.",
+    "structure": "Characterise spells; ?post-ictal confusion; reassure & encourage parent to treat as normal",
+    "mnemonic": "Divide into pre-seizure, during seizure, and post-seizure.",
+    "questions": "What is the likelihood of this child holding its breath in order to have its way?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "Abdo & inguinoscrotal examination",
+    "description": "The mother of Jiminy Crick, age 2, presents concerned about his development. Take a developmental history.",
+    "structure": "Distraction while palp.ing helps to differentiate vol. from invol. guarding; Percussion useful in detecting peritonism.",
+    "mnemonic": "Pinpoint, Palp, Percuss, Shine a light",
+    "questions": "What would you expect to find in a child with septic appendicitis?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "Asthma",
+    "description": "Billy, age 10, is struggling with his asthma. What Mx strategies could you offer to improve control of his condition?",
+    "structure": "Stages of Rx for asthma: 1. SABA 2. SABA + ICS 3. SABA + ICS/LABA 4. SABA + ICS/LABA + OCS",
+    "mnemonic": "HEADSS",
+    "questions": "What are five signs on examination that would increase the likelihood of Billy being admitted?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "Developmental assessment",
+    "description": "Do you have any concerns about your child's development?",
+    "structure": "Feeding (intake, solids); Birth (weight, gestation, complications); Measure length, weight, head circumference;",
+    "mnemonic": "Language, motor, social, smarts.",
+    "questions": "How would you expect your findings to differ in a 5-year old child?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "GI examination",
+    "description": "Lily has been diagnosed with a urinary tract infection. Please perform a full gastrointestinal examination, and present your findings to the examiner.",
+    "structure": "Rapport; Inspection; BFGD; Vitals; Fluid charts; Hydration status; Palpate tummy carefully; ?percuss, ?liver&spleen (these are not mentioned in the official CAH guide)",
+    "mnemonic": "GI and hydration go hand in hand.",
+    "questions": "What are three gastrointestinal red flags that would incline you to ask for review by a senior doctor?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "Anxiety",
+    "description": "Joanne is concerned that her daughter Sonia, age 10, is experiencing breathing difficulties at home. She has sent Sonia alone to your GP clinic. Take a thorough Hx and recommend appropriate Mx.",
+    "structure": "Ask to see Sonia alone, psych Hx",
+    "mnemonic": "HEADSS",
+    "questions": "How might the presentation of anxiety vary between a 10yo and a 17yo?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "The child with fever",
+    "description": "2yo Sanne has had a fever for three days, and this day has displayed some alteration in her conscious state. Take a Hx from her father and develop a Mx plan.",
+    "structure": "Any child w/ fever w/o focus should get urine MCS, BCs & LP",
+    "mnemonic": "Be careful of the PUMA -Pneumonia -UTI -Meningitis -Acute abdomen",
+    "questions": "What would we expect urine output to be for this child? How would you decide how much fluid to administer if they were hypovolaemic?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "ENT examination",
+    "description": "3yo Khalid has had a fever for the last two days. Perform a thorough ENT examination & recommend appropriate management.",
+    "structure": "Introduce, ++inspection, order ENT (then neck for cervical lymphadenopathy)",
+    "mnemonic": "Atopic triad: Hayfever, eczema, asthma",
+    "questions": "Describe the treatment, complications, and otoscopic examination findings of AOM in children.",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "Neonatal jaundice",
+    "description": "Phuong, age 2 days, has severe jaundice. Explain to her mother the causes of neonatal jaundice, and the expected treatment course.",
+    "structure": "Vitals; if afebrile and well: reassurance (60% of babies have it; is most likely to be physiological which resolves naturally in ~2wks), baseline Ix (bili, FBE + film + retics, G&H + coombs) + further Ix as I. by presentation",
+    "mnemonic": "Non-physiological causes include SHPEG: -Sepsis -Haemolysis -Prematurity -Excessive RBC destruction that is not haemolytic (e.g. from cephalohaematoma) -GIT obstruction (e.g. HPS / ileus",
+    "questions": "Under what circumstances should Phuong's parents be advised to re-present?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "Cardiac examination",
+    "description": "Selamat is concerned that her 2yo boy Kamil is not growing normally. Take a short Hx and perform a cardiac examination.",
+    "structure": "Major differences from adult CVE: ++inspection, growth, femoral +/- brachial pulse; Adapt according to comfort / anxiety of child",
+    "mnemonic": "Look, palpate, auscultate",
+    "questions": "What in this examination would make you concerned about failure to thrive?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "Wrist fracture",
+    "description": "Frank, age 5, presents to ED with a broken wrist from falling out of a tree. Perform an appropriate examination and describe your Mx plan to the examiner.",
+    "structure": "Take Hx, perform pre-op Ax",
+    "mnemonic": "RCH fracture guidelines are top notch",
+    "questions": "What would incline you to discharge this pt from ED with supportive care & simple analgesia? What are four red flags for non-accidental injury?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "Respiratory examination",
+    "description": "Jelena, age 2, has been brought in to ED by her mother, who is concerned that she is unwell. Take a short Hx and perform an appropriate examination.",
+    "structure": "Standard resp exam: observe, fingers, auscultate, percuss, palpate LNs, + abdo palp.n, ENT",
+    "mnemonic": "The child's WoB increases until she FARTS -Flaring of nostrils -Accessory muscle use -Retractions -Significantly ↑/↓ HR",
+    "questions": "Jelena has been diagnosied with pertussis. How many days should she be required to spend at home, away from school?",
+    "_category": "Paediatrics"
+  },
+  {
+    "name": "The child with a limp",
+    "description": "Terence, age 10, has developed a limp over the last 2 days. Take a Hx and explain your Mx plan.",
+    "structure": "Systems review, ?recent illness, Xray, bloods if fever",
+    "mnemonic": "Transient synovitis, neoplastic night, awareness of abuse,",
+    "questions": "What is the most common cause of limp in adolescents?",
+    "_category": "Paediatrics"
+  }
+]

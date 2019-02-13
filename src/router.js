@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Scene from '@/views/Scene'
-import Notes from '@/views/Notes'
-
 Vue.use(Router)
+
+function lazyLoad(view) {
+    return () => import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`)
+}
 
 export default new Router({
 	mode: 'history',
@@ -14,19 +15,20 @@ export default new Router({
 			path: '/',
 			name: 'home',
             meta: { layout: 'model'},
-			component: Scene,
+			component: lazyLoad('Scene'),
 		},
         {
             path: '/notes',
             name: 'notes',
-	        meta: { layout: 'notes'},
-            component: Notes
+            meta: { layout: 'notes'},
+            component: lazyLoad('Notes'),
+
         },
 		{
 			path: '/:id',
 			name: 'scene',
             meta: { layout: 'model'},
-			component: Scene,
+            component: lazyLoad('Scene'),
 			beforeEnter: (to, from, next) => {
 				function isValid (param) {
 					//TODO check if model exists
