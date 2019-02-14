@@ -41,7 +41,7 @@
 			<div id="upload" class="toolbar-button" @click="dialog.upload = !dialog.upload">
 				<i class="fa fa-upload"></i>
 
-				<div class="menu" v-show="dialog.upload">
+				<div class="menu" v-show="dialog.upload" @click.stop>
 					<button type="button" class="ico close-modal" @click.stop="dialog.upload = false">
 						<i class="fas fa-times"></i>
 					</button>
