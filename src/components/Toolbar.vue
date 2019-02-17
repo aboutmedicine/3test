@@ -38,7 +38,8 @@
 				<i class="fa fa-redo-alt"></i>
 			</div>
 
-			<div id="upload" class="toolbar-button" @click="dialog.upload = !dialog.upload">
+			<div id="upload" class="toolbar-button" v-if="user"
+			     @click="dialog.upload = !dialog.upload">
 				<i class="fa fa-upload"></i>
 
 				<div class="menu" v-show="dialog.upload" @click.stop>
@@ -78,6 +79,9 @@
 			logo() {
 				return this.$theme.dark ? 'assets/Logo_Night.png' : 'assets/Logo.png'
 			},
+			...mapState([
+			    'user'
+			]),
 			...mapState('models', [
 			    'controller',
 				'mode',

@@ -33,7 +33,7 @@
 	import SceneManager from '@modules/SceneManager'
 
 	export default {
-		name: 'scene',
+		// name: 'scene',
 
 		components: {
 			//async loading on demand

@@ -4,19 +4,25 @@
 			<router-link class="logo" :to="'/'">
 				<img id="logo" src="assets/Logo.png" height="96" width="96">
 			</router-link>
+
 		</header>
+
+		<Sidebar></Sidebar>
+
+		<!--router view-->
 		<slot></slot>
 	</div>
 </template>
 
 <script>
+	import Sidebar from '@/components/navigation/Sidebar'
+
     export default {
-        name: 'layout-notes',
-        components: {},
+        components: { Sidebar },
         data: () => ({}),
         computed: {
         },
-        mounted() {}
+        mounted() {},
     }
 </script>
 

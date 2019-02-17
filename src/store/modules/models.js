@@ -1,5 +1,4 @@
 import Vue from "vue";
-import router from '@/router'
 
 export default {
     namespaced: true,
@@ -96,7 +95,7 @@ export default {
             return state.models.sort((a, b) => a.title.localeCompare(b.title));
         },
         activeModel: (state) => {
-            const model = state.models.filter(x => x.slug === router.currentRoute.params.id)[0];
+            const model = state.models.filter(x => x._id === state.currentModel)[0];
             if(model) {
                 return model.title;
             }

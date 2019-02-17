@@ -1,46 +1,87 @@
 <template>
-	<div id="notes" class="flex-container">
+	<div id="notes">
+		<!--visible from 768-->
+		<mq-layout mq="md+" class="flex-container" id="desktop-notes">
+			<!--CATEGORIES (SYSTEMS)-->
+			<div class="column column--sm">
 
-		<!--CATEGORIES (SYSTEMS)-->
-		<div class="column column--sm">
-			<div
-					v-for="system in systems"
-					:key="system._id"
-					:class="selected.system === system.name ? 'selected' : ''"
-					@click="selectCategory(system)">
-				{{system.name}}
+				<div
+						v-for="system in systems"
+						:key="system._id"
+						:class="taxonomy.system && taxonomy.system.name === system.name ? 'selected' : ''"
+						@click="selectCategory(system)">
+					{{system.name}}
+				</div>
 			</div>
-		</div>
 
-		<!--ARTICLE TYPES (SYSTEM SECTIONS)-->
-		<div v-if="selected.system" class="column column--sm">
-			<div
-					v-for="section in sections"
-					:key="section._id"
-					:class="selected.section === section.name ? 'selected' : ''"
-					@click="selectArticleType(section)">
-				{{section.name}}
+			<!--ARTICLE TYPES (SYSTEM SECTIONS)-->
+			<div class="column column--sm">
+				<div
+						v-for="section in sections"
+						:key="section._id"
+						:class="taxonomy.section && taxonomy.section.name === section.name ? 'selected' : ''"
+						@click="selectArticleType(section)">
+					{{section.name}}
+				</div>
 			</div>
-		</div>
 
-		<!--ARTICLES IN COLLECTION (CATEGORY + TYPE)-->
-		<div v-if="selected.system && selected.section" class="column column--md">
-			<div
-					v-for="article in articlesInSelection(selected)"
-					:key="article._id"
-					:class="selected.article === article ? 'selected' : ''"
-					@click="selectArticle(article)"
+			<!--ARTICLES IN COLLECTION (CATEGORY + TYPE)-->
+			<div  v-if="validSelection" class="column column--md">
+				<div
+						v-for="article in articlesInSelection(taxonomy)"
+						:key="article._id"
+						:class="selectedArticle && selectedArticle.name === article.name ? 'selected' : ''"
+						@click="selectArticle(article)"
+				>
+					{{article.name}}
+				</div>
+
+			</div>
+
+			<!--ARTICLE-->
+			<div v-if="selectedArticle"
+			     class="column selected" style="flex: 1;">
+				<Article
+						:content="selectedArticle"
+						:type="taxonomy.section.name"></Article>
+			</div>
+		</mq-layout>
+
+
+		<!--visible till 767-->
+		<mq-layout :mq="['xs', 'sm']" class="container">
+			<v-select label="name"
+			          :options="systems"
+			          v-model="taxonomy.system"
+			          placeholder="System"
 			>
-				{{article.name}}
+			</v-select>
+			<hr>
+			<v-select label="name"
+			          :options="sections"
+			          v-model="taxonomy.section"
+			          placeholder="Section"
+			>
+			</v-select>
+
+			<div v-if="validSelection" class="column column--md">
+				<div
+						v-for="article in articlesInSelection(taxonomy)"
+						:key="article._id"
+						:class="selectedArticle === article ? 'selected' : ''"
+						@click="selectArticle(article)"
+				>
+					{{article.name}}
+				</div>
+
 			</div>
 
-		</div>
-
-		<!--ARTICLE-->
-		<div v-if="selected.article"
-		     class="column selected" style="flex: 1;">
-			<Article :content="selected.article" :type="selected.section"></Article>
-		</div>
+			<app-modal v-if="selectedArticle" @close="selectedArticle = null">
+				<Article slot="body"
+				         :content="selectedArticle"
+				         :type="taxonomy.section.name"></Article>
+			</app-modal>
+		</mq-layout>
 
 	</div>
 </template>
@@ -53,61 +94,76 @@
         name: 'notes',
         components: { Article },
         data: () => ({
-            selected: {
-                system: '',
-                section: '',
-                article: null
-            },
+            selectedArticle: null,
+            taxonomy: {
+                system: null,
+                section: null
+            }
         }),
         computed: {
+            ...mapState([
+                'theme'
+            ]),
             ...mapState('notes', [
                 'systems',
                 'sections',
-                'articles'
+                'articles',
             ]),
             ...mapGetters('notes', [
                 'articlesInSelection'
             ]),
+            validSelection() {
+                return this.taxonomy.system && this.taxonomy.section;
+            },
         },
         created() {
             HttpService.getCategories().then(res => {
                 this.$store.commit('notes/SET_CATEGORIES', res);
             });
         },
-        mounted() {
-        },
         methods: {
             ...mapActions('notes', [
                 'FETCH_ARTICLES_IN_SELECTION'
             ]),
             selectCategory(entry) {
-                this.selected.system = entry.name;
-                this.selected.article = null;
-
-                //fetch articles if needed
-                if (this.selected.section &&
-	                !this.articles[this.selected.system][this.selected.section].length) {
-
-                    this.FETCH_ARTICLES_IN_SELECTION({
-                        category: entry.name,
-                        type: this.selected.section,
-                    });
-                }
+                if (!entry) return;
+                this.taxonomy.system = entry;
             },
             selectArticleType(entry) {
-                this.selected.section = entry.name;
-                this.selected.article = null;
-
-                //fetch articles if needed
-                if (!this.articles[this.selected.system][this.selected.section].length) {
-                    this.FETCH_ARTICLES_IN_SELECTION({
-                        category: this.selected.system,
-                        type: entry.name
-                    });
-                }
+                if (!entry) return;
+                this.taxonomy.section = entry;
             },
             selectArticle(entry) {
-                this.selected.article = entry;
+                this.selectedArticle = entry;
+            },
+            requestArticles() {
+                if (this.validSelection && !this.articlesInSelection(this.taxonomy).length) {
+
+                    this.FETCH_ARTICLES_IN_SELECTION({
+                        category: this.taxonomy.system.name,
+                        type: this.taxonomy.section.name,
+                    });
+                }
+
+            },
+        },
+        watch: {
+            'theme.dark'(to) {
+                console.log(to);
+                document.body.style.backgroundColor = to ? '#333333' : '#ffffff';
+            },
+            'taxonomy.system'() {
+                this.$nextTick( () => {
+                    this.selectedArticle = null;
+                    this.requestArticles();
+                });
+
+            },
+            'taxonomy.section'() {
+                this.$nextTick( () => {
+                    this.selectedArticle = null;
+                    this.requestArticles();
+                });
             }
         }
     }
@@ -115,10 +171,14 @@
 
 <style lang="scss" scoped>
 
-	#notes {
+	#desktop-notes {
 		height: calc(100vh - 150px);
 		overflow: hidden;
 		position: relative;
+	}
+
+	.container {
+		padding: 15px;
 	}
 
 	.flex-container {

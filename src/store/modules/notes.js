@@ -44,10 +44,14 @@ export default {
         }
     },
     getters: {
+        // Returns an array of articles matching the selection parameters or []
         articlesInSelection: (state) => selection => {
-            if(selection.system && selection.section) {
+            const system = selection.system.name;
+            const section = selection.section.name;
+
+            if(system && section) {
                 try {
-                    return state.articles[selection.system][selection.section]
+                    return state.articles[system][section]
                 }
                 catch(err) {
                     console.log(err);

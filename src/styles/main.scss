@@ -7,17 +7,25 @@ body {
 	font-family: Avenir Next, Helvetica;
 }
 
+.noscroll {
+	overflow: hidden;
+}
+
 input {
 	padding: 10px;
 	border-radius: 0.5em;
 	box-shadow: none;
 	border: 2px solid #eee;
 	font-size: 16px;
+	&[type='submit'] {
+		cursor: pointer;
+	}
 }
 
 button {
 	border: none;
 	background: none;
+	cursor: pointer;
 }
 
 textarea:focus,
@@ -28,6 +36,10 @@ input:focus {
 
 input::placeholder {
 	color: var(--dark-grey);
+}
+
+br {
+	margin-bottom: 0.5em;
 }
 
 [data-tooltip],[data-tooltip-bottom]  {
@@ -106,6 +118,33 @@ input::placeholder {
 	position: relative!important;
 }
 
+.d-block {
+	display: block;
+}
+
 .text-right {
 	text-align: right;
+}
+
+
+.btn-close {
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+	font-weight: bold;
+	background: transparent;
+}
+
+.btn-outline {
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 0.5em;
+	border-color:  var(--dark-grey);
+}
+
+.btn-green {
+	color: white;
+	background: #4AAE9B;
+	border: 1px solid #4AAE9B;
+	border-radius: 2px;
 }

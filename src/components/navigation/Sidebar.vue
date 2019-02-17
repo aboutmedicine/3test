@@ -8,23 +8,39 @@
 			<div id="close-sidenav" class="sidenav-button" @click="open = false">
 				<i class="fa fa-times"></i>
 			</div>
+
 			<div class="header">
-				<h5>{{activeModel}}</h5>
+				<slot name="header">
+					<h5>Navigation</h5>
+				</slot>
 			</div>
-			<a class="dropdown-btn" @click="dropdown.model = !dropdown.model">
-				Other Models
-				<i class="sidenav-icon fa fa-caret-down"></i>
-			</a>
-			<div class="dropdown-container" v-show="dropdown.model">
-				<template v-for="model in modelList" >
-					<router-link :key="model.slug" :to="model.slug">
-						{{model.title}}
-					</router-link>
-				</template>
-			</div>
+
+			<slot name="items"></slot>
+
 			<a id="night-mode" @click="$store.commit('TOGGLE_THEME')">
 				{{ $theme.dark ? 'Day' : 'Night'}} Mode
 			</a>
+
+			<a @click="dialog.login = true" v-if="!user">Log In</a>
+			<a @click="LOG_OUT" v-if="user">Log Out</a>
+
+			<app-modal v-if="dialog.login" @close="dialog.login = false">
+				<strong slot="header">Log In</strong>
+				<LogIn slot="body" @done="dialog.login = false"></LogIn>
+				<div slot="footer">
+					Don't have an account?
+					<button class="btn-outline"
+					        @click="dialog.login = false; dialog.signup = true">
+						Sign up!
+					</button>
+				</div>
+			</app-modal>
+
+			<app-modal v-if="dialog.signup" @close="dialog.signup = false">
+				<strong slot="header">Sign Up</strong>
+				<SignUp slot="body" @done="dialog.signup = false"></SignUp>
+			</app-modal>
+
 			<a href="mailto:reuben.schmidt@icloud.com">Contact</a>
 		</div>
 	</nav>
@@ -32,29 +48,31 @@
 </template>
 
 <script>
-    import { mapState, mapGetters } from 'vuex'
+    import LogIn from '@/components/auth/LogIn'
+    import SignUp from '@/components/auth/SignUp'
 
-	export default {
-		data: () => ({
-			open: false,
-			dropdown: {
-				model: false
-			}
-		}),
-		computed: {
-            ...mapState('models', [
-                'models',
-            ]),
-            ...mapGetters('models', [
-                'sortedModels',
-	            'activeModel'
-            ]),
-			modelList() {
-				return this.sortedModels.filter(x => x.slug !== this.$route.params.id)
-			},
+    import { mapState, mapActions } from 'vuex'
 
-		},
-	}
+    export default {
+        components: { LogIn, SignUp },
+        data: () => ({
+            open: false,
+            dialog: {
+                login: false,
+                signup: false
+            }
+        }),
+        computed: {
+            ...mapState([
+                'user'
+            ])
+        },
+        methods: {
+            ...mapActions([
+                'LOG_OUT'
+            ])
+        }
+    }
 </script>
 
 <style lang="scss">
@@ -86,7 +104,6 @@
 		cursor: pointer;
 	}
 
-
 	.sidenav {
 		height: 100%;
 		width: 0px;
@@ -114,20 +131,6 @@
 
 	.sidenav-icon {
 		float: right;
-	}
-
-	.sidenav .header {
-		padding: 24px 8px 8px 16px;
-		margin: none;
-		text-decoration: none;
-		display: block;
-		font-size: 32px;
-	}
-
-	.dropdown-container {
-		padding-left: 8px;
-		max-height: 40vh;
-		overflow: auto;
 	}
 
 </style>

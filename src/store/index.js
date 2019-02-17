@@ -4,6 +4,8 @@ import Vuex from 'vuex'
 import notes from '@/store/modules/notes'
 import models from '@/store/modules/models'
 
+import { HttpService } from "@/http"
+
 Vue.use(Vuex)
 
 import VuexPersistence from 'vuex-persist'
@@ -15,7 +17,7 @@ const vuexLocal = new VuexPersistence({
     }), //only save annotations
     // we can also listen only for a specific mutations
     // filter: (mutation) => mutation.type == 'ADD_NOTE'
-})
+});
 
 export default new Vuex.Store({
     plugins: [vuexLocal.plugin],
@@ -24,6 +26,7 @@ export default new Vuex.Store({
         models
     },
     state: {
+        user: null,
         theme: {
             dark: false
         },
@@ -39,7 +42,62 @@ export default new Vuex.Store({
         TOGGLE_THEME(state) {
             state.theme.dark = !state.theme.dark
         },
+        SET_USER(state, payload) {
+            state.user = payload;
+        }
     },
-    actions: {},
+    actions: {
+        LOG_OUT({ commit }) {
+            HttpService.logOut()
+                .then(res => {
+                    console.log(res);
+                    commit('SET_USER', null);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        },
+        LOG_IN({ commit }, { email, password }) {
+
+            return new Promise((resolve, reject) => {
+                HttpService.auth('login', { email, password })
+                    .then(res => {
+                        console.log(res);
+                        commit('SET_USER', res);
+                        resolve();
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        reject(err);
+                    });
+            })
+
+        },
+        SIGN_UP({commit}, { email, password}) {
+            return new Promise((resolve, reject) => {
+                HttpService.auth('signup', { email, password })
+                    .then(res => {
+                        console.log(res);
+                        commit('SET_USER', res);
+                        resolve();
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        reject(err);
+                    });
+            })
+        },
+        AUTH_STATUS({ commit }) {
+            HttpService.getUser()
+                .then(res => {
+                    console.log(res);
+                    commit('SET_USER', res);
+                })
+                .catch(err => {
+                    console.log(err);
+                    commit('SET_USER', null);
+                });
+        }
+    },
     getters: {}
 })

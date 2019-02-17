@@ -60,6 +60,41 @@ class HttpService {
     static createPost(data) {
         return axios.post(`${url}/posts`, data);
     }
+
+    // logIn || signUp
+    static auth(action, credentials) {
+        console.log(credentials);
+        return new Promise( async (resolve, reject ) => {
+            try {
+                const res = await axios.post(`${url}/auth/${action}`, credentials, config);
+                resolve(res.data);
+            } catch (err) {
+                reject(err.response.data.filter(x => x.message)[0]);
+            }
+        });
+    }
+
+    static logOut() {
+        return new Promise( async (resolve, reject ) => {
+            try {
+                const res = await axios.get(`${url}/auth/logout`);
+                resolve(res.data);
+            } catch (err) {
+                reject(err.response);
+            }
+        });
+    }
+
+    static getUser() {
+        return new Promise( async (resolve, reject ) => {
+            try {
+                const res = await axios.get(`${url}/auth/user`, config);
+                resolve(res.data);
+            } catch (err) {
+                reject(err.response);
+            }
+        });
+    }
 }
 
 export { HttpService }
