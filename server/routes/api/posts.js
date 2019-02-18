@@ -94,9 +94,10 @@ router.post('/', upload.any(), async (req, res) => {
 		const processGltf = gltfPipeline.processGltf;
 		const options = {
 			dracoOptions: {
-				compressionLevel: 4
+				compressionLevel: 4,
 			}
 		};
+		
 
 		await processGltf(gltf, options)
 			.then((results) => {
@@ -111,6 +112,7 @@ router.post('/', upload.any(), async (req, res) => {
 			})
 			.catch(err => {
 				console.log(err);
+				res.status(500).send(err);
 			});
 	}
 });

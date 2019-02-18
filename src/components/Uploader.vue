@@ -103,7 +103,7 @@
 						this.$router.push(res.data.slug);
 					})
 					.catch(err => {
-						this.uploadError = err.response;
+						this.uploadError = err.response.data.message;
 						this.currentStatus = STATUS_FAILED;
 					});
 			},
