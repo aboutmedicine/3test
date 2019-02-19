@@ -81,8 +81,18 @@ router.post('/', upload.any(), async (req, res) => {
 			res.status(201).send(result);
 		});
 	};
+	
+    const handleCompressed = (results) => {
+        const compressed = results.gltf;
 
-	//already compressed
+        console.log('compressed');
+
+        getSignedRequest(s3Params, res)
+            .then(signedRequest => uploadFile(compressed, signedRequest))
+    };
+
+
+    //already compressed
 	if (gltf.extensionsUsed && gltf.extensionsUsed.indexOf('KHR_draco_mesh_compression') !== -1) {
 		console.log('already compressed');
 		getSignedRequest(s3Params, res)
@@ -97,24 +107,25 @@ router.post('/', upload.any(), async (req, res) => {
 				compressionLevel: 4,
 			}
 		};
-		
 
 		await processGltf(gltf, options)
-			.then((results) => {
-				const compressed = results.gltf;
-
-				console.log('compressed');
-
-				getSignedRequest(s3Params, res)
-					.then(signedRequest => uploadFile(compressed, signedRequest))
-
-
-			})
+			.then(handleCompressed)
 			.catch(err => {
 				console.log(err);
-				res.status(500).send(err);
+
+				//fallback
+				processGltf(JSON.parse(file.buffer.toString('ascii')), {
+					dracoOptions: { compressionLevel: 0 }
+				})
+					.then(handleCompressed)
+					.catch(err => {
+                        res.status(500).send(err);
+					});
+				
 			});
 	}
+
+
 });
 
 
