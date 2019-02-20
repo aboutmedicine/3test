@@ -69,6 +69,7 @@ function AbstractArticleSchema() {
     this.add({
         name: { type: String, required: true },
         description: { type: String, required: false },
+        notes: { type: String, required: false },
         _tags: { type: Array, required: false },
         _category: {
             // type:  mongoose.Schema.Types.String,
@@ -76,6 +77,10 @@ function AbstractArticleSchema() {
             ref: 'System',
             required: false,
         },
+        // _type: {
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     ref: 'Section'
+        // }
     });
 }
 
@@ -104,7 +109,6 @@ PathologySchema.add({
     ex: { type: String, required: false },
     ix: { type: String, required: false },
     mx: { type: String, required: false },
-    notes: { type: String, required: false },
     etiology: { type: String, required: false, default: '' },
 });
 mongoose.model('Pathology', PathologySchema, 'articles_pathology');
@@ -119,4 +123,4 @@ mongoose.model('Radiology', RadiologySchema, 'articles_radiology');
 
 
 const TestsSchema = new AbstractArticleSchema();
-mongoose.model('Tests', RadiologySchema, 'articles_tests');
+mongoose.model('Tests', TestsSchema, 'articles_tests');

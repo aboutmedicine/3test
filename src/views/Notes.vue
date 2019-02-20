@@ -27,6 +27,12 @@
 
 			<!--ARTICLES IN COLLECTION (CATEGORY + TYPE)-->
 			<div  v-if="validSelection" class="column column--md">
+				<div v-if="user">
+					<button class="btn-block btn-primary" @click="isCreateMode = true">
+						<i class="fas fa-plus"></i>
+					</button>
+				</div>
+
 				<div
 						v-for="article in articlesInSelection(taxonomy)"
 						:key="article._id"
@@ -43,8 +49,22 @@
 			     class="column selected" style="flex: 1;">
 				<Article
 						:content="selectedArticle"
-						:type="taxonomy.section.name"></Article>
+						:articleType="taxonomy.section.name"
+						@deleted="selectedArticle = null"
+				></Article>
 			</div>
+
+			<app-modal v-if="isCreateMode" @close="isCreateMode = false" >
+				<h3 slot="header" class="title">New {{taxonomy.section.name}} Article</h3>
+				<ArticleEditForm slot="body"
+				                 :category="taxonomy.system.name"
+				                 :articleType="taxonomy.section.name"
+				                 @done="isCreateMode = false"
+				></ArticleEditForm>
+				<div slot="footer" class="text-right">
+					<small> {{taxonomy.system.name}} | {{taxonomy.section.name}}</small>
+				</div>
+			</app-modal>
 		</mq-layout>
 
 
@@ -77,9 +97,15 @@
 			</div>
 
 			<app-modal v-if="selectedArticle" @close="selectedArticle = null">
+				<h3 slot="header" class="title">{{selectedArticle.name}}</h3>
 				<Article slot="body"
 				         :content="selectedArticle"
-				         :type="taxonomy.section.name"></Article>
+				         :articleType="taxonomy.section.name"
+				         :showTitle="false"
+				></Article>
+				<div slot="footer" class="text-right">
+					<small> {{taxonomy.system.name}} | {{taxonomy.section.name}}</small>
+				</div>
 			</app-modal>
 		</mq-layout>
 
@@ -87,22 +113,26 @@
 </template>
 <script>
     import { mapState, mapActions, mapGetters } from 'vuex'
-    import Article from '@/components/articles/Article'
     import { HttpService } from '@/http';
+    import Article from '@/components/articles/Article'
+    import ArticleEditForm from '@/components/articles/ArticleEditForm'
+
 
     export default {
         name: 'notes',
-        components: { Article },
+        components: { Article, ArticleEditForm },
         data: () => ({
             selectedArticle: null,
             taxonomy: {
                 system: null,
                 section: null
-            }
+            },
+	        isCreateMode: false
         }),
         computed: {
             ...mapState([
-                'theme'
+                'theme',
+	            'user'
             ]),
             ...mapState('notes', [
                 'systems',
@@ -146,6 +176,9 @@
                 }
 
             },
+	        createArticle() {
+
+	        }
         },
         watch: {
             'theme.dark'(to) {

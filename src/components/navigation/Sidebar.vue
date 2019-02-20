@@ -29,7 +29,7 @@
 				<LogIn slot="body" @done="dialog.login = false"></LogIn>
 				<div slot="footer">
 					Don't have an account?
-					<button class="btn-outline"
+					<button class="btn-sm btn-info"
 					        @click="dialog.login = false; dialog.signup = true">
 						Sign up!
 					</button>

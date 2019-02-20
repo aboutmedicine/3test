@@ -3,7 +3,7 @@
 
 		<transition name="modal-fade">
 			<div class="modal-backdrop" v-show="visible">
-				<div class="modal">
+				<div class="modal"  v-clickout="close">
 					<header class="modal-header">
 
 						<slot name="header"></slot>
@@ -54,7 +54,7 @@
 </script>
 
 
-<style>
+<style lang="scss">
 	.modal-fade-enter,
 	.modal-fade-leave-active {
 		opacity: 0;
@@ -82,33 +82,41 @@
 		background: #FFFFFF;
 		box-shadow: 2px 2px 20px 1px;
 		border-radius: 0.5em;
-		overflow-x: auto;
-		display: flex;
-		flex-direction: column;
+		/*overflow-x: auto;*/
+		/*display: flex;*/
+		/*flex-direction: column;*/
 		max-height: 95vh;
-		overflow: auto;
+		/*overflow: auto;*/
 		max-width: 95%;
+		display: grid;
+		grid-template-rows: auto 1fr auto;
 	}
 
 	.modal-header,
 	.modal-footer {
 		padding: 15px;
-		display: flex;
 	}
 
 	.modal-header {
 		border-bottom: 1px solid #eeeeee;
 		justify-content: space-between;
+		display: grid;
+		grid-template-columns: 1fr auto;
+		.title {
+			margin: 0;
+		}
 	}
 
 	.modal-footer {
 		border-top: 1px solid #eeeeee;
 		justify-content: flex-end;
+		display: flex;
 	}
 
 	.modal-body {
 		position: relative;
 		padding: 20px 10px;
+		overflow: auto;
 	}
 
 

@@ -1,0 +1,11 @@
+@mixin setBtnStyle($baseColor, $textColor: var(--dark-grey), $borderColor: $textColor) {
+	background-color: $baseColor;
+	color: $textColor;
+	border-color: $borderColor;
+	&:hover:not([disabled]) {
+		background-color: darken($baseColor, 5%)
+	}
+	&[disabled] {
+		background-color: $divider-color;
+	}
+}

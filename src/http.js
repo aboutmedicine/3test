@@ -42,7 +42,6 @@ class HttpService {
     }
 
     static getArticlesIn(params) {
-        console.log(params);
         return new Promise(async (resolve, rej) => {
             try {
                 const res = await axios.get(`${url}/articles`, { params });
@@ -63,7 +62,6 @@ class HttpService {
 
     // logIn || signUp
     static auth(action, credentials) {
-        console.log(credentials);
         return new Promise( async (resolve, reject ) => {
             try {
                 const res = await axios.post(`${url}/auth/${action}`, credentials, config);
@@ -94,6 +92,42 @@ class HttpService {
                 reject(err.response);
             }
         });
+    }
+
+    static articleCreate(data) {
+        return new Promise( async (resolve, reject) => {
+            try {
+                const res = await axios.post(`${url}/articles/create`, data, config);
+                resolve(res.data);
+            } catch (err) {
+                console.log(err.response);
+                reject(err.response.data.message);
+            }
+        })
+    }
+    static articleDelete(data) {
+        console.log(data);
+        return new Promise( async (resolve, reject) => {
+            try {
+                const res = await axios.post(`${url}/articles/delete`, data, config);
+                resolve(res.data);
+            } catch (err) {
+                console.log(err.response);
+                reject(err.response.data.message);
+            }
+        })
+    }
+    static articleEdit(data) {
+        console.log(data);
+        return new Promise( async (resolve, reject) => {
+            try {
+                const res = await axios.post(`${url}/articles/edit`, data, config);
+                resolve(res.data);
+            } catch (err) {
+                console.log(err.response);
+                reject(err.response.data.message);
+            }
+        })
     }
 }
 
