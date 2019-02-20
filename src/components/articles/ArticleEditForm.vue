@@ -60,11 +60,14 @@
 	        },
 	        update(e) {
 		        const data = {
-                    _id: this.content._id,
 		            _category: this.category || this.content._category,
 			        type: this.articleType,
 
 		        };
+
+		        if(this.content) {
+		            data._id =  this.content._id;
+		        }
 
                 [...e.target.elements].forEach(el => {
                     if(el.name) {
