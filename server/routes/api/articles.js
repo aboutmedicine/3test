@@ -16,9 +16,11 @@ const authMiddleware = (req, res, next) => {
 router.get('/', async (req, res) => {
 
     try {
-        const model = mongoose.model(req.query.type);
+        const model = mongoose.model(req.query._type);
 
-        res.send(await model.find({ _category: req.query.category }).exec());
+        res.send(await model.find({
+            _category: req.query._category
+        }).exec());
 
     } catch (e) {
         console.error(e);
@@ -27,20 +29,20 @@ router.get('/', async (req, res) => {
 
 });
 
-router.post('/create', authMiddleware, async(req, res) => {
+router.post('/create', authMiddleware, async (req, res) => {
     console.log(req.body);
     try {
-        const model = mongoose.model(req.body.type);
+        const model = mongoose.model(req.body._type);
 
         let article = await model.findOne({
             _category: req.body._category,
             name: req.body.name
         }).exec();
-        
+
         console.log(article);
 
-        if(article) {
-            res.status(400).send({ message: 'Name already taken'})
+        if (article) {
+            res.status(400).send({ message: 'Name already taken' })
         }
         else {
             model.create(req.body, (err, result) => {
@@ -59,36 +61,11 @@ router.post('/create', authMiddleware, async(req, res) => {
     }
 });
 
-router.post('/delete', authMiddleware, async(req, res) => {
+
+router.post('/edit', authMiddleware, async (req, res) => {
     console.log(req.body);
     try {
-        const model = mongoose.model(req.body.type);
-
-        await model
-            .findOneAndRemove({
-                _id: req.body._id
-            }, (err) => {
-                if (err) {
-                    throw err;
-                }
-                else {
-                    console.log('deleted');
-                    res.status(200).send('article deleted');
-                }
-            })
-            .exec();
-
-
-    } catch (e) {
-        console.error(e);
-        res.status(500).send(e);
-    }
-});
-
-router.post('/edit', authMiddleware, async(req, res) => {
-    console.log(req.body);
-    try {
-        const model = mongoose.model(req.body.type);
+        const model = mongoose.model(req.body._type);
 
         await model
             .findOneAndUpdate({
@@ -100,6 +77,33 @@ router.post('/edit', authMiddleware, async(req, res) => {
                 else {
                     console.log('updated');
                     res.status(200).send('article updated');
+                }
+            })
+            .exec();
+
+
+    } catch (e) {
+        console.error(e);
+        res.status(500).send(e);
+    }
+});
+
+
+router.post('/delete', authMiddleware, async (req, res) => {
+    console.log(req.body);
+    try {
+        const model = mongoose.model(req.body._type);
+
+        await model
+            .findOneAndDelete({
+                _id: req.body._id
+            }, (err) => {
+                if (err) {
+                    throw err;
+                }
+                else {
+                    console.log('deleted');
+                    res.status(200).send('article deleted');
                 }
             })
             .exec();

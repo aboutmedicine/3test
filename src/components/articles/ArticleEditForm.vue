@@ -10,6 +10,17 @@
 		<!--dynamic component(additional field set, depends on section)-->
 		<component :is="fieldSet" v-if="fieldSet" :content="content"/>
 
+		<v-select multiple label="title" v-model="localTags" placeholder="Tags" :options="tags">
+			<template slot="option" slot-scope="option">
+				<span class="tag-option">
+					<i :class="`fas fa-${option.icon}`"></i>
+					{{ option.title }}
+				</span>
+			</template>
+		</v-select>
+
+		<br>
+
 		<input type="submit" class="btn-primary" :value="action"/>
 
 		<div>{{error}}</div>
@@ -17,26 +28,32 @@
 </template>
 
 <script>
-	export default {
-	    props: {
-	        articleType: String,
-		    category: String,
-		    content: Object,
-	    },
-		data: () => ({
-			fieldSet: null,
-			error: null,
-		}),
-		computed: {
+    import { mapActions, mapState } from 'vuex';
+
+    export default {
+        props: {
+            articleType: String,
+            category: String,
+            content: Object,
+        },
+        data: () => ({
+            fieldSet: null,
+            error: null,
+	        localTags: []
+        }),
+        computed: {
+            ...mapState('notes', [
+                'tags'
+            ]),
             loadTemplate() {
                 return () => import(`@/components/articles/templates/${this.articleType}Edit`)
             },
-			action() {
+            action() {
                 return this.content ? 'EDIT' : 'CREATE';
-			}
-		},
-		mounted() {
-	        console.log(this.content);
+            }
+        },
+        mounted() {
+            console.log(this.content);
             this.loadTemplate()
                 .then(() => {
                     this.fieldSet = () => this.loadTemplate();
@@ -46,58 +63,63 @@
                 });
 
             this.populate();
-		},
-		methods: {
-	        populate() {
-                if(this.content) {
+        },
+        methods: {
+            ...mapActions('notes', [
+                'EDIT_ARTICLE',
+                'CREATE_ARTICLE'
+            ]),
+            populate() {
+                if (this.content) {
                     [...this.$refs.form.elements].forEach(el => {
-                        console.log(el.name, this.content[el.name]);
-                        if(el.name && this.content[el.name]) {
+                        // console.log(el.name, this.content[el.name]);
+                        if (el.name && this.content[el.name]) {
                             el.value = this.content[el.name];
                         }
                     });
+                    this.localTags = JSON.parse(JSON.stringify(this.content._tags));
                 }
-	        },
-	        update(e) {
-		        const data = {
-		            _category: this.category || this.content._category,
-			        type: this.articleType,
+            },
+            update(e) {
+                const data = {
+                    _type: this.articleType,
+	                _tags: this.localTags
+                };
 
-		        };
-
-		        if(this.content) {
-		            data._id =  this.content._id;
-		        }
+                if (this.content) {
+                    data._id = this.content._id;
+                    data._category = this.content._category;
+                }
+                else {
+                    data._category = this.category
+                }
 
                 [...e.target.elements].forEach(el => {
-                    if(el.name) {
+                    if (el.name) {
                         data[el.name] = el.value;
                     }
                 });
 
                 this.error = null;
 
-                this.$store.dispatch(`notes/${this.action}_ARTICLE`, data)
-	                .then((res) => {
-	                    console.log('form', res);
+                this[`${this.action}_ARTICLE`](data)
+                    .then((res) => {
+                        console.log('form', res);
+
                         this.$emit('done')
-	                })
-                    .catch( err => {
+                    })
+                    .catch(err => {
                         console.log(err);
                         this.error = err;
                     })
-	        }
-		},
-		watch: {
-	        fieldSet(next) {
-	            console.log(next);
-	            this.$nextTick(() => {
-                    this.populate();
-	            });
-
-	        }
-		}
-	}
+            }
+        },
+        watch: {
+            fieldSet() {
+                this.populate();
+            }
+        }
+    }
 </script>
 
 <style lang="scss">
@@ -107,4 +129,5 @@
 		max-width: 100%;
 		width: 580px;
 	}
+
 </style>

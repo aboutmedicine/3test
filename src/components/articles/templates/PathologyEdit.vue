@@ -11,8 +11,6 @@
 				Hx
 				<input type="text" name="hx" placeholder="hx" :value="content.hx"/>
 			</label>
-
-
 			<label for="">
 				Ex
 				<input type="text" name="ex" placeholder="ex" :value="content.ex"/>
@@ -27,9 +25,7 @@
 				Mx
 				<input type="text" name="mx" placeholder="mx" :value="content.mx"/>
 			</label>
-
 		</div>
-
 
 	</div>
 </template>
@@ -39,36 +35,15 @@
 	    props: {
 	        content: {
 	            type: Object,
-		        default: {}
+		        default: () => ({})
 	        },
 	    },
 		data: () => ({
-
 		}),
 		mounted() {
-
 		}
-
 	}
 </script>
 
 <style lang="scss" scoped>
-	.fieldset {
-		display: flex;
-		flex-direction: column;
-		flex-wrap: wrap;
-		> * {
-			margin-bottom: 1em;
-		}
-	}
-
-	label {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		input {
-			flex: 0 80%;
-		}
-	}
-
 </style>

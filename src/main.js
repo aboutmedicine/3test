@@ -11,7 +11,7 @@ import store from '@/store/index'
 //TODO default layout
 import ModelViewer from '@/layouts/ModelViewer'
 import ArticleListing from '@/layouts/ArticleListing'
-import Modal from '@/components/Modal'
+import Modal from '@/components/global/Modal'
 
 Vue.component('layout-models', ModelViewer);
 Vue.component('layout-notes', ArticleListing);
@@ -36,7 +36,9 @@ Vue.use(VueMq, {
 
 Vue.config.productionTip = false
 
-/*global variables, shortcuts*/
+/*
+globals
+*/
 Vue.prototype.$theme = store.state.theme;
 
 

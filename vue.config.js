@@ -21,6 +21,7 @@ module.exports = {
 		}
 	},
 	configureWebpack: {
+		devtool: 'source-map',
 		resolve: {
 			alias: {
 				'@npm': path.join(__dirname, 'node_modules'),

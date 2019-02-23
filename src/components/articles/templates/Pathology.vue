@@ -5,7 +5,6 @@
 		<p><strong>Ex - </strong>{{content.ex}}</p>
 		<p><strong>Ix - </strong>{{content.ix}}</p>
 		<p><strong>Mx - </strong>{{content.mx}}</p>
-		<p><strong>Notes - </strong>{{content.notes}}</p>
 	</div>
 </template>
 

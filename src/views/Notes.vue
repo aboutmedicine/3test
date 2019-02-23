@@ -6,6 +6,7 @@
 			<div class="column column--sm">
 
 				<div
+						class="article-list-item"
 						v-for="system in systems"
 						:key="system._id"
 						:class="taxonomy.system && taxonomy.system.name === system.name ? 'selected' : ''"
@@ -17,6 +18,7 @@
 			<!--ARTICLE TYPES (SYSTEM SECTIONS)-->
 			<div class="column column--sm">
 				<div
+						class="article-list-item"
 						v-for="section in sections"
 						:key="section._id"
 						:class="taxonomy.section && taxonomy.section.name === section.name ? 'selected' : ''"
@@ -26,18 +28,18 @@
 			</div>
 
 			<!--ARTICLES IN COLLECTION (CATEGORY + TYPE)-->
-			<div  v-if="validSelection" class="column column--md">
+			<div v-if="validSelection" class="column column--md">
 				<div v-if="user">
-					<button class="btn-block btn-primary" @click="isCreateMode = true">
+					<button class="btn-block btn-primary" @click="dialog.create = true">
 						<i class="fas fa-plus"></i>
 					</button>
 				</div>
 
-				<div
-						v-for="article in articlesInSelection(taxonomy)"
-						:key="article._id"
-						:class="selectedArticle && selectedArticle.name === article.name ? 'selected' : ''"
-						@click="selectArticle(article)"
+				<div class="article-list-item"
+				     v-for="article in articlesInSelection(taxonomy)"
+				     :key="article._id"
+				     :class="selectedArticle && selectedArticle.name === article.name ? 'selected' : ''"
+				     @click="selectArticle(article)"
 				>
 					{{article.name}}
 				</div>
@@ -45,26 +47,65 @@
 			</div>
 
 			<!--ARTICLE-->
-			<div v-if="selectedArticle"
-			     class="column selected" style="flex: 1;">
+			<div v-if="validSelection && selectedArticle" class="column" style="flex: 1;">
 				<Article
 						:content="selectedArticle"
 						:articleType="taxonomy.section.name"
-						@deleted="selectedArticle = null"
-				></Article>
+				>
+					<div slot="actions" class="btn-row" v-if="user">
+						<button class="btn-primary btn-sm" @click="dialog.edit = true">
+							Edit
+						</button>
+						<button class="btn-accent btn-sm" @click="dialog.delete = true">
+							Delete
+						</button>
+					</div>
+				</Article>
+
+				<app-modal v-if="dialog.edit" @close="dialog.edit = false">
+					<h3 slot="header" class="title" v-if="selectedArticle">Edit {{selectedArticle.name}}</h3>
+
+					<ArticleEditForm
+							slot="body"
+							:content="selectedArticle"
+							:articleType="taxonomy.section.name"
+							@done="dialog.edit = false"
+					></ArticleEditForm>
+
+					<div slot="footer" class="text-right">
+						<small> {{selectedArticle._category}} | {{taxonomy.section.name}}</small>
+					</div>
+				</app-modal>
+
+				<app-modal v-if="dialog.delete" @close="dialog.delete = false">
+					<h3 slot="header" class="title" v-if="selectedArticle">Delete {{selectedArticle.name}}?</h3>
+
+					<ArticleDeleteForm
+							slot="body"
+							@done="dialog.delete = false"
+							:article="selectedArticle"
+					></ArticleDeleteForm>
+
+					<div slot="footer" v-if="error">{{error}}</div>
+				</app-modal>
 			</div>
 
-			<app-modal v-if="isCreateMode" @close="isCreateMode = false" >
-				<h3 slot="header" class="title">New {{taxonomy.section.name}} Article</h3>
+			<app-modal v-if="dialog.create" @close="dialog.create = false">
+				<h3 slot="header" class="title" >New {{taxonomy.section.name}} Article</h3>
+
 				<ArticleEditForm slot="body"
 				                 :category="taxonomy.system.name"
 				                 :articleType="taxonomy.section.name"
-				                 @done="isCreateMode = false"
+				                 @done="dialog.create = false"
 				></ArticleEditForm>
+
 				<div slot="footer" class="text-right">
 					<small> {{taxonomy.system.name}} | {{taxonomy.section.name}}</small>
 				</div>
 			</app-modal>
+
+
+
 		</mq-layout>
 
 
@@ -86,6 +127,7 @@
 
 			<div v-if="validSelection" class="column column--md">
 				<div
+						class="article-list-item"
 						v-for="article in articlesInSelection(taxonomy)"
 						:key="article._id"
 						:class="selectedArticle === article ? 'selected' : ''"
@@ -94,50 +136,60 @@
 					{{article.name}}
 				</div>
 
+				<app-modal v-if="selectedArticle" @close="selectArticle(null)">
+					<h3 slot="header" class="title">{{selectedArticle.name}}</h3>
+
+					<Article slot="body"
+					         :content="selectedArticle"
+					         :articleType="taxonomy.section.name"
+					         :showTitle="false"
+					></Article>
+
+					<div slot="footer" class="text-right">
+						<small> {{taxonomy.system.name}} | {{taxonomy.section.name}}</small>
+					</div>
+				</app-modal>
+
 			</div>
 
-			<app-modal v-if="selectedArticle" @close="selectedArticle = null">
-				<h3 slot="header" class="title">{{selectedArticle.name}}</h3>
-				<Article slot="body"
-				         :content="selectedArticle"
-				         :articleType="taxonomy.section.name"
-				         :showTitle="false"
-				></Article>
-				<div slot="footer" class="text-right">
-					<small> {{taxonomy.system.name}} | {{taxonomy.section.name}}</small>
-				</div>
-			</app-modal>
+
 		</mq-layout>
 
 	</div>
 </template>
 <script>
-    import { mapState, mapActions, mapGetters } from 'vuex'
+    import { mapState, mapActions, mapGetters, mapMutations } from 'vuex'
     import { HttpService } from '@/http';
     import Article from '@/components/articles/Article'
     import ArticleEditForm from '@/components/articles/ArticleEditForm'
+    import ArticleDeleteForm from '@/components/articles/ArticleDeleteForm'
 
 
     export default {
         name: 'notes',
-        components: { Article, ArticleEditForm },
+        components: { Article, ArticleEditForm, ArticleDeleteForm },
         data: () => ({
-            selectedArticle: null,
             taxonomy: {
                 system: null,
                 section: null
             },
-	        isCreateMode: false
+            dialog: {
+                create: false,
+                delete: false,
+                edit: false
+            },
+            error: null
         }),
         computed: {
             ...mapState([
                 'theme',
-	            'user'
+                'user'
             ]),
             ...mapState('notes', [
                 'systems',
                 'sections',
                 'articles',
+                'selectedArticle'
             ]),
             ...mapGetters('notes', [
                 'articlesInSelection'
@@ -148,12 +200,16 @@
         },
         created() {
             HttpService.getCategories().then(res => {
-                this.$store.commit('notes/SET_CATEGORIES', res);
+                this.SET_CATEGORIES(res);
             });
         },
         methods: {
+            ...mapMutations('notes', [
+                'SELECT_ARTICLE',
+                'SET_CATEGORIES',
+            ]),
             ...mapActions('notes', [
-                'FETCH_ARTICLES_IN_SELECTION'
+                'FETCH_ARTICLES_IN_SELECTION',
             ]),
             selectCategory(entry) {
                 if (!entry) return;
@@ -164,21 +220,24 @@
                 this.taxonomy.section = entry;
             },
             selectArticle(entry) {
-                this.selectedArticle = entry;
+                console.log(this.validSelection);
+                if(!this.validSelection) return;
+                
+                this.SELECT_ARTICLE(entry ? {
+	                _type: this.taxonomy.section.name,
+	                ...entry
+                } : null);
             },
             requestArticles() {
                 if (this.validSelection && !this.articlesInSelection(this.taxonomy).length) {
 
                     this.FETCH_ARTICLES_IN_SELECTION({
-                        category: this.taxonomy.system.name,
-                        type: this.taxonomy.section.name,
+                        _category: this.taxonomy.system.name,
+                        _type: this.taxonomy.section.name,
                     });
                 }
 
             },
-	        createArticle() {
-
-	        }
         },
         watch: {
             'theme.dark'(to) {
@@ -186,18 +245,18 @@
                 document.body.style.backgroundColor = to ? '#333333' : '#ffffff';
             },
             'taxonomy.system'() {
-                this.$nextTick( () => {
-                    this.selectedArticle = null;
+                this.$nextTick(() => {
+                    this.SELECT_ARTICLE(null);
                     this.requestArticles();
                 });
 
             },
             'taxonomy.section'() {
-                this.$nextTick( () => {
-                    this.selectedArticle = null;
+                this.$nextTick(() => {
+                    this.SELECT_ARTICLE(null);
                     this.requestArticles();
                 });
-            }
+            },
         }
     }
 </script>
@@ -233,46 +292,44 @@
 			flex: 0 220px;
 		}
 		> * {
-			background-color: #fcfcfc;
-			color: #444;
-			min-width: 100px;
 			margin: .5em;
-			padding: .5em;
-			text-align: left;
-			font-size: 1rem;
+		}
+		.article {
+			width: auto;
+			background-color: #fcfcfc;
 			border-radius: .3em;
-			cursor: pointer;
-
-			&:hover {
-				background-color: #f8f8f8;
-			}
-			&.selected {
-				background-color: #ddd;
-			}
+			padding: .5em;
 		}
 
+	}
+
+	.article-list-item {
+		background-color: #fcfcfc;
+		color: #444;
+		min-width: 100px;
+		text-align: left;
+		padding: .5em;
+		font-size: 1rem;
+		border-radius: .3em;
+		cursor: pointer;
+		&:hover {
+			background-color: #f8f8f8;
+		}
+		&.selected {
+			background-color: #ddd;
+		}
 	}
 
 	.article {
+		width: 100%;
+		max-width: 800px;
 		small {
 			font-size: 0.5em;
 		}
-	}
-
-	.tag {
-		display: inline-block;
-		background-color: #99d9f5;
-		margin: .5em;
-		padding: .5em;
-		text-align: left;
-		font-size: 0.75rem;
-		border-radius: .3em;
-		cursor: pointer;
-		color: #fff;
-		i {
-			margin-right: 0.5em;
+		.modal & {
+			width: 540px;
+			max-width: 100%;
 		}
-
 	}
 
 	h4 {

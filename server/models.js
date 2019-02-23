@@ -61,6 +61,16 @@ const SectionSchema = new mongoose.Schema({
 mongoose.model('Section', SectionSchema);
 
 
+const TagSchema = new mongoose.Schema({
+    title: {
+        type: String,
+    },
+    icon: {
+        type: String
+    }
+});
+
+mongoose.model('Tag', TagSchema);
 
 function AbstractArticleSchema() {
     //call super
@@ -70,17 +80,17 @@ function AbstractArticleSchema() {
         name: { type: String, required: true },
         description: { type: String, required: false },
         notes: { type: String, required: false },
-        _tags: { type: Array, required: false },
+        _tags: [TagSchema],
         _category: {
             // type:  mongoose.Schema.Types.String,
             type: String,
             ref: 'System',
             required: false,
         },
-        // _type: {
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     ref: 'Section'
-        // }
+        _type: {
+            type: String,
+            ref: 'Section'
+        }
     });
 }
 

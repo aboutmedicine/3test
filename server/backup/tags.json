@@ -1,0 +1,50 @@
+[
+  {
+    "title": "muscle",
+    "icon": "dumbbell"
+  },
+  {
+    "title": "brain",
+    "icon": "brain"
+  },
+  {
+    "title": "gastro",
+    "icon": "stomach"
+  },
+  {
+    "title": "endocrine",
+    "icon": "bolt"
+  },
+  {
+    "title": "heart",
+    "icon": "heart"
+  },
+  {
+    "title": "genital",
+    "icon": "seedling"
+  },
+  {
+    "title": "vessels",
+    "icon": "tint"
+  },
+  {
+    "title": "lungs",
+    "icon": "lungs"
+  },
+  {
+    "title": "kidney",
+    "icon": "kidneys"
+  },
+  {
+    "title": "liver",
+    "icon": "beer"
+  },
+  {
+    "title": "skeleton",
+    "icon": "skull"
+  },
+  {
+    "title": "immune system",
+    "icon": "bug"
+  }
+]

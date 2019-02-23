@@ -1,3 +1,44 @@
+.fieldset {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	> * {
+		margin-bottom: 1em;
+	}
+	label {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		input {
+			flex: 0 80%;
+		}
+	}
+}
+
+.tag-option {
+	display: flex;
+	align-items: center;
+
+	i {
+		text-align: center;
+		flex: 0 30px;
+	}
+}
+
+.tag {
+	display: inline-flex;
+	align-items: center;
+	border-radius: 0.3em;
+	background: $primary-color-light;
+	color: #fff;
+	padding: 0 5px;
+	font-size: 0.75rem;
+	i {
+		text-align: center;
+		flex: 0 30px;
+		margin-right: 5px;
+	}
+}
 
 .ico {
 	display: inline-block;
