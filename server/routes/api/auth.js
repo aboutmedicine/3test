@@ -82,24 +82,24 @@ passport.use('local-signup', new LocalStrategy({
     })
 );
 
-router.post('/signup', (req, res, next) => {
-    passport.authenticate("local-signup", (err, user, info) => {
-        if (err) {
-            return next(err);
-        }
-
-        if (!user) {
-            return res.status(400).send([user, "Cannot sign up", info]);
-        }
-
-        req.login(user, err => {
-            res.send({
-                email: user.email,
-                _id: user._id
-            });
-        });
-    })(req, res, next);
-});
+// router.post('/signup', (req, res, next) => {
+//     passport.authenticate("local-signup", (err, user, info) => {
+//         if (err) {
+//             return next(err);
+//         }
+//
+//         if (!user) {
+//             return res.status(400).send([user, "Cannot sign up", info]);
+//         }
+//
+//         req.login(user, err => {
+//             res.send({
+//                 email: user.email,
+//                 _id: user._id
+//             });
+//         });
+//     })(req, res, next);
+// });
 
 router.post('/login', (req, res, next) => {
     passport.authenticate("local-signin", (err, user, info) => {
