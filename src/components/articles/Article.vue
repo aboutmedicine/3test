@@ -11,7 +11,7 @@
 		<p>{{content.description}}</p>
 		<p><strong>Notes - </strong>{{content.notes}}</p>
 
-		<component :is="template" :content="content" v-if="template"/>
+		<component :is="template" :content="content.special" v-if="template"/>
 
 		<div class="article-footer">
 			<div v-for="tag in content._tags" :key="tag.title" class="tag"
@@ -27,7 +27,6 @@
     export default {
         props: {
             content: Object,
-            articleType: String,
             showTitle: {
                 type: Boolean,
                 default: true
@@ -42,7 +41,7 @@
 			* https://medium.com/scrumpy/dynamic-component-templates-with-vue-js-d9236ab183bb
 			* */
             loadTemplate() {
-                return () => import(`@/components/articles/templates/${this.articleType}`)
+                return () => import(`@/components/articles/templates/${this.content._type}`)
             },
         },
         mounted() {

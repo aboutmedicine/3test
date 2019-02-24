@@ -1,14 +1,14 @@
 <template>
 	<form ref="form" class="article-edit" @submit.prevent="update">
-		<input type="text" name="name" placeholder="title" required/>
+		<input v-model="localFields.name" type="text" name="name" placeholder="title" required/>
 		<br>
-		<input type="text" name="description" placeholder="short description"/>
+		<input v-model="localFields.description" type="text" name="description" placeholder="short description"/>
 		<br>
-		<textarea name="notes" cols="30" rows="10" placeholder="notes"></textarea>
+		<textarea v-model="localFields.notes" name="notes" cols="30" rows="10" placeholder="notes"></textarea>
 		<br>
 
 		<!--dynamic component(additional field set, depends on section)-->
-		<component :is="fieldSet" v-if="fieldSet" :content="content"/>
+		<component :ref="'special'" :is="fieldSet" v-if="fieldSet" :content="content ? content.special : {}" @input="handleInput"/>
 
 		<v-select multiple label="title" v-model="localTags" placeholder="Tags" :options="tags">
 			<template slot="option" slot-scope="option">
@@ -39,7 +39,13 @@
         data: () => ({
             fieldSet: null,
             error: null,
-	        localTags: []
+	        localTags: [],
+	        localFields: {
+                name: '',
+		        description: '',
+		        notes: '',
+		        special: {}
+	        }
         }),
         computed: {
             ...mapState('notes', [
@@ -69,38 +75,36 @@
                 'EDIT_ARTICLE',
                 'CREATE_ARTICLE'
             ]),
+	        handleInput(name, value) {
+                this.localFields.special[name] = value;
+	        },
             populate() {
                 if (this.content) {
-                    [...this.$refs.form.elements].forEach(el => {
-                        // console.log(el.name, this.content[el.name]);
-                        if (el.name && this.content[el.name]) {
-                            el.value = this.content[el.name];
-                        }
-                    });
+	                for(let key in this.localFields) {
+	                    this.localFields[key] = this.content[key];
+	                }
                     this.localTags = JSON.parse(JSON.stringify(this.content._tags));
                 }
             },
-            update(e) {
+            update() {
                 const data = {
-                    _type: this.articleType,
-	                _tags: this.localTags
+	                _tags: this.localTags,
+	                ...this.localFields,
                 };
 
                 if (this.content) {
                     data._id = this.content._id;
                     data._category = this.content._category;
+                    data._type = this.content._type;
                 }
                 else {
-                    data._category = this.category
+                    data._category = this.category;
+                    data._type = this.articleType;
                 }
 
-                [...e.target.elements].forEach(el => {
-                    if (el.name) {
-                        data[el.name] = el.value;
-                    }
-                });
-
                 this.error = null;
+
+                console.log(data);
 
                 this[`${this.action}_ARTICLE`](data)
                     .then((res) => {

@@ -25,6 +25,7 @@ export default {
             }
             state.articles = articles;
         },
+
         SET_ARTICLES(state, payload) {
             console.log(payload);
             state.articles[payload._category][payload._type] = payload.articles

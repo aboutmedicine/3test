@@ -16,7 +16,7 @@
 			</div>
 
 			<!--ARTICLE TYPES (SYSTEM SECTIONS)-->
-			<div class="column column--sm">
+			<div v-if="taxonomy.system" class="column column--sm">
 				<div
 						class="article-list-item"
 						v-for="section in sections"
@@ -48,10 +48,7 @@
 
 			<!--ARTICLE-->
 			<div v-if="validSelection && selectedArticle" class="column" style="flex: 1;">
-				<Article
-						:content="selectedArticle"
-						:articleType="taxonomy.section.name"
-				>
+				<Article :content="selectedArticle">
 					<div slot="actions" class="btn-row" v-if="user">
 						<button class="btn-primary btn-sm" @click="dialog.edit = true">
 							Edit
@@ -73,7 +70,7 @@
 					></ArticleEditForm>
 
 					<div slot="footer" class="text-right">
-						<small> {{selectedArticle._category}} | {{taxonomy.section.name}}</small>
+						<small> {{selectedArticle._category}} | {{selectedArticle._type}}</small>
 					</div>
 				</app-modal>
 
@@ -139,14 +136,10 @@
 				<app-modal v-if="selectedArticle" @close="selectArticle(null)">
 					<h3 slot="header" class="title">{{selectedArticle.name}}</h3>
 
-					<Article slot="body"
-					         :content="selectedArticle"
-					         :articleType="taxonomy.section.name"
-					         :showTitle="false"
-					></Article>
+					<Article slot="body" :content="selectedArticle" :showTitle="false"></Article>
 
 					<div slot="footer" class="text-right">
-						<small> {{taxonomy.system.name}} | {{taxonomy.section.name}}</small>
+						<small> {{selectedArticle._category}} | {{selectedArticle._type}}</small>
 					</div>
 				</app-modal>
 
@@ -223,10 +216,7 @@
                 console.log(this.validSelection);
                 if(!this.validSelection) return;
                 
-                this.SELECT_ARTICLE(entry ? {
-	                _type: this.taxonomy.section.name,
-	                ...entry
-                } : null);
+                this.SELECT_ARTICLE(entry ? entry : null);
             },
             requestArticles() {
                 if (this.validSelection && !this.articlesInSelection(this.taxonomy).length) {

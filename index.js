@@ -44,7 +44,8 @@ app.use('/api/auth/', auth);
 
 //DB
 mongoose.connect(process.env.MONGODB_URI, {
-	useNewUrlParser: true
+	useNewUrlParser: true,
+    useCreateIndex: true,
 });
 
 app.listen(port, () => {

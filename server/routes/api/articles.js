@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 
 const router = express.Router();
 
+const Articles = mongoose.model('Article');
+
 // const modelNames = mongoose.modelNames();
 
 const authMiddleware = (req, res, next) => {
@@ -16,10 +18,9 @@ const authMiddleware = (req, res, next) => {
 router.get('/', async (req, res) => {
 
     try {
-        const model = mongoose.model(req.query._type);
-
-        res.send(await model.find({
-            _category: req.query._category
+        res.send(await Articles.find({
+            _category: req.query._category,
+            _type: req.query._type
         }).exec());
 
     } catch (e) {
@@ -32,10 +33,10 @@ router.get('/', async (req, res) => {
 router.post('/create', authMiddleware, async (req, res) => {
     console.log(req.body);
     try {
-        const model = mongoose.model(req.body._type);
 
-        let article = await model.findOne({
+        let article = await Articles.findOne({
             _category: req.body._category,
+            _type: req.body._type,
             name: req.body.name
         }).exec();
 
@@ -45,7 +46,7 @@ router.post('/create', authMiddleware, async (req, res) => {
             res.status(400).send({ message: 'Name already taken' })
         }
         else {
-            model.create(req.body, (err, result) => {
+            Articles.create(req.body, (err, result) => {
                 if (err) {
                     throw err;
                 }
@@ -65,9 +66,8 @@ router.post('/create', authMiddleware, async (req, res) => {
 router.post('/edit', authMiddleware, async (req, res) => {
     console.log(req.body);
     try {
-        const model = mongoose.model(req.body._type);
 
-        await model
+        await Articles
             .findOneAndUpdate({
                 _id: req.body._id
             }, req.body, (err) => {
@@ -92,9 +92,8 @@ router.post('/edit', authMiddleware, async (req, res) => {
 router.post('/delete', authMiddleware, async (req, res) => {
     console.log(req.body);
     try {
-        const model = mongoose.model(req.body._type);
 
-        await model
+        await Articles
             .findOneAndDelete({
                 _id: req.body._id
             }, (err) => {
@@ -115,5 +114,39 @@ router.post('/delete', authMiddleware, async (req, res) => {
     }
 });
 
+
+router.get('/search', async (req, res) => {
+    const q = req.query.text;
+
+    await Articles.createIndexes();
+
+    try {
+
+        const indices = Articles.schema.indexes();
+       console.log(indices);
+
+        // try to find exact phrase match first
+        let matches = await Articles.find({
+            $text: {
+                $search: "\""+q+"\"",
+            }
+        }).exec();
+
+        //otherwise try to find any word
+        if(!matches.length) {
+            matches = await Articles.find({
+                $text: {
+                    $search: q,
+                }
+            }).exec();
+        }
+
+        res.send(matches);
+
+    } catch (e) {
+        console.error(e);
+        res.status(500).send(e);
+    }
+});
 
 module.exports = router;

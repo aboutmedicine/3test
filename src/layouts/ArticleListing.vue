@@ -4,6 +4,7 @@
 			<router-link class="logo" :to="'/'">
 				<img id="logo" src="assets/Logo.png" height="96" width="96">
 			</router-link>
+			<SearchForm></SearchForm>
 
 		</header>
 
@@ -16,15 +17,16 @@
 
 <script>
 	import Sidebar from '@/components/navigation/Sidebar'
+	import SearchForm from '@/components/search/SearchForm'
 
     export default {
-        components: { Sidebar },
+        components: { Sidebar, SearchForm },
         data: () => ({}),
         computed: {
         },
         mounted() {},
     }
-</script>
+</script>s
 
 <style lang="scss">
 	.header {
