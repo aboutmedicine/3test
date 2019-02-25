@@ -20,7 +20,6 @@ const vuexLocal = new VuexPersistence({
 });
 
 const store = new Vuex.Store({
-    strict: process.env.NODE_ENV !== 'production',
     plugins: [vuexLocal.plugin],
     modules: {
         notes,
