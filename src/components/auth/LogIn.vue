@@ -27,7 +27,7 @@
                 this.LOG_IN({ email, password })
 	                .then(() => this.$emit('done'))
 	                .catch( err => {
-	                    console.log(err);
+	                    // console.log(err);
 	                    this.error = err;
 	                })
             },

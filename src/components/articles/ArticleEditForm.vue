@@ -104,7 +104,7 @@
 
                 this.error = null;
 
-                console.log(data);
+                // console.log(data);
 
                 this[`${this.action}_ARTICLE`](data)
                     .then(() => this.$emit('done'))

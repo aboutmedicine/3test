@@ -206,20 +206,17 @@
             ]),
             selectCategory(entry) {
                 if (!entry) return;
-                console.log(entry);
                 this.taxonomy.system = entry.name;
                 this.SELECT_ARTICLE(null);
                 this.requestArticles();
             },
             selectArticleType(entry) {
                 if (!entry) return;
-                console.log(entry);
                 this.taxonomy.section = entry.name;
                 this.SELECT_ARTICLE(null);
                 this.requestArticles();
             },
             selectArticle(entry) {
-                console.log(this.validSelection, entry);
                 if(!this.validSelection) return;
                 
                 this.SELECT_ARTICLE(entry ? entry : null);

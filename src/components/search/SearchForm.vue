@@ -51,7 +51,7 @@
             search: debounce((loading, search, vm) => {
                 HttpService.searchArticles(escape(search))
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
                         vm.options = res;
                         loading(false);
                     })

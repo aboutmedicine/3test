@@ -77,12 +77,12 @@ const store = new Vuex.Store({
             return new Promise((resolve, reject) => {
                 HttpService.auth('signup', { email, password })
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
                         commit('SET_USER', res);
                         resolve();
                     })
                     .catch(err => {
-                        console.log(err);
+                        // console.log(err);
                         reject(err);
                     });
             })
@@ -90,11 +90,11 @@ const store = new Vuex.Store({
         AUTH_STATUS({ commit }) {
             HttpService.getUser()
                 .then(res => {
-                    console.log(res);
+                    // console.log(res);
                     commit('SET_USER', res);
                 })
                 .catch(err => {
-                    console.log(err);
+                    // console.log(err);
                     commit('SET_USER', null);
                 });
         }

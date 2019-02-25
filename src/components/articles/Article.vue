@@ -61,7 +61,13 @@
                     this.template = null
                 })
         },
-        methods: {}
+        methods: {},
+	    watch: {
+            'content._type'() {
+                this.template = () => this.loadTemplate()
+            }
+	    }
+
     }
 </script>
 

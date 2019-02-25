@@ -42,7 +42,7 @@ class HttpService {
     }
 
     static getArticlesIn(params) {
-        console.log(params);
+        // console.log(params);
         return new Promise(async (resolve, rej) => {
             try {
                 const res = await axios.get(`${url}/articles`, { params });
@@ -132,7 +132,7 @@ class HttpService {
     }
 
     static searchArticles(query) {
-        console.log(query);
+        // console.log(query);
         return new Promise( async (resolve, reject ) => {
             try {
                 const res = await axios.get(`${url}/articles/search?text=${query}`, config);
