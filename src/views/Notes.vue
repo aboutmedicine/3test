@@ -1,7 +1,7 @@
 <template>
 	<div id="notes">
 		<!--visible from 768-->
-		<mq-layout mq="md+" class="flex-container" id="desktop-notes">
+		<mq-layout mq="lg+" class="flex-container" id="desktop-notes">
 			<!--CATEGORIES (SYSTEMS)-->
 			<div class="column column--sm">
 
@@ -107,7 +107,7 @@
 
 
 		<!--visible till 767-->
-		<mq-layout :mq="['xs', 'sm']" class="container">
+		<mq-layout :mq="['xs', 'sm', 'md']" class="container">
 			<v-select label="name"
 			          :options="systems"
 			          v-model="taxonomy.system"
@@ -263,6 +263,7 @@
 		height: calc(100vh - 150px);
 		overflow: hidden;
 		position: relative;
+		margin: 0 10vw;
 	}
 
 	.container {
