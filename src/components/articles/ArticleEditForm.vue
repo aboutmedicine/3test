@@ -1,5 +1,5 @@
 <template>
-	<form ref="form" class="article-edit" @submit.prevent="update">
+	<form class="article-edit" @submit.prevent="update">
 		<input v-model="localFields.name" type="text" name="name" placeholder="title" required/>
 		<br>
 		<input v-model="localFields.description" type="text" name="description" placeholder="short description"/>
@@ -8,7 +8,10 @@
 		<br>
 
 		<!--dynamic component(additional field set, depends on section)-->
-		<component :ref="'special'" :is="fieldSet" v-if="fieldSet" :content="content ? content.special : {}" @input="handleInput"/>
+		<component v-if="fieldSet"
+		           :is="fieldSet"
+		           :content="content ? content.special : {}"
+		           @input="addSpecial"/>
 
 		<v-select multiple label="title" v-model="localTags" placeholder="Tags" :options="tags">
 			<template slot="option" slot-scope="option">
@@ -39,13 +42,13 @@
         data: () => ({
             fieldSet: null,
             error: null,
-	        localTags: [],
-	        localFields: {
+            localTags: [],
+            localFields: {
                 name: '',
-		        description: '',
-		        notes: '',
-		        special: {}
-	        }
+                description: '',
+                notes: '',
+                special: {}
+            }
         }),
         computed: {
             ...mapState('notes', [
@@ -59,14 +62,9 @@
             }
         },
         mounted() {
-            console.log(this.content);
             this.loadTemplate()
-                .then(() => {
-                    this.fieldSet = () => this.loadTemplate();
-                })
-                .catch(() => {
-                    this.fieldSet = null
-                });
+                .then(() => this.fieldSet = () => this.loadTemplate())
+                .catch(() => this.fieldSet = null);
 
             this.populate();
         },
@@ -75,28 +73,30 @@
                 'EDIT_ARTICLE',
                 'CREATE_ARTICLE'
             ]),
-	        handleInput(name, value) {
+            addSpecial(name, value) {
                 this.localFields.special[name] = value;
-	        },
+            },
             populate() {
                 if (this.content) {
-	                for(let key in this.localFields) {
-	                    this.localFields[key] = this.content[key];
-	                }
+                    for (let key in this.localFields) {
+                        this.localFields[key] = this.content[key];
+                    }
                     this.localTags = JSON.parse(JSON.stringify(this.content._tags));
                 }
             },
             update() {
                 const data = {
-	                _tags: this.localTags,
-	                ...this.localFields,
+                    _tags: this.localTags,
+                    ...this.localFields,
                 };
 
+                //case EDIT
                 if (this.content) {
                     data._id = this.content._id;
                     data._category = this.content._category;
                     data._type = this.content._type;
                 }
+                //case CREATE
                 else {
                     data._category = this.category;
                     data._type = this.articleType;
@@ -107,15 +107,8 @@
                 console.log(data);
 
                 this[`${this.action}_ARTICLE`](data)
-                    .then((res) => {
-                        console.log('form', res);
-
-                        this.$emit('done')
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        this.error = err;
-                    })
+                    .then(() => this.$emit('done'))
+                    .catch(err => this.error = err)
             }
         },
         watch: {

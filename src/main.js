@@ -48,21 +48,20 @@ https://vuejs.org/v2/guide/custom-directive.html
 */
 
 //click outside
-Vue.directive('clickout', {
+Vue.directive('esc-press', {
     bind(el, { value: fn }, { context: vm }) {
         console.log(vm);
         const handler = (event) => {
-            const target = event.target
-            if (target !== el && !el.contains(target)) {
-                fn()
-                console.log('clicked outside')
+            if (event.key === "Escape") {
+                fn();
+                console.log('esc pressed');
             }
-        }
-        document.addEventListener('click', handler)
+        };
+        document.addEventListener('keyup', handler)
         el.__handler = handler
     },
     unbind(el) {
-        document.removeEventListener('click', el.__handler)
+        document.removeEventListener('keyup', el.__handler)
     }
 });
 

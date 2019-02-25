@@ -92,7 +92,7 @@ export default {
             return state.annotations[state.currentModel];
         },
         sortedModels: (state) => {
-            return state.models.sort((a, b) => a.title.localeCompare(b.title));
+            return [...state.models].sort((a, b) => a.title.localeCompare(b.title));
         },
         activeModel: (state) => {
             const model = state.models.filter(x => x._id === state.currentModel)[0];

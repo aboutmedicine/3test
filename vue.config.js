@@ -3,6 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
 	// outputDir: path.resolve(__dirname, '/dist'),
+    productionSourceMap: false,
 	devServer: {
 		proxy: {
 			'/api': {
@@ -21,6 +22,7 @@ module.exports = {
 		}
 	},
 	configureWebpack: {
+		devtool: 'eval-source-map',
 		resolve: {
 			alias: {
 				'@npm': path.join(__dirname, 'node_modules'),
@@ -36,5 +38,5 @@ module.exports = {
 				THREE: 'three'
 			})
 		]
-	}
+	},
 }

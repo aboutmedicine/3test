@@ -78,7 +78,7 @@
 			canvas.addEventListener('mousedown', (e) => this.highlightMesh(e, controller));
 			canvas.addEventListener('touchstart', (e) => this.highlightMesh(e, controller));
 
-			this.canvas = canvas;
+			// this.canvas = canvas;
 
 			//share the controller instance store-wide, for ex to use inside of Toolbar.vue
 			this.$store.commit('models/SET_CONTROLLER', controller);

@@ -3,7 +3,7 @@
 		<input class="d-block" type="text" name="email"/><br>
 		<input class="d-block" type="password" name="password"/><br>
 		<p v-if="error">{{error.message}}</p>
-		<input type="submit" value="Sign Up"/>
+		<input class="btn-primary" type="submit" value="Sign Up"/>
 	</form>
 </template>
 

@@ -20,6 +20,10 @@
 			</div>
 		</div>
 
+		<p v-if="showMeta" class="text-right">
+			<small> {{content._category}} | {{content._type}}</small>
+		</p>
+
 	</div>
 </template>
 
@@ -30,7 +34,11 @@
             showTitle: {
                 type: Boolean,
                 default: true
-            }
+            },
+	        showMeta: {
+                type: Boolean,
+		        default: true
+	        }
         },
         components: {},
         data: () => ({

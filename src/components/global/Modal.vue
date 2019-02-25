@@ -3,7 +3,7 @@
 
 		<transition name="modal-fade">
 			<div class="modal-backdrop" v-show="visible">
-				<div class="modal"  v-clickout="close">
+				<div class="modal"  v-esc-press="close">
 					<header class="modal-header">
 
 						<slot name="header"></slot>

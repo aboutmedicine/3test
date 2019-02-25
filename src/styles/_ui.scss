@@ -29,7 +29,7 @@
 	display: inline-flex;
 	align-items: center;
 	border-radius: 0.3em;
-	background: $primary-color-light;
+	background: $secondary-color;
 	color: #fff;
 	padding: 0 5px;
 	font-size: 0.75rem;
@@ -131,6 +131,11 @@
 .btn-primary {
 	@extend .btn;
 	@include setBtnStyle($primary-color, #fff, #fff);
+}
+
+.btn-secondary {
+	@extend .btn;
+	@include setBtnStyle($secondary-color, #fff, #fff);
 }
 
 .btn-accent {

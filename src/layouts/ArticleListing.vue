@@ -5,10 +5,10 @@
 				<img id="logo" src="assets/Logo.png" height="96" width="96">
 			</router-link>
 			<SearchForm></SearchForm>
-
+			<Sidebar></Sidebar>
 		</header>
 
-		<Sidebar></Sidebar>
+
 
 		<!--router view-->
 		<slot></slot>

@@ -5,17 +5,17 @@
 			<label for="">
 				Structure
 				<input type="text" name="structure" placeholder="Structure" :value="content.structure"
-				       @input="$emit('input', $event.target.name, $event.target.value)"/>
+				       @input="handleInput"/>
 			</label>
 			<label for="">
 				Mnemonic
 				<input type="text" name="mnemonic" placeholder="Mnemonic" :value="content.mnemonic"
-				       @input="$emit('input', $event.target.name, $event.target.value)"/>
+				       @input="handleInput"/>
 			</label>
 			<label for="">
 				Questions
 				<input type="text" name="questions" placeholder="Questions" :value="content.questions"
-				       @input="$emit('input', $event.target.name, $event.target.value)"/>
+				       @input="handleInput"/>
 			</label>
 		</div>
 	</div>
@@ -29,11 +29,11 @@
 		        default: () => ({})
 	        },
 	    },
-		data: () => ({
-
-		}),
-		mounted() {
-
+		data: () => ({}),
+		methods: {
+	        handleInput(event) {
+	            this.$emit('input', event.target.name, event.target.value);
+	        }
 		}
 
 	}

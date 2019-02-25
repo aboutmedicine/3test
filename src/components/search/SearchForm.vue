@@ -1,6 +1,11 @@
 <template>
 	<div class="search">
-		<v-select label="name" :filterable="false" :options="options" @search="onSearch">
+		<v-select label="name"
+		          placeholder="Search"
+		          v-model="selected"
+		          :filterable="false"
+		          :options="options"
+		          @search="onSearch">
 			<template slot="no-options">
 				type to search articles..
 			</template>
@@ -19,7 +24,46 @@
 </template>
 
 <script>
-	import { HttpService } from "@/http";
+    import { HttpService } from "@/http";
+    import { mapMutations } from 'vuex';
+
+    export default {
+        data: () => ({
+            options: [],
+            selected: null
+        }),
+        methods: {
+            ...mapMutations('notes', [
+                'SELECT_ARTICLE'
+            ]),
+            /**
+             * Accepts a callback function that will be run
+             * when the search text changes. The callback
+             * will be invoked with these parameters:
+             *
+             * @param {search}  String        Current search text
+             * @param {loading} Function    Toggle loading class
+             */
+            onSearch(search, loading) {
+                loading(true);
+                this.search(loading, search, this);
+            },
+            search: debounce((loading, search, vm) => {
+                HttpService.searchArticles(escape(search))
+                    .then(res => {
+                        console.log(res);
+                        vm.options = res;
+                        loading(false);
+                    })
+            }, 350),
+
+        },
+        watch: {
+            selected(next) {
+                this.SELECT_ARTICLE(next);
+            }
+        }
+    }
 
     function debounce(callback, wait, immediate = false) {
         let timeout = null
@@ -36,34 +80,6 @@
             }
         }
     }
-    export default {
-        data: () => ({
-            options: []
-        }),
-        methods: {
-            /**
-             * Accepts a callback function that will be run
-             * when the search text changes. The callback
-             * will be invoked with these parameters:
-             *
-             * @param {search}  String        Current search text
-             * @param {loading} Function    Toggle loading class
-             */
-            onSearch(search, loading) {
-                loading(true);
-                this.search(loading, search, this);
-            },
-            search: debounce((loading, search, vm) => {
-                HttpService.searchArticles(escape(search))
-	                .then(res => {
-	                    console.log(res);
-                        vm.options = res;
-                        loading(false);
-	                })
-            }, 350),
-
-        }
-    }
 </script>
 
 <style lang="scss">
@@ -72,7 +88,7 @@
 		flex: 0 80%;
 		align-self: center;
 		margin-left: 1em;
-		margin-right: 1em;
+		margin-right: 3em;
 		max-width: 540px;
 	}
 

@@ -27,13 +27,13 @@
 			<app-modal v-if="dialog.login" @close="dialog.login = false">
 				<strong slot="header">Log In</strong>
 				<LogIn slot="body" @done="dialog.login = false"></LogIn>
-				<div slot="footer">
+				<!--<div slot="footer">
 					Don't have an account?
 					<button class="btn-sm btn-info"
 					        @click="dialog.login = false; dialog.signup = true">
 						Sign up!
 					</button>
-				</div>
+				</div>-->
 			</app-modal>
 
 			<app-modal v-if="dialog.signup" @close="dialog.signup = false">

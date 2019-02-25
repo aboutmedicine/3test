@@ -9,7 +9,7 @@
 						class="article-list-item"
 						v-for="system in systems"
 						:key="system._id"
-						:class="taxonomy.system && taxonomy.system.name === system.name ? 'selected' : ''"
+						:class="taxonomy.system && taxonomy.system === system.name ? 'selected' : ''"
 						@click="selectCategory(system)">
 					{{system.name}}
 				</div>
@@ -21,7 +21,7 @@
 						class="article-list-item"
 						v-for="section in sections"
 						:key="section._id"
-						:class="taxonomy.section && taxonomy.section.name === section.name ? 'selected' : ''"
+						:class="taxonomy.section && taxonomy.section === section.name ? 'selected' : ''"
 						@click="selectArticleType(section)">
 					{{section.name}}
 				</div>
@@ -30,7 +30,7 @@
 			<!--ARTICLES IN COLLECTION (CATEGORY + TYPE)-->
 			<div v-if="validSelection" class="column column--md">
 				<div v-if="user">
-					<button class="btn-block btn-primary" @click="dialog.create = true">
+					<button class="btn-block btn-accent" @click="dialog.create = true">
 						<i class="fas fa-plus"></i>
 					</button>
 				</div>
@@ -53,7 +53,7 @@
 						<button class="btn-primary btn-sm" @click="dialog.edit = true">
 							Edit
 						</button>
-						<button class="btn-accent btn-sm" @click="dialog.delete = true">
+						<button class="btn-secondary btn-sm" @click="dialog.delete = true">
 							Delete
 						</button>
 					</div>
@@ -65,7 +65,7 @@
 					<ArticleEditForm
 							slot="body"
 							:content="selectedArticle"
-							:articleType="taxonomy.section.name"
+							:articleType="taxonomy.section"
 							@done="dialog.edit = false"
 					></ArticleEditForm>
 
@@ -88,16 +88,16 @@
 			</div>
 
 			<app-modal v-if="dialog.create" @close="dialog.create = false">
-				<h3 slot="header" class="title" >New {{taxonomy.section.name}} Article</h3>
+				<h3 slot="header" class="title" >New {{taxonomy.section}} Article</h3>
 
 				<ArticleEditForm slot="body"
-				                 :category="taxonomy.system.name"
-				                 :articleType="taxonomy.section.name"
+				                 :category="taxonomy.system"
+				                 :articleType="taxonomy.section"
 				                 @done="dialog.create = false"
 				></ArticleEditForm>
 
 				<div slot="footer" class="text-right">
-					<small> {{taxonomy.system.name}} | {{taxonomy.section.name}}</small>
+					<small> {{taxonomy.system}} | {{taxonomy.section}}</small>
 				</div>
 			</app-modal>
 
@@ -136,7 +136,7 @@
 				<app-modal v-if="selectedArticle" @close="selectArticle(null)">
 					<h3 slot="header" class="title">{{selectedArticle.name}}</h3>
 
-					<Article slot="body" :content="selectedArticle" :showTitle="false"></Article>
+					<Article slot="body" :content="selectedArticle" :showTitle="false" :showMeta="false"></Article>
 
 					<div slot="footer" class="text-right">
 						<small> {{selectedArticle._category}} | {{selectedArticle._type}}</small>
@@ -188,7 +188,7 @@
                 'articlesInSelection'
             ]),
             validSelection() {
-                return this.taxonomy.system && this.taxonomy.section;
+                return (this.taxonomy.system !== null && this.taxonomy.section !== null);
             },
         },
         created() {
@@ -206,14 +206,20 @@
             ]),
             selectCategory(entry) {
                 if (!entry) return;
-                this.taxonomy.system = entry;
+                console.log(entry);
+                this.taxonomy.system = entry.name;
+                this.SELECT_ARTICLE(null);
+                this.requestArticles();
             },
             selectArticleType(entry) {
                 if (!entry) return;
-                this.taxonomy.section = entry;
+                console.log(entry);
+                this.taxonomy.section = entry.name;
+                this.SELECT_ARTICLE(null);
+                this.requestArticles();
             },
             selectArticle(entry) {
-                console.log(this.validSelection);
+                console.log(this.validSelection, entry);
                 if(!this.validSelection) return;
                 
                 this.SELECT_ARTICLE(entry ? entry : null);
@@ -222,8 +228,8 @@
                 if (this.validSelection && !this.articlesInSelection(this.taxonomy).length) {
 
                     this.FETCH_ARTICLES_IN_SELECTION({
-                        _category: this.taxonomy.system.name,
-                        _type: this.taxonomy.section.name,
+                        _category: this.taxonomy.system,
+                        _type: this.taxonomy.section,
                     });
                 }
 
@@ -231,22 +237,22 @@
         },
         watch: {
             'theme.dark'(to) {
-                console.log(to);
                 document.body.style.backgroundColor = to ? '#333333' : '#ffffff';
             },
-            'taxonomy.system'() {
-                this.$nextTick(() => {
-                    this.SELECT_ARTICLE(null);
-                    this.requestArticles();
-                });
+	        selectedArticle(next) {
 
-            },
-            'taxonomy.section'() {
-                this.$nextTick(() => {
-                    this.SELECT_ARTICLE(null);
+                //article deletion
+                if(!next) {
+                    this.dialog.delete = false;
+                }
+
+                //clicking by search result
+                else {
+                    this.taxonomy.system = next._category;
+                    this.taxonomy.section = next._type;
                     this.requestArticles();
-                });
-            },
+                }
+	        }
         }
     }
 </script>

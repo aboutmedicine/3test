@@ -6,29 +6,29 @@
 			<label for="">
 				Etiology
 				<input type="text" name="etiology" placeholder="etiology" :value="content.etiology"
-				       @input="$emit('input', $event.target.name, $event.target.value)"/>
+				       @input="handleInput"/>
 			</label>
 			<label for="">
 				Hx
 				<input type="text" name="hx" placeholder="hx" :value="content.hx"
-				       @input="$emit('input', $event.target.name, $event.target.value)"/>
+				       @input="handleInput"/>
 			</label>
 			<label for="">
 				Ex
 				<input type="text" name="ex" placeholder="ex" :value="content.ex"
-				       @input="$emit('input', $event.target.name, $event.target.value)"/>
+				       @input="handleInput"/>
 			</label>
 
 			<label>
 				Ix
 				<input type="text" name="ix" placeholder="ix" :value="content.ix"
-				       @input="$emit('input', $event.target.name, $event.target.value)"/>
+				       @input="handleInput"/>
 			</label>
 
 			<label for="">
 				Mx
 				<input type="text" name="mx" placeholder="mx" :value="content.mx"
-				       @input="$emit('input', $event.target.name, $event.target.value)"/>
+				       @input="handleInput"/>
 			</label>
 		</div>
 
@@ -45,7 +45,10 @@
 	    },
 		data: () => ({
 		}),
-		mounted() {
+		methods: {
+            handleInput(event) {
+                this.$emit('input', event.target.name, event.target.value);
+            }
 		},
 	}
 </script>

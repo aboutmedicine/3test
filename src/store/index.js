@@ -19,7 +19,8 @@ const vuexLocal = new VuexPersistence({
     // filter: (mutation) => mutation.type == 'ADD_NOTE'
 });
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
+    strict: process.env.NODE_ENV !== 'production',
     plugins: [vuexLocal.plugin],
     modules: {
         notes,
@@ -100,4 +101,6 @@ export default new Vuex.Store({
         }
     },
     getters: {}
-})
+});
+
+export default store;

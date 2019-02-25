@@ -98,8 +98,8 @@ export default {
     getters: {
         // Returns an array of articles matching the selection parameters or []
         articlesInSelection: (state) => selection => {
-            const system = selection.system.name;
-            const section = selection.section.name;
+            const system = selection.system;
+            const section = selection.section;
 
             if (system && section) {
                 try {
