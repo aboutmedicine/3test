@@ -3,7 +3,7 @@
 		<p v-if="error">{{error}}</p>
 
 		<div class="btn-row">
-			<button class="btn-accent" @click="deleteArticle" :disabled="isPending">
+			<button class="btn-secondary" @click="deleteArticle" :disabled="isPending">
 				Delete
 			</button>
 			<button class="btn-primary" @click="$emit('done')">
