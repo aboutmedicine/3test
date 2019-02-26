@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="article-specials">
 		<p><strong>Structure - </strong>{{content.structure}}</p>
 		<p><strong>Mnemonic - </strong>{{content.mnemonic}}</p>
 		<p><strong>Questions - </strong>{{content.questions}}</p>

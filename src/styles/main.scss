@@ -20,6 +20,7 @@ input, textarea {
 	box-shadow: none;
 	border: 2px solid #eee;
 	font-size: 16px;
+	font-family: inherit;
 	&[type='submit'] {
 		cursor: pointer;
 	}

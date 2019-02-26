@@ -98,7 +98,7 @@
 	}
 
 	.modal-header {
-		border-bottom: 1px solid #eeeeee;
+		border-bottom: 1px solid $divider-color;
 		justify-content: space-between;
 		display: grid;
 		grid-template-columns: 1fr auto;
@@ -108,7 +108,7 @@
 	}
 
 	.modal-footer {
-		border-top: 1px solid #eeeeee;
+		border-top: 1px solid $divider-color;
 		justify-content: flex-end;
 		display: flex;
 	}

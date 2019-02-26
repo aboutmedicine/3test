@@ -27,7 +27,6 @@
             Sidebar,
             SidebarModels
         },
-        data: () => ({}),
         computed: {
             mobile() {
                 return this.$store.state.mobile
@@ -35,9 +34,6 @@
             ...mapGetters('models', [
                 'activeModel'
             ]),
-
         },
-        mounted() {
-        }
     }
 </script>

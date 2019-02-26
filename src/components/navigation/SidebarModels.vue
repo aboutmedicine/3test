@@ -11,6 +11,9 @@
 				</router-link>
 			</template>
 		</div>
+		<a id="night-mode" @click="$store.commit('TOGGLE_THEME')">
+			{{ $theme.dark ? 'Day' : 'Night'}} Mode
+		</a>
 	</div>
 </template>
 

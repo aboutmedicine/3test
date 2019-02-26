@@ -17,9 +17,7 @@
 
 			<slot name="items"></slot>
 
-			<a id="night-mode" @click="$store.commit('TOGGLE_THEME')">
-				{{ $theme.dark ? 'Day' : 'Night'}} Mode
-			</a>
+
 
 			<a @click="dialog.login = true" v-if="!user">Log In</a>
 			<a @click="LOG_OUT" v-if="user">Log Out</a>
@@ -100,7 +98,7 @@
 
 	.sidenav-button:hover,
 	.sidenav a:hover {
-		color: var(--dark-grey);
+		color: var(--grey);
 		cursor: pointer;
 	}
 
@@ -114,7 +112,7 @@
 		background-color: #fff;
 		overflow: hidden;
 		transition: 0.2s;
-		border-left: 2px solid #eeeeee;
+		border-left: 2px solid $divider-color;
 	}
 
 	.sidenav a {

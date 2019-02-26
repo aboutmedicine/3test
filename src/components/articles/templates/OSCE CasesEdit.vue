@@ -1,5 +1,5 @@
 <template>
-	<div class="">
+	<div>
 		<h4>Special Fields</h4>
 		<div class="fieldset">
 			<label for="">

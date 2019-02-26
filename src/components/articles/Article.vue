@@ -2,16 +2,21 @@
 	<div class="article">
 
 		<div class="article-header">
-			<h4 v-if="showTitle">{{content.name}}</h4>
+			<h4 v-if="showTitle" class="article-title">{{content.name}}</h4>
 
 			<!--EDIT / DELETE-->
 			<slot name="actions"></slot>
 		</div>
 
-		<p>{{content.description}}</p>
-		<p><strong>Notes - </strong>{{content.notes}}</p>
+		<div class="article-excerpt">
+			<p>{{content.description}}</p>
+		</div>
 
-		<component :is="template" :content="content.special" v-if="template"/>
+		<div class="article-body">
+			<component :is="template" :content="content.special" v-if="template"/>
+			<p><strong>Notes - </strong>{{content.notes}}</p>
+		</div>
+
 
 		<div class="article-footer">
 			<div v-for="tag in content._tags" :key="tag.title" class="tag"
@@ -20,9 +25,9 @@
 			</div>
 		</div>
 
-		<p v-if="showMeta" class="text-right">
+		<!--<p v-if="showMeta" class="text-right">
 			<small> {{content._category}} | {{content._type}}</small>
-		</p>
+		</p>-->
 
 	</div>
 </template>
@@ -73,10 +78,21 @@
 
 <style lang="scss">
 	.article {
-		width: 540px;
-		max-width: 100%;
+		width: 100%;
+		max-width: 800px;
+
+		.modal & {
+			width: 540px;
+			max-width: 100%;
+		}
 		p {
 			white-space: pre-wrap;
+		}
+		b, strong {
+			font-weight: 600;
+		}
+		small {
+			font-size: 0.5em;
 		}
 	}
 
@@ -84,11 +100,29 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		margin-bottom: 1.5em;
+		.modal & {
+			display: none;
+		}
+	}
+	.article-title {
+		margin: 0;
+		margin-right: 1em;
+		font-weight: 600;
+		font-size: 1.5em;
 	}
 
 	.article-footer {
+		margin-left: 0.5em;
 		.tag + .tag {
 			margin-left: 0.5em;
 		}
+	}
+
+	.article-body {
+		margin-left: 1em;
+	}
+	.article-excerpt {
+		margin-left: 0.5em;
 	}
 </style>

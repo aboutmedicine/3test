@@ -126,5 +126,10 @@
 		max-width: 100%;
 		width: 580px;
 	}
+	.fieldset {
+		label {
+			font-weight: 600;
+		}
+	}
 
 </style>

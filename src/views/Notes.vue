@@ -290,15 +290,16 @@
 		}
 		.article {
 			width: auto;
-			background-color: #fcfcfc;
+			background-color: var(--light-grey);
 			border-radius: .3em;
-			padding: .5em;
+			padding: 1.5em;
+			padding-bottom: 5em;
 		}
 
 	}
 
 	.article-list-item {
-		background-color: #fcfcfc;
+		background-color: var(--light-grey);
 		color: #444;
 		min-width: 100px;
 		text-align: left;
@@ -314,21 +315,4 @@
 		}
 	}
 
-	.article {
-		width: 100%;
-		max-width: 800px;
-		small {
-			font-size: 0.5em;
-		}
-		.modal & {
-			width: 540px;
-			max-width: 100%;
-		}
-	}
-
-	h4 {
-		font-weight: 600;
-		margin: .5em;
-		font-size: 1.5em;
-	}
 </style>

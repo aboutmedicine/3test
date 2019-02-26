@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="article-specials">
 		<p><strong>Etiology - </strong>{{content.etiology}}</p>
 		<p><strong>Hx - </strong>{{content.hx}}</p>
 		<p><strong>Ex - </strong>{{content.ex}}</p>

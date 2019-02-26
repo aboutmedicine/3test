@@ -8,8 +8,6 @@
 			<Sidebar></Sidebar>
 		</header>
 
-
-
 		<!--router view-->
 		<slot></slot>
 	</div>
@@ -21,12 +19,8 @@
 
     export default {
         components: { Sidebar, SearchForm },
-        data: () => ({}),
-        computed: {
-        },
-        mounted() {},
     }
-</script>s
+</script>
 
 <style lang="scss">
 	.header {

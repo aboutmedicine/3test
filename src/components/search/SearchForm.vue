@@ -90,6 +90,9 @@
 		margin-left: 1em;
 		margin-right: 3em;
 		max-width: 540px;
+		input {
+			font-family: inherit;
+		}
 	}
 
 	.d-center {
