@@ -1,5 +1,7 @@
 <template>
 	<component :is="layout" :class="[layout, (mobile ? 'touch' : 'desktop')]">
+        <a class="feedback-btn" target="_blank" href="https://aboutmedicine.typeform.com/to/qX1p8S">Feedback</a>
+		
 		<router-view/>
 
 		<portal-target name="modals-portal">
@@ -37,4 +39,20 @@
 
 <style lang="scss">
 	@import '@styles/main.scss';
+    .feedback-btn {
+		position: fixed;
+		bottom: 0px;
+		left: 15px;
+		padding: 10px;
+		border-radius: 20px 20px 0px 0px;
+		background-color: rgba(0, 0, 0, 0.02);
+		cursor: pointer;
+		transition: 0s;
+		text-decoration: none;
+		color: #333;
+        z-index: 1;
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.08);
+		}
+	}
 </style>

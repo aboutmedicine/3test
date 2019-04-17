@@ -52,9 +52,10 @@
 
 		</div>
 		<div class="toolbar-social">
-			<a href="http://ko-fi.com/reubenschmidt" class="social-button">
+			<!-- <a href="http://ko-fi.com/reubenschmidt" class="social-button">
 				<i class="fa fa-coffee"></i>
-			</a>
+			</a> -->
+			
 		</div>
 
 
@@ -254,6 +255,6 @@
 		}
 	}
 
-
+	
 
 </style>
