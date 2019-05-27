@@ -1,5 +1,5 @@
 <template>
-	<component :is="layout" :class="[layout, (mobile ? 'touch' : 'desktop')]">
+	<component v-if="layout" :is="layout" :class="[layout, (mobile ? 'touch' : 'desktop')]">
         <a class="feedback-btn" target="_blank" href="https://aboutmedicine.typeform.com/to/qX1p8S">Feedback</a>
 		
 		<router-view/>

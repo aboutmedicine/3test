@@ -66,11 +66,11 @@
 		},
 
 		created() {
-			//get models from server
-			this.fetchModels();
 		},
 
 		mounted() {
+			//get models from server
+			this.fetchModels();
 			const canvas = document.getElementById('tester');
 			const controller = new SceneManager(canvas);
 

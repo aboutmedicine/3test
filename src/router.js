@@ -25,20 +25,6 @@ const router = new Router({
             path: '/:id',
             meta: { layout: 'models' },
             component: lazyLoad('Scene'),
-            beforeEnter: (to, from, next) => {
-                function isValid(param) {
-                    //TODO check if model exists
-                    console.log(param);
-                    return true
-                }
-
-                if (!isValid(to.params.id)) {
-                    //TODO create 404 page or something
-                    next({ name: '404' });
-                }
-
-                next();
-            }
         },
 
     ],

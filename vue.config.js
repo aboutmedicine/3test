@@ -1,9 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
 	// outputDir: path.resolve(__dirname, '/dist'),
-    productionSourceMap: false,
+	productionSourceMap: false,
 	devServer: {
 		proxy: {
 			'/api': {
@@ -36,6 +37,10 @@ module.exports = {
 		plugins: [
 			new webpack.ProvidePlugin({
 				THREE: 'three'
+			}),
+			new CompressionPlugin({
+				algorithm: 'gzip',
+				test: /\.js$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.wasm$|\.svg?.+$/,
 			})
 		]
 	},
