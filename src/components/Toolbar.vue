@@ -1,7 +1,7 @@
 <template>
 	<header class="top-panel">
 		<div class="logo">
-			<img id="logo" :src="logo" height="96" width="96">
+			<img alt="About Medicine" id="logo" :src="logo" height="96" width="96">
 		</div>
 		<div class="toolbar">
 

@@ -128,8 +128,6 @@ router.get('/logout', function (req, res) {
 router.get('/user', authMiddleware, async (req, res) => {
     let user = await User.findOne({ _id: req.session.passport.user });
 
-    console.log([user, req.session]);
-
     res.send({
         email: user.email,
         _id: user._id

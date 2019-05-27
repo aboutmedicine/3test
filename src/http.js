@@ -9,20 +9,23 @@ const config = {
 
 class HttpService {
 
-    static getPosts(params = config) {
-        return new Promise(async (resolve, rej) => {
+    static async getPosts(params = config) {
+        // return new Promise(async (resolve, rej) => {
 
-            try {
-                const res = await axios.get(`${url}/posts`, params);
-                const data = res.data;
+        //     try {
+        //         const res = await axios.get(`${url}/posts`, params);
+        //         const data = res.data;
 
-                resolve(data);
+        //         resolve(data);
 
-            } catch (err) {
-                rej(err);
-            }
+        //     } catch (err) {
+        //         rej(err);
+        //     }
 
-        })
+
+        // })
+        const res = await axios.get(`${url}/posts`, params);
+        return res.data;
     }
 
     static getCategories() {
@@ -63,7 +66,7 @@ class HttpService {
 
     // logIn || signUp
     static auth(action, credentials) {
-        return new Promise( async (resolve, reject ) => {
+        return new Promise(async (resolve, reject) => {
             try {
                 const res = await axios.post(`${url}/auth/${action}`, credentials, config);
                 resolve(res.data);
@@ -74,7 +77,7 @@ class HttpService {
     }
 
     static logOut() {
-        return new Promise( async (resolve, reject ) => {
+        return new Promise(async (resolve, reject) => {
             try {
                 const res = await axios.get(`${url}/auth/logout`);
                 resolve(res.data);
@@ -85,7 +88,7 @@ class HttpService {
     }
 
     static getUser() {
-        return new Promise( async (resolve, reject ) => {
+        return new Promise(async (resolve, reject) => {
             try {
                 const res = await axios.get(`${url}/auth/user`, config);
                 resolve(res.data);
@@ -96,7 +99,7 @@ class HttpService {
     }
 
     static articleCreate(data) {
-        return new Promise( async (resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             try {
                 const res = await axios.post(`${url}/articles/create`, data, config);
                 resolve(res.data);
@@ -108,7 +111,7 @@ class HttpService {
     }
     static articleDelete(data) {
         console.log(data);
-        return new Promise( async (resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             try {
                 const res = await axios.post(`${url}/articles/delete`, data, config);
                 resolve(res.data);
@@ -120,7 +123,7 @@ class HttpService {
     }
     static articleEdit(data) {
         console.log(data);
-        return new Promise( async (resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             try {
                 const res = await axios.post(`${url}/articles/edit`, data, config);
                 resolve(res.data);
@@ -133,11 +136,11 @@ class HttpService {
 
     static searchArticles(query) {
         // console.log(query);
-        return new Promise( async (resolve, reject ) => {
+        return new Promise(async (resolve, reject) => {
             try {
                 const res = await axios.get(`${url}/articles/search?text=${query}`, config);
                 resolve(res.data);
-            }catch (err) {
+            } catch (err) {
                 console.log(err.response);
                 reject(err.response.data.message);
             }

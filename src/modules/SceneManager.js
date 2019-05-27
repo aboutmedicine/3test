@@ -45,19 +45,21 @@ class SceneManager extends Dispatcher {
 		this._render();
 	}
 
-	load(path, callback) {
-		this._loader.load(path, (gltf) => {
-			let prev = this.scene.getObjectById(this._activeScene);
+	load(path) {
+		return new Promise((res) => {
+			this._loader.load(path, (gltf) => {
+				let prev = this.scene.getObjectById(this._activeScene);
 
-			if (prev) {
-				this.scene.remove(prev);
-			}
+				if (prev) {
+					this.scene.remove(prev);
+				}
 
-			this._activeScene = gltf.scene.id;
-			this._scene.add(gltf.scene);
-			this._interactiveObjects = gltf.scene;
+				this._activeScene = gltf.scene.id;
+				this._scene.add(gltf.scene);
+				this._interactiveObjects = gltf.scene;
 
-			callback();
+				res();
+			});
 		});
 	}
 
@@ -124,7 +126,7 @@ class SceneManager extends Dispatcher {
 			if (!object.visible) {
 				object.visible = true;
 			}
-			if(object.isMesh) {
+			if (object.isMesh) {
 				object.material.clippingPlanes = [];
 			}
 
@@ -155,9 +157,9 @@ class SceneManager extends Dispatcher {
 
 		this._renderer.localClippingEnabled = true;
 
-		const backSideMaterial = new THREE.MeshBasicMaterial( {
-			color : 0xeeeeee,
-		} );
+		const backSideMaterial = new THREE.MeshBasicMaterial({
+			color: 0xeeeeee,
+		});
 
 		backSideMaterial.side = THREE.BackSide;
 
@@ -169,8 +171,8 @@ class SceneManager extends Dispatcher {
 				node.material.clipShadows = true;
 				node.material.needsUpdate = true;
 
-				node.onAfterRender = function( renderer, scene, camera, geometry, material, group ){
-					renderer.renderBufferDirect( camera, scene.fog, geometry, backSideMaterial, node, group );
+				node.onAfterRender = function (renderer, scene, camera, geometry, material, group) {
+					renderer.renderBufferDirect(camera, scene.fog, geometry, backSideMaterial, node, group);
 				};
 			}
 		});
@@ -220,7 +222,7 @@ class SceneManager extends Dispatcher {
 		this._renderer.setSize(width, height);
 
 		this._resetCamera();
-		
+
 		this.dispatch('resize');
 	}
 
@@ -271,7 +273,7 @@ class SceneManager extends Dispatcher {
 		const controls = new THREE.OrbitControls(camera, renderer.domElement);
 		controls.enableDamping = true;
 		controls.dampingFactor = 0.25;
-        controls.screenSpacePanning = true;
+		controls.screenSpacePanning = true;
 		controls.maxDistance = 50;
 		controls.minDistance = .5;
 		controls.rotateSpeed = 0.75;

@@ -62,12 +62,12 @@ const store = new Vuex.Store({
             return new Promise((resolve, reject) => {
                 HttpService.auth('login', { email, password })
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
                         commit('SET_USER', res);
                         resolve();
                     })
                     .catch(err => {
-                        console.log(err);
+                        // console.log(err);
                         reject(err);
                     });
             })
@@ -94,7 +94,7 @@ const store = new Vuex.Store({
                     commit('SET_USER', res);
                 })
                 .catch(err => {
-                    // console.log(err);
+                    console.log(err);
                     commit('SET_USER', null);
                 });
         }
