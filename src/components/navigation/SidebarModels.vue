@@ -2,7 +2,7 @@
 	<div class="nav-models">
 		<a class="dropdown-btn" @click="dropdown.model = !dropdown.model">
 			Other Models
-      <i v-if="!dropdown.model" class="sidenav-icon fa fa-caret-down"></i>
+      <i class="sidenav-icon fa fa-caret-down"></i>
 		</a>
 		<div class="dropdown-container" v-show="dropdown.model">
 			<template v-for="model in modelList" >
