@@ -4,7 +4,8 @@
 		<Toolbar></Toolbar>
 
 		<Sidebar>
-			<h5 slot="header">{{activeModel}}</h5>
+			<h4 slot="header">{{activeModel}}</h4>
+			<SidebarModels slot="items"></SidebarModels>
 			<SidebarModels slot="items"></SidebarModels>
 		</Sidebar>
 

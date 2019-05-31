@@ -6,7 +6,7 @@
 
 		<div id="sidenav" class="sidenav" :style="`width: ${open ? '250px' : '0px'}`">
 			<div id="close-sidenav" class="sidenav-button" @click="open = false">
-				<i class="fa fa-times"></i>
+				<i class="far fa-times"></i>
 			</div>
 
 			<div class="header">
@@ -79,16 +79,12 @@
 		position: absolute;
 		color: #ccc;
 		top: 36px;
-		right: 8px;
+		right: 0px;
 		width: 48px;
 		height: 48px;
 		font-size: 32px;
 		margin: 0px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		cursor: pointer;
-		transition: .2s;
 		z-index: 1;
 		@media (max-width: 767px) {
 			top: 10px;
@@ -111,12 +107,11 @@
 		right: -2px;
 		background-color: #fff;
 		overflow: hidden;
-		transition: 0.2s;
 		border-left: 2px solid $divider-color;
 	}
 
 	.sidenav a {
-		padding: 8px 28px 8px 16px;
+		padding: 4px 32px 4px 16px;
 		text-decoration: none;
 		font-size: 16px;
 		color: var(--dark-grey);
@@ -124,11 +119,11 @@
 		transition: 0.2s;
 		font-weight: 500;
 		overflow: hidden;
-		min-width: 240px;
 	}
 
 	.sidenav-icon {
 		float: right;
 	}
+
 
 </style>

@@ -31,7 +31,8 @@ export default {
             let annotations = JSON.parse(JSON.stringify(state.annotations));
 
             annotations[state.currentModel] = {
-                ...annotations[state.currentModel], [payload.id]: payload
+                ...annotations[state.currentModel],
+                [payload.id]: payload
             };
 
             state.annotations = annotations;
@@ -72,18 +73,25 @@ export default {
         }
     },
     actions: {
-        ADD_NOTE({ commit }, payload) {
+        ADD_NOTE({
+            commit
+        }, payload) {
             commit('SET_ANNOTATION_MODE', false);
             commit('ADD_NOTE', payload);
             commit('SET_ACTIVE_NOTE', payload.id);
         },
-        CLEAR_SCENE({ commit, state }) {
+        CLEAR_SCENE({
+            commit,
+            state
+        }) {
             commit('REMOVE_DRAWINGS', state.drawings.length);
             commit('SET_ACTIVE_MESH', {});
             commit('SET_ACTIVE_NOTE', null);
             state.controller.restoreVisibility();
         },
-        HIDE_MESH({ state }) {
+        HIDE_MESH({
+            state
+        }) {
             state.controller.hideMesh(state.activeMesh.object);
         }
     },
@@ -96,10 +104,9 @@ export default {
         },
         activeModel: (state) => {
             const model = state.models.filter(x => x._id === state.currentModel)[0];
-            if(model) {
+            if (model) {
                 return model.title;
-            }
-            else {
+            } else {
                 return 'No model selected'
             }
         }

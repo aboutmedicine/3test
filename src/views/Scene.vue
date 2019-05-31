@@ -201,17 +201,19 @@
     .mesh-name-box {
         position: absolute;
         text-align: center;
-        left: 30%;
-        right: 30%;
-        bottom: 0;
+        border-radius: 5px 5px 0px 0px;
+        left: 35%;
+        right: 35%;
+        bottom: 0px;
         background-color: rgba(255, 255, 255, 0.7);
         &.light {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(51, 51, 51, 0.7);
         }
     }
 
     .mesh-name {
         color: var(--black);
+        margin: .5rem;
         &.light {
             color: var(--light-grey);
         }

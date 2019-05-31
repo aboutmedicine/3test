@@ -1,13 +1,78 @@
-@import '~@libs/normalize.css';
 @import 'variables.scss';
 @import 'mixins.scss';
 @import 'ui.scss';
 
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 1.5rem 0;
+    font-weight: 600;
+    font-family: Avenir Next, Helvetica Neue, Helvetica, Arial, sans-serif;
+    line-height: 1;
+    color: #555;
+}
 
+
+h1 {
+    font-size: 1.75rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+h4 {
+    font-size: 1.1rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+@media (min-width: 600px) {
+
+    h1 {
+        font-size: 2.25rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.75rem;
+    }
+
+    h4 {
+        font-size: 2.125rem;
+        letter-spacing: 0.25;
+        border-bottom: 2px solid $divider-color;
+    }
+
+    h5 {
+        font-size: 3rem;
+    }
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font: normal normal normal 1rem/1.6 -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
 
 body {
-	font-family: Avenir Next, Helvetica;
-	color: $primary-text-color;
+    margin: 0;
+    font-family: Avenir Next, Helvetica;
+    color: $primary-text-color;
 }
 
 .noscroll {
@@ -50,28 +115,33 @@ br {
 	position: relative;
 
 	&:before {
-		pointer-events: none;
-		font-size: 1rem;
-		color: #5C5C5C;
-		line-height: 1rem;
-		content: attr(data-tooltip);
-		position: absolute;
-		bottom: calc(100% + 5px);
-		left: -10%;
-		white-space: nowrap;
-		z-index: 2;
-		display: none;
+    font-family: Avenir;
+    pointer-events: none;
+    background-color: white;
+    padding: 2px 0px;
+    font-size: 1rem;
+    color: #222;
+    line-height: 1rem;
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 5px);
+    left: -10%;
+    white-space: nowrap; 
+    z-index: 2;
+    opacity: 0;
+    transition: .15s;
 	}
 	&:hover:before {
-		display: block;
+    opacity: .6;
+    transition-delay: .5s;
 	}
 
 }
 [data-tooltip-bottom] {
 	&:before {
 		content:attr(data-tooltip-bottom);
-		top: 100%;
-		right: 0px;
+		top: 120%;
+    right: -50%;
 		left: auto;
 		bottom: auto;
 	}

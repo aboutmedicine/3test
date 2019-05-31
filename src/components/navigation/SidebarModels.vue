@@ -2,7 +2,8 @@
 	<div class="nav-models">
 		<a class="dropdown-btn" @click="dropdown.model = !dropdown.model">
 			Other Models
-			<i class="sidenav-icon fa fa-caret-down"></i>
+      <i v-if="!dropdown.model" class="sidenav-icon fa fa-caret-down"></i>
+      <i v-if="dropdown.model" class="sidenav-icon fa fa-caret-up"></i>
 		</a>
 		<div class="dropdown-container" v-show="dropdown.model">
 			<template v-for="model in modelList" >
@@ -42,18 +43,15 @@
 </script>
 
 <style lang="scss">
-	.sidenav .header {
-		padding: 24px 8px 8px 16px;
-		margin: 0;
-		text-decoration: none;
-		display: block;
-		font-size: 32px;
-	}
+  .sidenav .header {
+    padding: 20px 0px 0px 16px;
+    text-decoration: none;
+    display: block;
+  }
 
-	.dropdown-container {
-		padding-left: 8px;
-		max-height: 40vh;
-		overflow: auto;
-	}
+  .dropdown-container {
+     padding-left: 16px;
+     overflow: auto;
+   }
 
 </style>

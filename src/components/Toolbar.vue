@@ -5,7 +5,7 @@
 		</div>
 		<div class="toolbar">
 
-			<div id="dissect" class="toolbar-button" @click="dissect">
+			<div id="dissect" class="toolbar-button" @click="dissect" data-tooltip-bottom="Remove part">
 				<i class="fa fa-eye-slash"></i>
 			</div>
 
@@ -13,28 +13,28 @@
 				<i class="fa fa-cut"></i>
 
 				<div class="toolbar-dropdown" v-show="!mobile || dialog.clip">
-					<div class="toolbar-button" @click.stop="clip(0,0,-1)">
+					<div class="toolbar-button" @click.stop="clip(0,0,-1)" data-tooltip-bottom="Cut coronal">
 						<i class="fa fa-square"></i>
 					</div>
-					<div class="toolbar-button" @click.stop="clip(0,-1,0)">
+					<div class="toolbar-button" @click.stop="clip(0,-1,0)" data-tooltip-bottom="Cut transverse">
 						<i class="fa fa-minus"></i>
 					</div>
-					<div class="toolbar-button" @click.stop="clip(-1,0,0)">
+					<div class="toolbar-button" @click.stop="clip(-1,0,0)" data-tooltip-bottom="Cut sagittal">
 						<i style="transform: rotate(90deg)" class="fa fa-minus"></i>
 					</div>
 				</div>
 			</div>
 
-			<div id="annotation" class="toolbar-button" @click="toggleAnnotationMode">
+			<div id="annotation" class="toolbar-button" @click="toggleAnnotationMode" data-tooltip-bottom="Annotate part">
 				<i class="fa fa-file-medical"></i>
 
 			</div>
 
-			<div class="toolbar-button" @click="toggleDrawMode">
+			<div class="toolbar-button" @click="toggleDrawMode" data-tooltip-bottom="Drawing mode">
 				<i class="fa fa-pencil"></i>
 			</div>
 
-			<div id="restore" class="toolbar-button" @click="reset">
+			<div id="restore" class="toolbar-button" @click="reset" data-tooltip-bottom="Reset model">
 				<i class="fa fa-redo-alt"></i>
 			</div>
 
@@ -52,9 +52,9 @@
 
 		</div>
 		<div class="toolbar-social">
-			<!-- <a href="http://ko-fi.com/reubenschmidt" class="social-button">
-				<i class="fa fa-coffee"></i>
-			</a> -->
+			 <a href="https://www.patreon.com/aboutmedicine" class="social-button">
+				<i class="fab fa-patreon"></i>
+			</a> 
 			
 		</div>
 
@@ -218,11 +218,13 @@
 		align-items: center;
 		font-size: 32px;
 		transition: .2s;
+    text-decoration: none;
 	}
 
 	.social-button:hover {
 		color: var(--dark-grey);
 		cursor: pointer;
+    text-decoration: none;
 	}
 
 	.logo {
