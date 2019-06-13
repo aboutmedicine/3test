@@ -44,8 +44,6 @@ app.use('/', expressStaticGzip(path.join(__dirname,'/dist'), {
 // console.log(path.join(__dirname,'/dist'));
 
 
-cacheMiddleware.attach(app);
-
 //models
 require('./server/models');
 
@@ -56,6 +54,9 @@ const articles = require('./server/routes/api/articles');
 const auth = require('./server/routes/api/auth');
 
 app.use('/api/posts/', posts);
+
+cacheMiddleware.attach(app); // routes to be cached below
+
 app.use('/api/categories/', categories);
 app.use('/api/articles/', articles);
 app.use('/api/auth/', auth);
