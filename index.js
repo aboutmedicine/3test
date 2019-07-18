@@ -54,11 +54,11 @@ const articles = require('./server/routes/api/articles');
 const auth = require('./server/routes/api/auth');
 
 app.use('/api/posts/', posts);
+app.use('/api/articles/', articles);
 
 cacheMiddleware.attach(app); // routes to be cached below
 
 app.use('/api/categories/', categories);
-app.use('/api/articles/', articles);
 app.use('/api/auth/', auth);
 
 

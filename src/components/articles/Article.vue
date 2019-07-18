@@ -13,7 +13,7 @@
 		</div>
 
 		<div class="article-body">
-			<component :is="template" :content="content.special" v-if="template"/>
+			<component :is="template" :content="content.special || {}" v-if="template"/>
 			<p><strong>Notes - </strong>{{content.notes}}</p>
 		</div>
 
