@@ -16,7 +16,7 @@ const port = process.env.PORT || 9999;
 
 const ExpressCache = require('express-cache-middleware')
 const cacheManager = require('cache-manager')
- 
+
 const cacheMiddleware = new ExpressCache(
     cacheManager.caching({
         store: 'memory', max: 10000, ttl: 3600
@@ -38,7 +38,7 @@ app.use(cookieSession({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/', expressStaticGzip(path.join(__dirname,'/dist'), { 
+app.use('/', expressStaticGzip(path.join(__dirname,'/dist'), {
     // index: false,
 }));
 // console.log(path.join(__dirname,'/dist'));

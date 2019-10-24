@@ -7,7 +7,7 @@
 		          :options="options"
 		          @search="onSearch">
 			<template slot="no-options">
-				type to search articles..
+				type to search articles...
 			</template>
 			<template slot="option" slot-scope="option">
 				<div class="d-center">
